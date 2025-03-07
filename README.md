@@ -1,2 +1,0 @@
-# harami-test
-test用

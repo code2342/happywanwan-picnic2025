@@ -1,0 +1,156 @@
+@font-face {
+  font-family: "LINE Seed JP App_OTF";
+  src: url("./LINESeedJP_OTF_Bd.woff2") format("woff2");
+  font-weight: 700;
+  font-style: normal;
+}
+body {
+  color: #59383b;
+  font-family: "M PLUS Rounded 1c", sans-serif;
+  background: #fffae7;
+  font-size: 16px;
+  font-weight: 500;
+}
+
+a {
+  transition: all 0.3s ease;
+}
+a:hover {
+  cursor: pointer;
+  opacity: 0.8;
+}
+
+@media screen and (min-width: 900px) {
+  a[href*="tel:"] {
+    pointer-events: none;
+    cursor: default;
+    text-decoration: none;
+  }
+}
+.l-inner {
+  padding-inline: 20px;
+  margin-inline: auto;
+  width: 100%;
+}
+@media screen and (min-width: 600px) {
+  .l-inner {
+    padding-inline: 40px;
+  }
+}
+@media screen and (min-width: 768px) {
+  .l-inner {
+    max-width: 1160px;
+  }
+}
+
+.button {
+  color: #fff;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 20px;
+  font-weight: 800;
+  line-height: normal;
+  padding: 12px 22px 12px 36px;
+  border-radius: 33px;
+  background: #ff6b35;
+  box-shadow: 3px 3px 0px 0px #59383b;
+  position: relative;
+  top: 0;
+  left: 0;
+  transition: all 0.1s ease;
+}
+.button::before {
+  content: "";
+  width: 20px;
+  height: 20px;
+  background: url(../img/fluent_animal-paw-print-16-filled.png) no-repeat center center/contain;
+  padding-right: 20px;
+}
+.button::after {
+  content: "";
+  width: 24px;
+  height: 24px;
+  background: url(../img/uil_arrow-up.png) no-repeat center center/contain;
+  padding-left: 24px;
+}
+.button:hover {
+  opacity: 0.9;
+  box-shadow: none;
+  top: 3px;
+  left: 3px;
+}
+.button:focus {
+  outline: none;
+}
+
+.button2 {
+  font-size: 32px;
+  padding: 12px 42px 12px 66px;
+  border-radius: 40px;
+}
+.button2::before {
+  content: "";
+  width: 28px;
+  height: 28px;
+  padding-right: 28px;
+}
+.button2::after {
+  content: "";
+  width: 30px;
+  height: 30px;
+  padding-left: 30px;
+}
+
+.button3 {
+  padding: 20px 22px 20px 36px;
+}
+
+.section-heading {
+  display: flex;
+  gap: 8px;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.section-heading__ja {
+  font-size: 30px;
+  font-weight: 900;
+  line-height: normal;
+  letter-spacing: 1.5px;
+  display: flex;
+  align-items: center;
+}
+.section-heading__ja::before {
+  content: "";
+  width: 48px;
+  height: 48px;
+  background: url(../img/heading-paw-l.png) no-repeat center center/contain;
+  padding-right: 48px;
+}
+.section-heading__ja::after {
+  content: "";
+  width: 48px;
+  height: 48px;
+  background: url(../img/heading-paw-r.png) no-repeat center center/contain;
+  padding-left: 48px;
+}
+
+.section-heading__en {
+  font-size: 14px;
+  font-weight: 900;
+  line-height: normal;
+  letter-spacing: 0.7px;
+  position: relative;
+}
+.section-heading__en::before {
+  content: "";
+  position: absolute;
+  width: 80px;
+  height: 8px;
+  background: url(../img/heading-dot.png) no-repeat center center/contain;
+  top: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+}
