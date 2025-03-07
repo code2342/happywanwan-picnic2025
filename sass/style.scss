@@ -123,7 +123,7 @@ a {
   position: relative; // 追加：位置を制御するために相対位置に設定
   top: 0; // 追加：初期位置
   left: 0; // 追加：初期位置
-  transition: all 0.1s ease; // 追加：アニメーション効果
+  transition: all 0.3s ease; // 追加：アニメーション効果
 
   &::before {
     content: "";
