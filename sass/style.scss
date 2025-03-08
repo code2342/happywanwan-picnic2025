@@ -249,6 +249,90 @@ a {
 //=====================================
 //news
 //=====================================
+.news {
+  padding-block: 72px;
+}
+
+.news__inner {
+}
+
+.l-inner {
+}
+
+.news__head {
+}
+
+.news__container {
+  margin-top: 48px;
+  border-radius: 30px;
+  border: 3px solid #6cb740;
+  background: $color-text-white;
+  padding: 20px;
+  @include mq(sm) {
+    padding: 32px 40px;
+  }
+  @include mq(lg) {
+    padding: 32px 60px;
+  }
+}
+
+.news__container-inner {
+  width: 100%;
+}
+
+.news__link {
+  width: 100%;
+  padding-block: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: start;
+  &:not(:last-of-type) {
+    border-bottom: 1px solid #ebe6e6;
+  }
+}
+
+.news__info {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.news__date {
+  line-height: normal;
+}
+
+.news__category {
+  color: $color-text-white;
+  font-size: 12px;
+  line-height: normal;
+  padding: 4px 20px;
+  background: #ff9256;
+  min-width: 112px;
+  text-align: center;
+  margin-left: 20px;
+  @include mq(lg) {
+    margin-left: 20px;
+  }
+}
+
+.news__title {
+  line-height: normal;
+  margin-left: 20px;
+
+  @include mq(md) {
+    margin-left: 20px;
+  }
+  @include mq(lg) {
+    margin-left: 40px;
+  }
+  @include mq(xl) {
+    margin-left: 64px;
+  }
+}
+
+.news__info {
+}
 
 //=====================================
 //contents
