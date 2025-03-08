@@ -27,18 +27,18 @@ a:hover {
     text-decoration: none;
   }
 }
-.l-inner {
+.section__inner {
   padding-inline: 20px;
   margin-inline: auto;
   width: 100%;
 }
 @media screen and (min-width: 600px) {
-  .l-inner {
+  .section__inner {
     padding-inline: 40px;
   }
 }
 @media screen and (min-width: 768px) {
-  .l-inner {
+  .section__inner {
     max-width: 1160px;
   }
 }
@@ -106,7 +106,7 @@ a:hover {
   padding: 20px 22px 20px 36px;
 }
 
-.section-heading {
+.section__heading {
   display: flex;
   gap: 8px;
   flex-direction: column;
@@ -114,7 +114,7 @@ a:hover {
   justify-content: center;
 }
 
-.section-heading__ja {
+.section__heading-ja {
   font-size: 30px;
   font-weight: 900;
   line-height: normal;
@@ -122,14 +122,14 @@ a:hover {
   display: flex;
   align-items: center;
 }
-.section-heading__ja::before {
+.section__heading-ja::before {
   content: "";
   width: 48px;
   height: 48px;
   background: url(../img/heading-paw-l.png) no-repeat center center/contain;
   padding-right: 48px;
 }
-.section-heading__ja::after {
+.section__heading-ja::after {
   content: "";
   width: 48px;
   height: 48px;
@@ -137,14 +137,14 @@ a:hover {
   padding-left: 48px;
 }
 
-.section-heading__en {
+.section__heading-en {
   font-size: 14px;
   font-weight: 900;
   line-height: normal;
   letter-spacing: 0.7px;
   position: relative;
 }
-.section-heading__en::before {
+.section__heading-en::before {
   content: "";
   position: absolute;
   width: 80px;
@@ -175,7 +175,7 @@ a:hover {
     transform: rotate(-10deg);
   }
 }
-.yurayura-parent.animate::after {
+.yurayura__parent.animate::after {
   transform-origin: center bottom;
   animation: fx-yurayura-rotate 1.2s ease-in-out 0s 3.5;
 }
@@ -188,7 +188,7 @@ a:hover {
   opacity: 1;
 }
 
-.l-main {
+.main {
   padding-block-start: 90px;
   min-height: 100vh;
 }
