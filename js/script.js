@@ -41,7 +41,7 @@ window.addEventListener("load", function () {
 // 揺れるアニメーション
 // =======================================
 
-const elements = document.querySelectorAll(".yurayura-parent");
+const elements = document.querySelectorAll(".yurayura__parent");
 
 const callback = (entries, observer) => {
   entries.forEach((entry) => {
