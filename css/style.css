@@ -154,3 +154,9 @@ a:hover {
   left: 50%;
   transform: translateX(-50%);
 }
+
+.l-main {
+  -webkit-padding-before: rm(72);
+          padding-block-start: rm(72);
+  min-height: 100vh;
+}
