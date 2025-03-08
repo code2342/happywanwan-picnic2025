@@ -230,12 +230,49 @@ a {
   }
 }
 
-//=====================================
-//header
-//=====================================
+.news__button {
+  font-size: 14px;
+  line-height: normal;
+  display: block;
+  justify-self: end;
+  padding-inline: 4px;
+  border-bottom: 1px solid #000;
+}
+
+//====================================
+//揺れるアニメーション
+//====================================
+
+@keyframes fx-yurayura-rotate {
+  0% { transform: rotate(-10deg); }
+  50% { transform: rotate(10deg); }
+  100% { transform: rotate(-10deg); }
+}
+
+// 親要素に付ける共通クラス
+.yurayura-parent {
+  &.animate {
+    &::after {
+      transform-origin: center bottom; // 回転の中心点を要素の底部中央に設定
+      animation: fx-yurayura-rotate 1.2s ease-in-out 0s 3.5;
+    }
+  }
+}
+//====================================
+//フェードイン
+//====================================
+
+.animated__fadeIn {
+  opacity: 0;
+  transition: opacity 1.5s cubic-bezier(0.25, 0.1, 0.25, 1);
+
+  &.js-show {
+    opacity: 1;
+  }
+}
 
 //=====================================
-//fv
+//header
 //=====================================
 
 //=====================================
@@ -247,19 +284,14 @@ a {
 }
 
 //=====================================
+//fv
+//=====================================
+
+//=====================================
 //news
 //=====================================
 .news {
   padding-block: 72px;
-}
-
-.news__inner {
-}
-
-.l-inner {
-}
-
-.news__head {
 }
 
 .news__container {
@@ -268,16 +300,38 @@ a {
   border: 3px solid #6cb740;
   background: $color-text-white;
   padding: 20px;
+  z-index: -2;
+  position: relative;
   @include mq(sm) {
     padding: 32px 40px;
   }
   @include mq(lg) {
     padding: 32px 60px;
   }
+
+  &::after {
+    content: "";
+    position: absolute;
+    width: 98px;
+    height: 135px;
+    background: url(../img/news-image.png) no-repeat center center/contain;
+    bottom: -70px;
+    right: 170px;
+    z-index: -1;
+
+    @include mq(lg) {
+      bottom: -60px;
+    }
+    @include mq(xl) {
+      bottom: -46px;
+    }
+  }
 }
 
 .news__container-inner {
   width: 100%;
+  position: relative;
+  z-index: 1;
 }
 
 .news__link {
