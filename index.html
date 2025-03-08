@@ -1,110 +1,132 @@
 <!DOCTYPE html>
 <html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="robots" content="noindex" />
+    <title>ハッピーわんわんピクニック</title>
+    <meta
+      name="description"
+      content="ハッピーわんわんピクニックで楽しい時間を過ごしましょう！"
+    />
+    <!--OGP-->
+    <meta property="og:url" content="" />
+    <meta property="og:type" content="website" />
+    <meta property="og:image" content="https://" />
+    <meta property="og:title" content="ハッピーわんわんピクニック" />
+    <meta
+      property="og:description"
+      content="ハッピーわんわんピクニックで楽しい時間を過ごしましょう！"
+    />
+    <meta name="twitter:card" content="https://" />
+    <meta
+      name="twitter:description"
+      content="ハッピーわんわんピクニックで楽しい時間を過ごしましょう！"
+    />
 
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="robots" content="noindex" />
-  <title>ハッピーわんわんピクニック</title>
-  <meta name="description" content="ハッピーわんわんピクニックで楽しい時間を過ごしましょう！" />
-  <!--OGP-->
-  <meta property="og:url" content="">
-  <meta property="og:type" content="website">
-  <meta property="og:image" content="https://">
-  <meta property="og:title" content="ハッピーわんわんピクニック">
-  <meta property="og:description" content="ハッピーわんわんピクニックで楽しい時間を過ごしましょう！">
-  <meta name="twitter:card" content="https://" />
-  <meta name="twitter:description" content="ハッピーわんわんピクニックで楽しい時間を過ごしましょう！" />
+    <!--ファビコン・タッチアイコン-->
+    <link rel="icon" href="./img/favicon.png" />
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="./img/apple-touch-icon.png"
+    />
 
+    <!--google fonts-->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@100;300;400;500;700;800;900&display=swap"
+      rel="stylesheet"
+    />
 
-  <!--ファビコン・タッチアイコン-->
-  <link rel="icon" href="./img/favicon.png">
-  <link rel="apple-touch-icon" sizes="180x180" href="./img/apple-touch-icon.png">
+    <!-- css -->
+    <link rel="stylesheet" href="./css/swiper-bundle.min.css" />
+    <link rel="stylesheet" href="./css/reset.css" />
+    <link rel="stylesheet" href="./css/style.css" />
 
-  <!--google fonts-->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@100;300;400;500;700;800;900&display=swap"
-    rel="stylesheet">
+    <!-- GSAP -->
+    <script src="./js/lib/gsap.min.js"></script>
+    <script src="./js/lib/ScrollTrigger.min.js"></script>
+  </head>
 
-  <!-- css -->
-  <link rel="stylesheet" href="./css/swiper-bundle.min.css" />
-  <link rel="stylesheet" href="./css/reset.css" />
-  <link rel="stylesheet" href="./css/style.css" />
+  <body>
+    <!--  header -->
 
-  <!-- GSAP -->
-  <script src="./js/lib/gsap.min.js"></script>
-  <script src="./js/lib/ScrollTrigger.min.js"></script>
-</head>
+    <main class="main">
+      <!-- section -->
 
-<body>
-  <!--  header -->
-
-  <main class="main">
-    <!-- section -->
-
-    <!------------------------------
-     news
+      <!------------------------------
+    news
     -------------------------------->
-    <section class="news animated__fadeIn">
-      <div class="news__inner section__inner">
-        <div class="news__head">
-          <div class="section__heading">
-            <h2 class="section__heading-ja">お知らせ</h2>
-            <p class="section__heading-en">NEWS</p>
+      <section class="news animated__fadeIn">
+        <div class="news__inner section__inner">
+          <div class="news__head">
+            <div class="section__heading">
+              <h2 class="section__heading-ja">お知らせ</h2>
+              <p class="section__heading-en">NEWS</p>
+            </div>
+          </div>
+          <div class="news__container yurayura__parent">
+            <div class="news__container-inner">
+              <a href="#" class="news__link">
+                <div class="news__info">
+                  <time class="news__date" datetime="2025-01-30"
+                    >2025年1月30日</time
+                  >
+                  <span class="news__category">イベント情報</span>
+                </div>
+                <h3 class="news__title">ドッグラン教室のお申込みについて</h3>
+              </a>
+              <a href="#" class="news__link">
+                <div class="news__info">
+                  <time class="news__date" datetime="2025-01-28"
+                    >2025年1月28日</time
+                  >
+                  <span class="news__category">お知らせ</span>
+                </div>
+                <h3 class="news__title">
+                  オフィシャルグッズ購入の整理券配布について
+                </h3>
+              </a>
+              <a href="#" class="news__link">
+                <div class="news__info">
+                  <time class="news__date" datetime="2025-01-28"
+                    >2025年1月28日</time
+                  >
+                  <span class="news__category">お知らせ</span>
+                </div>
+                <h3 class="news__title">お越しくださるみなさまへ</h3>
+              </a>
+              <a href="#" class="news__link">
+                <div class="news__info">
+                  <time class="news__date" datetime="2025-01-10"
+                    >2025年1月10日</time
+                  >
+                  <span class="news__category">お知らせ</span>
+                </div>
+                <h3 class="news__title">超豪華出店ラインナップ発表！</h3>
+              </a>
+              <a href="#" class="news__link">
+                <div class="news__info">
+                  <time class="news__date" datetime="2025-01-10"
+                    >2025年1月10日</time
+                  >
+                  <span class="news__category">イベント情報</span>
+                </div>
+                <h3 class="news__title">オフィシャルグッズを手に入れよう！</h3>
+              </a>
+            </div>
+            <a href="#" class="news__button">一覧を見る</a>
           </div>
         </div>
-        <div class="news__container yurayura__parent">
-          <div class="news__container-inner">
-            <a href="#" class="news__link">
-              <div class="news__info">
-                <time class="news__date" datetime="2025-01-30">2025年1月30日</time>
-                <span class="news__category">イベント情報</span>
-              </div>
-              <h3 class="news__title">ドッグラン教室のお申込みについて</h3>
-            </a>
-            <a href="#" class="news__link">
-              <div class="news__info">
-                <time class="news__date" datetime="2025-01-28">2025年1月28日</time>
-                <span class="news__category">お知らせ</span>
-              </div>
-              <h3 class="news__title">オフィシャルグッズ購入の整理券配布について</h3>
-            </a>
-            <a href="#" class="news__link">
-              <div class="news__info">
-                <time class="news__date" datetime="2025-01-28">2025年1月28日</time>
-                <span class="news__category">お知らせ</span>
-              </div>
-              <h3 class="news__title">お越しくださるみなさまへ</h3>
-            </a>
-            <a href="#" class="news__link">
-              <div class="news__info">
-                <time class="news__date" datetime="2025-01-10">2025年1月10日</time>
-                <span class="news__category">お知らせ</span>
-              </div>
-              <h3 class="news__title">超豪華出店ラインナップ発表！</h3>
-            </a>
-            <a href="#" class="news__link">
-              <div class="news__info">
-                <time class="news__date" datetime="2025-01-10">2025年1月10日</time>
-                <span class="news__category">イベント情報</span>
-              </div>
-              <h3 class="news__title">オフィシャルグッズを手に入れよう！</h3>
-            </a>
-          </div>
-          <a href="#" class="news__button">一覧を見る</a>
-        </div>
-      </div>
-    </section>
+      </section>
+    </main>
+    <!-- footer -->
 
-
-  </main>
-  <!-- footer -->
-
-  <!--js-->
-  <script src="./js/lib/swiper-bundle.min.js"></script>
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-  <script src="./js/script.js"></script>
-</body>
-
+    <!--js-->
+    <script src="./js/lib/swiper-bundle.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="./js/script.js"></script>
+  </body>
 </html>
