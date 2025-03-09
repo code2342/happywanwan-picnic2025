@@ -230,18 +230,21 @@ a {
   }
 }
 
-.news__button {
-  font-size: 14px;
-  line-height: normal;
-  display: block;
-  justify-self: end;
-  padding-inline: 4px;
-  border-bottom: 1px solid #000;
-}
-
 //====================================
 //揺れるアニメーションver.1
 //====================================
+
+@-webkit-keyframes fx-yurayura-rotate {
+  0% {
+    transform: rotate(-10deg);
+  }
+  50% {
+    transform: rotate(10deg);
+  }
+  100% {
+    transform: rotate(-10deg);
+  }
+}
 
 @keyframes fx-yurayura-rotate {
   0% {
@@ -260,6 +263,7 @@ a {
   &.animate {
     &::after {
       transform-origin: center bottom; // 回転の中心点を要素の底部中央に設定
+      -webkit-animation: fx-yurayura-rotate 1.2s ease-in-out 0s 3.5;
       animation: fx-yurayura-rotate 1.2s ease-in-out 0s 3.5;
     }
   }
@@ -285,6 +289,7 @@ a {
 //main
 //=====================================
 .main {
+  -webkit-padding-before: 90px;
   padding-block-start: 90px;
   min-height: 100vh;
 }
@@ -306,7 +311,7 @@ a {
   border: 3px solid #6cb740;
   background: $color-text-white;
   padding: 20px;
-  z-index: -2;
+
   position: relative;
   @include mq(sm) {
     padding: 32px 40px;
@@ -323,7 +328,7 @@ a {
     background: url(../img/news-image.png) no-repeat center center/contain;
     bottom: -70px;
     right: 170px;
-    z-index: -1;
+    z-index: 1;
 
     @include mq(lg) {
       bottom: -60px;
@@ -336,8 +341,6 @@ a {
 
 .news__container-inner {
   width: 100%;
-  position: relative;
-  z-index: 1;
 }
 
 .news__link {
@@ -391,12 +394,63 @@ a {
   }
 }
 
-.news__info {
+.news__button {
+  font-size: 14px;
+  line-height: normal;
+  display: block;
+  justify-self: end;
+  padding-inline: 4px;
+  border-bottom: 1px solid #000;
 }
 
 //=====================================
 //contents
 //=====================================
+.contents {
+  padding-block: 100px 124px;
+}
+
+.contents__container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  gap: 10px;
+}
+
+.contents__card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  gap: 10px;
+}
+
+.contents__card-image {
+  aspect-ratio: 500/400;
+}
+
+.contents__card-bottom {
+}
+
+.contents__card-title {
+}
+
+.contents__card-box {
+}
+
+.contents__card-list-title {
+}
+
+.contents__card-list {
+}
+
+.contents__card-item {
+}
+
+.contents__card-text {
+}
 
 //=====================================
 //shop
