@@ -441,3 +441,64 @@ a:hover {
 .contents__card-image {
   aspect-ratio: 500/400;
 }
+
+.shop {
+  padding-block: 72px 160px;
+}
+
+.shop__lists {
+  margin-top: 48px;
+}
+
+.shop__list {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 80px 90px;
+}
+
+.shop-box {
+  text-align: center;
+}
+
+.shop-box__title {
+  color: #59383b;
+  font-size: 20px;
+  font-weight: 800;
+}
+
+.shop-box__image {
+  margin-top: 12px;
+}
+
+.shop-box__body {
+  margin-top: 12px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  gap: 12px;
+}
+
+.shop-box-body__no {
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 500;
+}
+
+.shop-box-body__tag {
+  display: block;
+  border-radius: 20px;
+  background: #ffe4b5;
+  min-width: 108px;
+  padding: 8px;
+  margin: 0 auto;
+}
+
+.shop-box-body__text {
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 500;
+}
