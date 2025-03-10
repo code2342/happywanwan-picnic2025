@@ -68,6 +68,7 @@ a:hover {
   left: 0;
   -webkit-transition: all 0.3s ease;
   transition: all 0.3s ease;
+  white-space: nowrap;
 }
 .button::before {
   content: "";
