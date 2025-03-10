@@ -241,6 +241,9 @@ a:hover {
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
   padding-inline: 72px 71px;
   padding-block: 18px;
   max-width: 1357px;
@@ -444,33 +447,51 @@ a:hover {
 
 .shop {
   padding-block: 72px 160px;
+  background: url(../img/shoplist-lawn.png) no-repeat center bottom/150%;
+}
+@media screen and (min-width: 768px) {
+  .shop {
+    background-size: contain;
+  }
 }
 
-.shop__lists {
+.shop__container {
   margin-top: 48px;
 }
 
-.shop__list {
+.shop__lists {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 80px 90px;
+  grid-template-columns: repeat(1fr);
+  gap: 90px;
+}
+@media screen and (min-width: 768px) {
+  .shop__lists {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 60px 70px;
+  }
+}
+@media screen and (min-width: 1080px) {
+  .shop__lists {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 80px 90px;
+  }
 }
 
-.shop-box {
+.shop-list {
   text-align: center;
 }
 
-.shop-box__title {
+.shop-list__title {
   color: #59383b;
   font-size: 20px;
   font-weight: 800;
 }
 
-.shop-box__image {
+.shop-list__image {
   margin-top: 12px;
 }
 
-.shop-box__body {
+.shop-list__body {
   margin-top: 12px;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -482,13 +503,13 @@ a:hover {
   gap: 12px;
 }
 
-.shop-box-body__no {
+.shop-list-body__no {
   font-size: 16px;
   font-style: normal;
   font-weight: 500;
 }
 
-.shop-box-body__tag {
+.shop-list-body__tag {
   display: block;
   border-radius: 20px;
   background: #ffe4b5;
@@ -497,7 +518,7 @@ a:hover {
   margin: 0 auto;
 }
 
-.shop-box-body__text {
+.shop-list-body__text {
   font-size: 16px;
   font-style: normal;
   font-weight: 500;
