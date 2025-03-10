@@ -22,7 +22,7 @@ a:hover {
   opacity: 0.8;
 }
 
-@media screen and (min-width: 900px) {
+@media screen and (max-width: 1024px) {
   a[href*="tel:"] {
     pointer-events: none;
     cursor: default;
@@ -30,16 +30,17 @@ a:hover {
   }
 }
 .section__inner {
-  padding-inline: 20px;
+  max-width: 1160px;
+  padding-inline: 40px;
   margin-inline: auto;
   width: 100%;
 }
-@media screen and (min-width: 600px) {
+@media screen and (max-width: 480px) {
   .section__inner {
-    padding-inline: 40px;
+    padding-inline: 20px;
   }
 }
-@media screen and (min-width: 768px) {
+@media screen and (max-width: 768px) {
   .section__inner {
     max-width: 1160px;
   }
@@ -243,6 +244,9 @@ a:hover {
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
   padding-inline: 72px 71px;
   padding-block: 18px;
   max-width: 1357px;
@@ -277,6 +281,10 @@ a:hover {
   min-height: 100vh;
 }
 
+.fv {
+  width: 100%;
+}
+
 .news {
   padding-block: 72px;
 }
@@ -286,17 +294,17 @@ a:hover {
   border-radius: 30px;
   border: 3px solid #6cb740;
   background: #fff;
-  padding: 20px;
+  padding: 32px 60px;
   position: relative;
 }
-@media screen and (min-width: 600px) {
+@media screen and (max-width: 480px) {
   .news__container {
-    padding: 32px 40px;
+    padding: 20px;
   }
 }
-@media screen and (min-width: 900px) {
+@media screen and (max-width: 768px) {
   .news__container {
-    padding: 32px 60px;
+    padding: 32px 40px;
   }
 }
 .news__container::after {
@@ -305,18 +313,18 @@ a:hover {
   width: 98px;
   height: 135px;
   background: url(../img/news-image.png) no-repeat center center/contain;
-  bottom: -70px;
+  bottom: -46px;
   right: 170px;
   z-index: 1;
 }
-@media screen and (min-width: 900px) {
+@media screen and (max-width: 768px) {
   .news__container::after {
     bottom: -60px;
   }
 }
-@media screen and (min-width: 1080px) {
+@media screen and (max-width: 480px) {
   .news__container::after {
-    bottom: -46px;
+    bottom: -70px;
   }
 }
 
@@ -369,7 +377,7 @@ a:hover {
   text-align: center;
   margin-left: 20px;
 }
-@media screen and (min-width: 900px) {
+@media screen and (max-width: 1024px) {
   .news__category {
     margin-left: 20px;
   }
@@ -377,21 +385,21 @@ a:hover {
 
 .news__title {
   line-height: normal;
-  margin-left: 20px;
+  margin-left: 64px;
 }
-@media screen and (min-width: 768px) {
+@media screen and (max-width: 1024px) {
   .news__title {
     margin-left: 20px;
   }
 }
-@media screen and (min-width: 900px) {
+@media screen and (max-width: 1024px) {
   .news__title {
     margin-left: 40px;
   }
 }
-@media screen and (min-width: 1080px) {
+@media screen and (max-width: 480px) {
   .news__title {
-    margin-left: 64px;
+    margin-left: 20px;
   }
 }
 
@@ -713,4 +721,83 @@ a:hover {
 
 .contents__card-text {
   line-height: 24px;
+}
+
+.shop {
+  padding-block: 72px 160px;
+  background: url(../img/shoplist-lawn.png) no-repeat center bottom/contain;
+}
+@media screen and (max-width: 768px) {
+  .shop {
+    background-size: 150%;
+  }
+}
+
+.shop__container {
+  margin-top: 48px;
+}
+
+.shop__lists {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 90px;
+}
+@media screen and (max-width: 768px) {
+  .shop__lists {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 60px 70px;
+  }
+}
+@media screen and (max-width: 480px) {
+  .shop__lists {
+    grid-template-columns: repeat(1, 1fr);
+    gap: 60px;
+  }
+}
+
+.shop-list {
+  text-align: center;
+}
+
+.shop-list__title {
+  color: #59383b;
+  font-size: 20px;
+  font-weight: 800;
+}
+
+.shop-list__image {
+  margin-top: 12px;
+}
+
+.shop-list__body {
+  margin-top: 12px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  gap: 12px;
+}
+
+.shop-list-body__no {
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 500;
+}
+
+.shop-list-body__tag {
+  display: block;
+  border-radius: 20px;
+  background: #ffe4b5;
+  min-width: 108px;
+  padding: 8px;
+  margin: 0 auto;
+}
+
+.shop-list-body__text {
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 500;
 }

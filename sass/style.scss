@@ -3,12 +3,11 @@
 //=====================================
 //breakpoint
 //=====================================
-
 $breakpoints: (
-  sm: "screen and (min-width: 600px)",
-  md: "screen and (min-width: 768px)",
-  lg: "screen and (min-width: 900px)",
-  xl: "screen and (min-width: 1080px)",
+  sm: "screen and (max-width: 480px)",
+  md: "screen and (max-width: 768px)",
+  lg: "screen and (max-width: 1024px)",
+  xl: "screen and (max-width: 1200px)",
 );
 
 @mixin mq($breakpoint: sp) {
@@ -92,12 +91,13 @@ a {
 //=====================================
 //--inner--//
 .section__inner {
-  padding-inline: $sp-padding;
+  max-width: calc(1080px + $pc-padding * 2);
+  padding-inline: $pc-padding;
   margin-inline: auto;
   width: 100%;
 
   @include mq(sm) {
-    padding-inline: $pc-padding;
+    padding-inline: $sp-padding;
   }
 
   @include mq(md) {
@@ -303,6 +303,7 @@ a {
 .header__inner {
   display: flex;
   justify-content: space-between;
+  align-items: center;
   padding-inline: 72px 71px;
   padding-block: 18px;
   max-width: calc(1297px + 30px * 2);
@@ -337,6 +338,9 @@ a {
 //=====================================
 //fv
 //=====================================
+.fv {
+  width: 100%;
+}
 
 //=====================================
 //news
@@ -344,20 +348,19 @@ a {
 .news {
   padding-block: 72px;
 }
-
 .news__container {
   margin-top: 48px;
   border-radius: 30px;
   border: 3px solid #6cb740;
   background: $color-text-white;
-  padding: 20px;
+  padding: 32px 60px;
 
   position: relative;
   @include mq(sm) {
-    padding: 32px 40px;
+    padding: 20px;
   }
-  @include mq(lg) {
-    padding: 32px 60px;
+  @include mq(md) {
+    padding: 32px 40px;
   }
 
   &::after {
@@ -366,15 +369,14 @@ a {
     width: 98px;
     height: 135px;
     background: url(../img/news-image.png) no-repeat center center/contain;
-    bottom: -70px;
+    bottom: -46px;
     right: 170px;
     z-index: 1;
-
-    @include mq(lg) {
+    @include mq(md) {
       bottom: -60px;
     }
-    @include mq(xl) {
-      bottom: -46px;
+    @include mq(sm) {
+      bottom: -70px;
     }
   }
 }
@@ -421,16 +423,16 @@ a {
 
 .news__title {
   line-height: normal;
-  margin-left: 20px;
+  margin-left: 64px;
 
-  @include mq(md) {
+  @include mq(lg) {
     margin-left: 20px;
   }
   @include mq(lg) {
     margin-left: 40px;
   }
-  @include mq(xl) {
-    margin-left: 64px;
+  @include mq(sm) {
+    margin-left: 20px;
   }
 }
 
@@ -698,6 +700,68 @@ a {
 //=====================================
 //shop
 //=====================================
+.shop {
+  padding-block: 72px 160px;
+  background: url(../img/shoplist-lawn.png) no-repeat center bottom / contain;
+  @include mq(md) {
+    background-size: 150%;
+  }
+}
+.shop__inner {
+}
+.shop__head {
+}
+.shop__container {
+  margin-top: 48px;
+}
+.shop__lists {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 90px;
+  @include mq(md) {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 60px 70px;
+  }
+  @include mq(sm) {
+    grid-template-columns: repeat(1, 1fr);
+    gap: 60px;
+  }
+}
+.shop-list {
+  text-align: center;
+}
+.shop-list__title {
+  color: #59383b;
+  font-size: 20px;
+  font-weight: 800;
+}
+.shop-list__image {
+  margin-top: 12px;
+}
+.shop-list__body {
+  margin-top: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.shop-list-body__no {
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 500;
+}
+.shop-list-body__tag {
+  display: block;
+  border-radius: 20px;
+  background: #ffe4b5;
+  min-width: 108px;
+  padding: 8px;
+  margin: 0 auto;
+}
+.shop-list-body__text {
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 500;
+}
 
 //=====================================
 //WITH DOG
