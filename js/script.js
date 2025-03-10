@@ -56,3 +56,34 @@ const observer = new IntersectionObserver(callback);
 elements.forEach((element) => {
   observer.observe(element);
 });
+
+// =======================================
+// 横から出現アニメーション
+// =======================================
+document.addEventListener("DOMContentLoaded", function () {
+  // 監視対象の要素を取得
+  const cardBottoms = document.querySelectorAll(
+    ".contents__card .contents__card-bottom"
+  );
+  // Intersection Observerの設定
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          // アニメーションクラスを追加
+          entry.target.classList.add("animate-before");
+          // 一度だけ発火させるため監視解除
+          observer.unobserve(entry.target);
+        }
+      });
+    },
+    {
+      threshold: 0.3,
+    }
+  );
+
+  // 各要素の監視を開始
+  cardBottoms.forEach((card) => {
+    observer.observe(card);
+  });
+});
