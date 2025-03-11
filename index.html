@@ -9,6 +9,7 @@
       name="description"
       content="ハッピーわんわんピクニックで楽しい時間を過ごしましょう！"
     />
+
     <!--OGP-->
     <meta property="og:url" content="" />
     <meta property="og:type" content="website" />
@@ -18,7 +19,7 @@
       property="og:description"
       content="ハッピーわんわんピクニックで楽しい時間を過ごしましょう！"
     />
-    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:card" content="https://" />
     <meta
       name="twitter:description"
       content="ハッピーわんわんピクニックで楽しい時間を過ごしましょう！"
@@ -70,6 +71,11 @@
           <a href="#map" class="header__link">会場MAP</a>
           <a href="#access" class="header__button button">チケットを購入する</a>
         </nav>
+        <button id="js-drawer-icon" class="header__open drawer-icon">
+          <span class="drawer-icon__bar"></span>
+          <span class="drawer-icon__bar"></span>
+          <span class="drawer-icon__bar"></span>
+        </button>
       </div>
     </header>
 
@@ -155,7 +161,7 @@
       <!------------------------------
        contents
       -------------------------------->
-      <section class="contents">
+      <section id="contents" class="contents">
         <div class="contents__inne section__inner">
           <div class="contents__head">
             <div class="section__heading">
@@ -392,6 +398,139 @@
                     <p class="shop-list-body__text">
                       ワンちゃんの似顔絵を描いております。ぜひお立ち寄りください。
                     </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!------------------------------
+    FAQ
+    -------------------------------->
+      <section id="faq" class="faq animated__fadeIn">
+        <div class="faq__inner section__inner">
+          <div class="faq__head">
+            <div class="section__heading">
+              <h2 class="section__heading-ja">よくある質問</h2>
+              <p class="section__heading-en">FAQ</p>
+            </div>
+            <div class="faq__boxes">
+              <div class="faq__box faq-box">
+                <button type="button" class="faq-box__head">
+                  <span class="faq-box__head-icon"
+                    ><img src="./img/faq-icon01.png"
+                  /></span>
+                  <span class="faq-box__head-text"
+                    >雨天の場合は中止ですか？</span
+                  >
+                </button>
+                <div class="faq-box__body">
+                  <div class="faq-box__a">
+                    <span class="faq-box__a-text"
+                      >小雨決行です。荒天の場合は中止とし、開催前日の18時までにイベントのインスタグラムと当ホームページでご連絡いたします。</span
+                    >
+                  </div>
+                </div>
+              </div>
+              <div class="faq__box faq-box">
+                <button type="button" class="faq-box__head">
+                  <span class="faq-box__head-icon"
+                    ><img src="./img/faq-icon02.png"
+                  /></span>
+                  <span class="faq-box__head-text">駐車場はありますか？</span>
+                </button>
+                <div class="faq-box__body">
+                  <div class="faq-box__a">
+                    <span class="faq-box__a-text"
+                      >はい、会場内に約200台分の無料駐車場をご用意しております。混雑が予想されますので、お早めのご来場をお勧めします。</span
+                    >
+                  </div>
+                </div>
+              </div>
+              <div class="faq__box faq-box">
+                <button type="button" class="faq-box__head">
+                  <span class="faq-box__head-icon"
+                    ><img src="./img/faq-icon03.png"
+                  /></span>
+                  <span class="faq-box__head-text"
+                    >犬以外のペットも参加できますか？</span
+                  >
+                </button>
+                <div class="faq-box__body">
+                  <div class="faq-box__a">
+                    <span class="faq-box__a-text"
+                      >申し訳ございませんが、安全管理の観点から、本イベントは犬のみの参加とさせていただいております。</span
+                    >
+                  </div>
+                </div>
+              </div>
+              <div class="faq__box faq-box">
+                <button type="button" class="faq-box__head">
+                  <span class="faq-box__head-icon"
+                    ><img src="./img/faq-icon04.png"
+                  /></span>
+                  <span class="faq-box__head-text"
+                    >マナーベルト、パンツはした方が良いですか？</span
+                  >
+                </button>
+                <div class="faq-box__body">
+                  <div class="faq-box__a">
+                    <span class="faq-box__a-text"
+                      >マーキングの習慣がある子や、初めての場所で興奮しやすい子は、マナーベルトの着用をお勧めします。また、生理中の女の子はマナーパンツの着用が必須となります。
+                    </span>
+                  </div>
+                </div>
+              </div>
+              <div class="faq__box faq-box">
+                <button type="button" class="faq-box__head">
+                  <span class="faq-box__head-icon"
+                    ><img src="./img/faq-icon05.png"
+                  /></span>
+                  <span class="faq-box__head-text"
+                    >他のワンちゃんが苦手ですが大丈夫ですか？</span
+                  >
+                </button>
+                <div class="faq-box__body">
+                  <div class="faq-box__a">
+                    <span class="faq-box__a-text"
+                      >会場内は十分なスペースを確保しており、他の犬との距離を保ちながら参加いただけます。また、スタッフが常時巡回していますので、お困りの際はお声がけください。</span
+                    >
+                  </div>
+                </div>
+              </div>
+              <div class="faq__box faq-box">
+                <button type="button" class="faq-box__head">
+                  <span class="faq-box__head-icon"
+                    ><img src="./img/faq-icon06.png"
+                  /></span>
+                  <span class="faq-box__head-text"
+                    >会場内で愛犬が粗相（うんちなど）をした場合はどうすれば良いですか？</span
+                  >
+                </button>
+                <div class="faq-box__body">
+                  <div class="faq-box__a">
+                    <span class="faq-box__a-text"
+                      >会場内各所に清掃用具とゴミ箱を設置しております。飼い主様の責任で必ず処理をお願いいたします。万が一の場合に備え、普段お使いの袋の持参をお勧めします。</span
+                    >
+                  </div>
+                </div>
+              </div>
+              <div class="faq__box faq-box">
+                <button type="button" class="faq-box__head">
+                  <span class="faq-box__head-icon"
+                    ><img src="./img/faq-icon07.png"
+                  /></span>
+                  <span class="faq-box__head-text"
+                    >予防接種の証明書が必要ですか？</span
+                  >
+                </button>
+                <div class="faq-box__body">
+                  <div class="faq-box__a">
+                    <span class="faq-box__a-text"
+                      >はい、狂犬病予防接種証明書と混合ワクチン接種証明書（1年以内）の確認をさせていただきます。受付時にご提示をお願いいたします。</span
+                    >
                   </div>
                 </div>
               </div>

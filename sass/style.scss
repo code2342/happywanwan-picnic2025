@@ -287,9 +287,11 @@ a {
 .header {
   background: rgba(255, 255, 255, 0.4);
   position: fixed;
-  width: 100%;
   top: 0;
+  left: 0;
+  width: 100%;
   z-index: 10000;
+  box-sizing: border-box;
 }
 .header__logo {
   a {
@@ -314,6 +316,9 @@ a {
   display: flex;
   align-items: center;
   gap: 20px;
+  @include mq(md) {
+    display: none;
+  }
 }
 .header__link {
   font-size: 20px;
@@ -330,8 +335,9 @@ a {
 //main
 //=====================================
 .main {
-  -webkit-padding-before: 90px;
-  padding-block-start: 90px;
+  //↓navと.mainを重ねる為下の文をコメントアウトしました↓
+  // -webkit-padding-before: 90px;
+  padding-block-start: 0;
   min-height: 100vh;
 }
 
@@ -704,7 +710,7 @@ a {
   padding-block: 72px 160px;
   background: url(../img/shoplist-lawn.png) no-repeat center bottom / contain;
   @include mq(md) {
-    background-size: 150%;
+    background-size: 20 0%;
   }
 }
 .shop__inner {
@@ -762,6 +768,12 @@ a {
   font-style: normal;
   font-weight: 500;
 }
+.shop-tokotoko__dog {
+  width: 200px;
+  img {
+    width: 100%;
+  }
+}
 
 //=====================================
 //WITH DOG
@@ -770,6 +782,56 @@ a {
 //=====================================
 //FAQ
 //=====================================
+.faq {
+  padding-block: 72px;
+}
+.faq__inner {
+}
+.faq__boxes {
+  margin-top: 32px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 21px 19px;
+}
+.faq__box {
+  padding: 15px 16px;
+  border-radius: 20px;
+  border: 2px solid #6cb740;
+  background: #fff;
+}
+.faq-box__head {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 20px;
+  width: 100%;
+  border-bottom: 2px dotted #c2c2c2;
+  padding-bottom: 14px;
+}
+.faq-box__head-icon {
+  flex-shrink: 0;
+  width: 47px;
+
+  img {
+    width: 100%;
+  }
+}
+.faq-box__head-text {
+  text-align: left;
+  color: #59383b;
+  font-size: 16px;
+  font-weight: 800;
+  letter-spacing: 0.8px;
+}
+.faq-box__body {
+  margin-top: 14px;
+}
+.faq-box__a-text {
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 125%; /* 20px */
+  letter-spacing: 0.8px;
+}
 
 //=====================================
 //TICKET
