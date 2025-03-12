@@ -10,7 +10,7 @@ $breakpoints: (
   xl: "screen and (max-width: 1200px)",
 );
 
-@mixin mq($breakpoint: sp) {
+@mixin mq($breakpoint: sm) {
   @media #{map.get($breakpoints, $breakpoint)} {
     @content;
   }
@@ -89,6 +89,15 @@ a {
 //=====================================
 //common(共通パーツ)
 //=====================================
+//--hidden--//
+.sp-hidden {
+  display: block;
+
+  @include mq(sm) {
+    display: none !important; // !importantを追加して確実に上書き
+  }
+}
+
 //--inner--//
 .section__inner {
   max-width: calc(1080px + $pc-padding * 2);
@@ -353,20 +362,27 @@ a {
 //=====================================
 .news {
   padding-block: 72px;
+
+  @include mq(md) {
+    padding-block: 40px;
+  }
 }
+
 .news__container {
   margin-top: 48px;
   border-radius: 30px;
   border: 3px solid #6cb740;
   background: $color-text-white;
   padding: 32px 60px;
-
   position: relative;
-  @include mq(sm) {
-    padding: 20px;
-  }
+
   @include mq(md) {
+    margin-top: 32px;
     padding: 32px 40px;
+  }
+
+  @include mq(sm) {
+    padding: 20px 16px;
   }
 
   &::after {
@@ -375,14 +391,15 @@ a {
     width: 98px;
     height: 135px;
     background: url(../img/news-image.png) no-repeat center center/contain;
-    bottom: -46px;
-    right: 170px;
+    top: -81px;
+    right: 16px;
     z-index: 1;
+
     @include mq(md) {
-      bottom: -60px;
-    }
-    @include mq(sm) {
-      bottom: -70px;
+      top: -42px;
+      right: 16px;
+      width: 64px;
+      height: 88px;
     }
   }
 }
@@ -395,8 +412,15 @@ a {
   width: 100%;
   padding-block: 16px;
   display: flex;
+  flex-direction: row;
   align-items: center;
   justify-content: start;
+  @include mq(md) {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
+
   &:not(:last-of-type) {
     border-bottom: 1px solid #ebe6e6;
   }
@@ -407,6 +431,10 @@ a {
   display: flex;
   align-items: center;
   justify-content: space-between;
+
+  @include mq(md) {
+    justify-content: flex-start;
+  }
 }
 
 .news__date {
@@ -422,33 +450,40 @@ a {
   min-width: 112px;
   text-align: center;
   margin-left: 20px;
+
   @include mq(lg) {
     margin-left: 20px;
+    padding: 2px 16px;
+    min-width: 104px;
   }
 }
 
 .news__title {
   line-height: normal;
+  font-size: 18px;
   margin-left: 64px;
 
   @include mq(lg) {
-    margin-left: 20px;
-  }
-  @include mq(lg) {
     margin-left: 40px;
   }
-  @include mq(sm) {
-    margin-left: 20px;
+
+  @include mq(md) {
+    margin-left: 0;
   }
 }
 
 .news__button {
-  font-size: 14px;
+  font-size: 18px;
   line-height: normal;
   display: block;
   justify-self: end;
   padding-inline: 4px;
   border-bottom: 1px solid #000;
+
+  @include mq(md) {
+    margin-top: 24px;
+    justify-self: center;
+  }
 }
 
 //=====================================
@@ -778,7 +813,6 @@ a {
 //=====================================
 //WITH DOG
 //=====================================
-
 
 //=====================================
 //FAQ
