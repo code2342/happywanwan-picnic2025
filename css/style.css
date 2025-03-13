@@ -271,6 +271,8 @@ a:hover {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  -ms-flex-negative: 0;
+      flex-shrink: 0;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
@@ -290,20 +292,18 @@ a:hover {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
   gap: 48px;
 }
-
-.header__nav {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  gap: 40px;
+@media screen and (max-width: 1200px) {
+  .header__container {
+    gap: 28px;
+  }
 }
-@media screen and (max-width: 768px) {
-  .header__nav {
+@media screen and (max-width: 1024px) {
+  .header__container {
     display: none;
   }
 }
@@ -313,9 +313,21 @@ a:hover {
   display: -ms-flexbox;
   display: flex;
   gap: 40px;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+@media screen and (max-width: 1200px) {
+  .header-nav__list {
+    gap: 20px;
+  }
 }
 
 .header-nav__link a {
+  white-space: nowrap;
   font-size: 20px;
   font-weight: 700;
   letter-spacing: 0.48px;
@@ -328,6 +340,11 @@ a:hover {
 
 .header__open {
   display: none;
+}
+@media screen and (max-width: 1024px) {
+  .header__open {
+    display: block;
+  }
 }
 
 .main {
