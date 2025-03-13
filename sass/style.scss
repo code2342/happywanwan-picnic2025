@@ -306,47 +306,61 @@ a {
   top: 0;
   left: 0;
   width: 100%;
+  height: auto;
   z-index: 10000;
-  box-sizing: border-box;
 }
-.header__logo {
-  a {
-    img {
-      width: 179px;
-      display: block;
-    }
-  }
-}
-
 .header__inner {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding-inline:18px 15px;
   padding-block: 18px;
+  padding-inline: 15px;
   max-width: calc(1130px + 15px * 2);
-  margin-left: auto;
-  margin-right: auto;
+  width: 100%;
+  margin: 0 auto;
 }
-
+.header__logo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  a {
+    img {
+      width: 94px;
+      height: 68px;
+    }
+  }
+}
+.header__container {
+  display: flex;
+  align-items: center;
+  gap: 48px;
+}
 .header__nav {
   display: flex;
   align-items: center;
-  gap: 20px;
+  gap: 40px;
   @include mq(md) {
     display: none;
   }
 }
-
-.header__link {
-  font-size: 20px;
-  font-weight: 700;
-  letter-spacing: 0.48px;
-  transition: color 0.3s;
-
+.header-nav__list {
+  display: flex;
+  gap: 40px;
+}
+.header-nav__link {
+  a {
+    font-size: 20px;
+    font-weight: 700;
+    letter-spacing: 0.48px;
+    transition: color 0.3s;
+  }
   &:hover {
     color: #f5810e;
   }
+}
+
+.header__open {
+  display: none;
 }
 
 //=====================================
@@ -363,7 +377,23 @@ a {
 //fv
 //=====================================
 .fv {
+  position: relative;
   width: 100%;
+  height: 630px;
+  background: url("../img/fv-dummy.jpg") no-repeat center/cover;
+  &::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 10%; /* ぼかし部分の高さ */
+    background: linear-gradient(
+      180deg,
+      rgba(255, 250, 231, 0) 0%,
+      #fffae7 100%
+    );
+  }
 }
 
 //=====================================
