@@ -63,8 +63,9 @@ elements.forEach((element) => {
 document.addEventListener("DOMContentLoaded", function () {
   // 監視対象の要素を取得
   const cardBottoms = document.querySelectorAll(
-    ".contents__card .contents__card-bottom"
+    ".contents__card .contents__card-bottom, .contents__card .contents__card-image"
   );
+
   // Intersection Observerの設定
   const observer = new IntersectionObserver(
     (entries) => {

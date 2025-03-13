@@ -13,7 +13,10 @@
     <!--OGP-->
     <meta property="og:url" content="https://happy-wanwan-picnic.maron.click" />
     <meta property="og:type" content="website" />
-    <meta property="og:image" content="https://happy-wanwan-picnic.maron.click/img/OGP.png" />
+    <meta
+      property="og:image"
+      content="https://happy-wanwan-picnic.maron.click/img/OGP.png"
+    />
     <meta property="og:title" content="ハッピーわんわんピクニック" />
     <meta
       property="og:description"
@@ -63,7 +66,6 @@
           /></a>
         </h1>
         <nav class="header__nav">
-          <a href="#news" class="header__link">ニュース</a>
           <a href="#contents" class="header__link">コンテンツ</a>
           <a href="#shop" class="header__link">ショップ</a>
           <a href="#with-dog" class="header__link">注意事項</a>
@@ -83,19 +85,19 @@
       <!-- section -->
 
       <!------------------------------
-    fv
-    -------------------------------->
-      <div class="fv">
+      fv
+      -------------------------------->
+      <!-- <div class="fv">
         <div class="fv__inner inner">
           <picture class="fv__image">
             <img src="./img/fv-dummy.jpg" alt="" />
           </picture>
         </div>
-      </div>
+      </div> -->
 
       <!------------------------------
-    news
-    -------------------------------->
+      news
+      -------------------------------->
       <section id="news" class="news animated__fadeIn">
         <div class="news__inner section__inner">
           <div class="news__head">
@@ -227,7 +229,7 @@
               </div>
             </div>
             <div class="contents__card">
-              <div class="contents__card-image">
+              <div class="contents__card-image yurayura__parent">
                 <img
                   src="./img/contents-card04.jpg"
                   alt="フォトスポットの写真"
@@ -269,9 +271,9 @@
         </div>
       </section>
       <!------------------------------
-    shop
-    -------------------------------->
-      <section id="shop" class="shop animated__fadeIn">
+      shop
+      -------------------------------->
+      <!-- <section id="shop" class="shop animated__fadeIn">
         <div class="shop__inner section__inner">
           <div class="shop__head">
             <div class="section__heading">
@@ -404,12 +406,64 @@
             </div>
           </div>
         </div>
+      </section> -->
+
+      <!------------------------------
+       with-dog
+      -------------------------------->
+      <section class="withdog">
+        <div class="withdog__inner section__inner">
+          <div class="withdog__head">
+            <div class="section__heading">
+              <h2 class="section__heading-ja withdog__heading-ja">
+                わんこ同伴の<br class="withdog__heading-ja-pc" />注意事項
+              </h2>
+              <p class="section__heading-en">WITH DOG</p>
+            </div>
+          </div>
+          <div class="withdog__container">
+            <ul class="withdog__list">
+              <li class="withdog__item">
+                飼い主さまの管理責任のもと、必ずリードを装着してください。（伸縮リードは事故防止のため、短く固定してご使用ください）
+              </li>
+              <li class="withdog__item">
+                他の参加者やワンちゃんへの配慮として、むやみな接近は控えめにお願いします。特に、すれ違い時は適度な距離を保ってください。
+              </li>
+              <li class="withdog__item">
+                ワンちゃんの体調管理にご注意ください。暑さ・寒さ対策を十分に行い、こまめな水分補給をお願いします。
+              </li>
+              <li class="withdog__item">
+                万が一の事故やトラブルについて、飼い主さま同士での解決をお願いいたします。主催者側は責任を負いかねます。
+              </li>
+              <li class="withdog__item">
+                会場内での投薬・治療行為はご遠慮ください。体調不良の際は、お近くのスタッフまでご相談ください。
+              </li>
+              <li class="withdog__item">
+                他のワンちゃんへのおやつの提供は、アレルギーの可能性があるためお控えください。
+              </li>
+              <li class="withdog__item">
+                写真撮影の際は、他の参加者のプライバシーにご配慮をお願いします。
+              </li>
+            </ul>
+          </div>
+          <div class="withdog__bottom">
+            <div class="withdog__bottom-dog">
+              <img src="" alt="犬の絵" />
+            </div>
+            <div class="withdog__bottom-container">
+              <img src="" alt="吹き出し" />
+              <div class="text-area">
+                <p class="withdog__bottom-text" id="typingText"></p>
+              </div>
+            </div>
+          </div>
+        </div>
       </section>
 
       <!------------------------------
-    FAQ
-    -------------------------------->
-      <section id="faq" class="faq animated__fadeIn">
+      FAQ
+      -------------------------------->
+      <!-- <section id="faq" class="faq animated__fadeIn">
         <div class="faq__inner section__inner">
           <div class="faq__head">
             <div class="section__heading">
@@ -537,56 +591,7 @@
             </div>
           </div>
         </div>
-      </section>
-      <!------------------------------
-      with-dog
-      -------------------------------->
-      <section class="withdog">
-        <div class="withdog__inner">
-          <div class="withdog__head">
-            <div class="section__heading">
-              <h2 class="section__heading-ja">コンテンツ</h2>
-              <p class="section__heading-en">CONTENTS</p>
-            </div>
-          </div>
-          <div class="withdog__container">
-            <ul class="withdog__list">
-              <li class="withdog__item">
-                飼い主さまの管理責任のもと、必ずリードを装着してください。（伸縮リードは事故防止のため、短く固定してご使用ください）
-              </li>
-              <li class="withdog__item">
-                他の参加者やワンちゃんへの配慮として、むやみな接近は控えめにお願いします。特に、すれ違い時は適度な距離を保ってください。
-              </li>
-              <li class="withdog__item">
-                ワンちゃんの体調管理にご注意ください。暑さ・寒さ対策を十分に行い、こまめな水分補給をお願いします。
-              </li>
-              <li class="withdog__item">
-                万が一の事故やトラブルについて、飼い主さま同士での解決をお願いいたします。主催者側は責任を負いかねます。
-              </li>
-              <li class="withdog__item">
-                会場内での投薬・治療行為はご遠慮ください。体調不良の際は、お近くのスタッフまでご相談ください。
-              </li>
-              <li class="withdog__item">
-                他のワンちゃんへのおやつの提供は、アレルギーの可能性があるためお控えください。
-              </li>
-              <li class="withdog__item">
-                写真撮影の際は、他の参加者のプライバシーにご配慮をお願いします。
-              </li>
-            </ul>
-          </div>
-          <div class="withdog__bottom">
-            <div class="withdog__bottom-dog">
-              <img src="" alt="犬の絵" />
-            </div>
-            <div class="withdog__bottom-container">
-              <img src="" alt="吹き出し" />
-              <div class="text-area">
-                <p class="withdog__bottom-text" id="typingText"></p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
+      </section> -->
     </main>
     <!-- footer -->
 
