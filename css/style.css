@@ -230,14 +230,8 @@ a:hover {
   top: 0;
   left: 0;
   width: 100%;
+  height: auto;
   z-index: 10000;
-  -webkit-box-sizing: border-box;
-          box-sizing: border-box;
-}
-
-.header__logo a img {
-  width: 179px;
-  display: block;
 }
 
 .header__inner {
@@ -250,11 +244,37 @@ a:hover {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  padding-inline: 72px 71px;
   padding-block: 18px;
-  max-width: 1357px;
-  margin-left: auto;
-  margin-right: auto;
+  padding-inline: 15px;
+  max-width: 1160px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.header__logo {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+.header__logo a img {
+  width: 94px;
+  height: 68px;
+}
+
+.header__container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  gap: 48px;
 }
 
 .header__nav {
@@ -264,7 +284,7 @@ a:hover {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  gap: 20px;
+  gap: 40px;
 }
 @media screen and (max-width: 768px) {
   .header__nav {
@@ -272,15 +292,26 @@ a:hover {
   }
 }
 
-.header__link {
+.header-nav__list {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  gap: 40px;
+}
+
+.header-nav__link a {
   font-size: 20px;
   font-weight: 700;
   letter-spacing: 0.48px;
   -webkit-transition: color 0.3s;
   transition: color 0.3s;
 }
-.header__link:hover {
+.header-nav__link:hover {
   color: #f5810e;
+}
+
+.header__open {
+  display: none;
 }
 
 .main {
@@ -290,7 +321,20 @@ a:hover {
 }
 
 .fv {
+  position: relative;
   width: 100%;
+  height: 630px;
+  background: url("../img/fv-dummy.jpg") no-repeat center/cover;
+}
+.fv::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 10%; /* ぼかし部分の高さ */
+  background: -webkit-gradient(linear, left top, left bottom, from(rgba(255, 250, 231, 0)), to(#fffae7));
+  background: linear-gradient(180deg, rgba(255, 250, 231, 0) 0%, #fffae7 100%);
 }
 
 .news {
