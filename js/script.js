@@ -63,8 +63,9 @@ elements.forEach((element) => {
 document.addEventListener("DOMContentLoaded", function () {
   // 監視対象の要素を取得
   const cardBottoms = document.querySelectorAll(
-    ".contents__card .contents__card-bottom"
+    ".contents__card .contents__card-bottom, .contents__card .contents__card-image"
   );
+
   // Intersection Observerの設定
   const observer = new IntersectionObserver(
     (entries) => {
@@ -88,6 +89,10 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 });
 
+// =======================================
+// ドロワー
+// =======================================
+
 jQuery("#js-drawer-icon").on("click", function (e) {
   e.preventDefault();
   jQuery("#js-drawer-icon").toggleClass("is-checked");
@@ -104,7 +109,9 @@ jQuery(".js-accordion").on("click", function (e) {
     jQuery(this).next().slideDown();
   }
 });
-
+// =======================================
+// swiper
+// =======================================
 const swiper = new Swiper("#js-gallery-swiper", {
   spaceBetween: 82,
   // Optional parameters
@@ -122,6 +129,9 @@ const swiper = new Swiper("#js-gallery-swiper", {
   },
 });
 
+// =======================================
+// モーダル
+// =======================================
 jQuery(".js-modal-open").on("click", function (e) {
   e.preventDefault();
 
@@ -139,7 +149,10 @@ jQuery('#js-drawer-content a[href^="#"]').on("click", function (e) {
   jQuery("#js-drawer-content").removeClass("is-checked");
 });
 
+// =======================================
 // スムーススクロール
+// =======================================
+
 jQuery('a[href^="#"]').on("click", function (e) {
   const speed = 1000;
   const id = jQuery(this).attr("href");
@@ -166,3 +179,28 @@ jQuery(window).on("scroll", function () {
 // =======================================
 // トコトコアニメーション
 // =======================================
+
+
+// =======================================
+// タイピングアニメーション
+// =======================================
+document.addEventListener("DOMContentLoaded", function () {
+  const typingText = document.getElementById("typingText");
+
+  // 表示するテキスト（必要に応じて変更してください）
+  const message =
+    "これらの注意事項を守り、みなさまが楽しく安全に過ごせるようご協力をお願いいたします。";
+  let index = 0;
+
+  // タイピングアニメーション関数
+  function typeText() {
+    if (index < message.length) {
+      typingText.textContent += message[index];
+      index++;
+      setTimeout(typeText, 100); // 100ミリ秒ごとに一文字追加
+    }
+  }
+
+  // 初回の実行
+  typeText();
+});
