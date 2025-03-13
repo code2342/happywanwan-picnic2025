@@ -197,12 +197,18 @@ a {
 }
 
 .section__heading-ja {
-  font-size: 30px;
+  font-size: 36px;
   font-weight: 900;
   line-height: normal;
-  letter-spacing: 1.5px;
+  letter-spacing: 1.8px;
   display: flex;
   align-items: center;
+
+  @include mq(md) {
+    font-size: 32px;
+    line-height: 38px;
+    letter-spacing: 1.6px;
+  }
 
   &::before {
     content: "";
@@ -211,6 +217,7 @@ a {
     background: url(../img/heading-paw-l.png) no-repeat center center / contain;
     padding-right: 48px;
   }
+
   &::after {
     content: "";
     width: 48px;
@@ -495,6 +502,11 @@ a {
   width: 100%;
   position: relative;
   background: url(../img/image.png) no-repeat top center/cover;
+
+  @include mq(md) {
+    padding-block: 48px 56px;
+    background: url(../img/contents-bg_sp.png) no-repeat top center/cover;
+  }
 }
 
 .contents__container {
