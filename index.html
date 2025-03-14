@@ -180,6 +180,7 @@
                 <img
                   src="./img/contents-card01.jpg"
                   alt="わんわん運動会の風景写真"
+                  loading="lazy"
                 />
               </div>
               <div class="contents__card-bottom">
@@ -202,6 +203,7 @@
                 <img
                   src="./img/contents-card02.jpg"
                   alt="ワン！友オフ会の風景写真"
+                  loading="lazy"
                 />
               </div>
               <div class="contents__card-bottom yurayura__parent">
@@ -216,6 +218,7 @@
                 <img
                   src="./img/contents-card03.jpg"
                   alt="ドッグラン教室の写真"
+                  loading="lazy"
                 />
               </div>
               <div class="contents__card-bottom">
@@ -236,6 +239,7 @@
                 <img
                   src="./img/contents-card04.jpg"
                   alt="フォトスポットの写真"
+                  loading="lazy"
                 />
               </div>
               <div class="contents__card-bottom yurayura__parent">
@@ -247,7 +251,11 @@
             </div>
             <div class="contents__card">
               <div class="contents__card-image">
-                <img src="./img/contents-card05.jpg" alt="譲渡会の写真" />
+                <img
+                  src="./img/contents-card05.jpg"
+                  alt="譲渡会の写真"
+                  loading="lazy"
+                />
               </div>
               <div class="contents__card-bottom">
                 <h3 class="contents__card-title">譲渡会</h3>
@@ -261,6 +269,7 @@
                 <img
                   src="./img/contents-card06.jpg"
                   alt="当たりくじ会の風景写真"
+                  loading="lazy"
                 />
               </div>
               <div class="contents__card-bottom">
@@ -455,11 +464,22 @@
           </div>
           <div class="withdog__bottom">
             <div class="withdog__bottom-dog">
-              <img src="" alt="犬の絵" />
+              <img src="./img/withdog-img.png" alt="犬の絵" loading="lazy" />
             </div>
             <div class="withdog__bottom-container">
-              <img src="" alt="吹き出し" />
-              <div class="text-area">
+              <picture>
+                <source
+                  srcset="./img/withdog-hukidashi_sp.png"
+                  media="(max-width: 768px)"
+                  type="image/png"
+                />
+                <img
+                  src="./img/withdog-hukidashi.png"
+                  alt="吹き出し"
+                  loading="lazy"
+                />
+              </picture>
+              <div class="withdog__text-area">
                 <p class="withdog__bottom-text" id="typingText"></p>
               </div>
             </div>
@@ -471,7 +491,7 @@
       FAQ
       -------------------------------->
       <section id="faq" class="faq animated__fadeIn">
-        <div class="faq__inner section__inner">
+        <!-- <div class="faq__inner section__inner">
           <div class="faq__head">
             <div class="section__heading">
               <h2 class="section__heading-ja">よくある質問</h2>
@@ -595,6 +615,17 @@
                   </div>
                 </div>
               </div>
+            </div>
+          </div>
+        </div> -->
+      </section>
+
+      <section class="ticket">
+        <div class="ticket__inner section__inner">
+          <div class="ticket__container">
+            <div class="section__heading">
+              <h2 class="section__heading-ja">チケット</h2>
+              <p class="section__heading-en">TICKET</p>
             </div>
           </div>
         </div>
