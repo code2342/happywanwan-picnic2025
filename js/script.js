@@ -177,11 +177,6 @@ jQuery(window).on("scroll", function () {
 });
 
 // =======================================
-// トコトコアニメーション
-// =======================================
-
-
-// =======================================
 // タイピングアニメーション
 // =======================================
 document.addEventListener("DOMContentLoaded", function () {
@@ -203,4 +198,34 @@ document.addEventListener("DOMContentLoaded", function () {
 
   // 初回の実行
   typeText();
+});
+
+// =======================================
+// 走るわんちゃん
+// =======================================
+document.addEventListener("DOMContentLoaded", function () {
+  gsap.to(".dog-wrapper", {
+    x: "-120vw",
+    duration: 7,
+    ease: "linear",
+    repeat: -1,
+  });
+
+  // 画像を交互に切り替える
+  let dogImages = document.querySelectorAll(".dog-wrapper img");
+  let currentIndex = 0;
+
+  setInterval(() => {
+    dogImages.forEach((img) => img.classList.remove("active"));
+    currentIndex = (currentIndex + 1) % dogImages.length;
+    dogImages[currentIndex].classList.add("active");
+  }, 500);
+
+  // 芝生の背景を左から右へ動かす
+  gsap.to(".shop", {
+    backgroundPositionX: "100vw",
+    duration: 20,
+    ease: "linear",
+    repeat: -1,
+  });
 });
