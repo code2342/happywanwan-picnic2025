@@ -118,17 +118,38 @@ a:hover {
   padding: 12px 42px 12px 66px;
   border-radius: 40px;
 }
+@media screen and (max-width: 768px) {
+  .button2 {
+    font-size: 20px;
+    padding: 20px 24px 20px 36px;
+    border-radius: 36px;
+  }
+}
 .button2::before {
   content: "";
   width: 28px;
   height: 28px;
   padding-right: 28px;
 }
+@media screen and (max-width: 768px) {
+  .button2::before {
+    width: 20px;
+    height: 20px;
+    padding-right: 20px;
+  }
+}
 .button2::after {
   content: "";
   width: 30px;
   height: 30px;
   padding-left: 30px;
+}
+@media screen and (max-width: 768px) {
+  .button2::after {
+    width: 24px;
+    height: 24px;
+    padding-left: 24px;
+  }
 }
 
 .button3 {
