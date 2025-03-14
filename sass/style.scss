@@ -1502,6 +1502,93 @@ a {
 //=====================================
 //TICKET
 //=====================================
+.ticket {
+  padding-block: 76px;
+  position: relative;
+  background-color: #FFE4B5;
+
+  &::before,
+  &::after{
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 60px;
+    @include mq(md) {
+      height: 42px;
+    }
+  }
+
+    &::before{
+      background: url(../img/ticket-bg-top-pc.png)repeat-x;
+      top: -59px;
+      @include mq(md) {
+        background: url(../img/ticket-bg-top.png)repeat-x;
+        top: -41px;
+      }
+    }
+
+    &::after{
+      background: url(../img/ticket-bg-bottom-pc.png)repeat-x;
+      bottom: -59px;
+      @include mq(md) {
+        bottom: -41px;
+        background: url(../img/ticket-bg-bottom.png)repeat-x;
+      }
+    }
+}
+
+.ticket__inner {
+
+}
+
+.section__inner {
+
+}
+
+.ticket__container {
+
+}
+
+.section__heading {
+
+}
+
+.section__heading-ja {
+
+}
+
+.section__heading-en {
+
+}
+
+.ticket__cards {
+
+}
+
+.ticket__card {
+
+}
+
+.ticket__card-head {
+
+}
+
+.ticket__card-bottom {
+
+}
+
+.ticket__button {
+
+}
+
+.button {
+
+}
+
+.button3 {
+
+}
+
 
 //=====================================
 //MAP

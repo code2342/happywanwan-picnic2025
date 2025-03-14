@@ -1588,3 +1588,40 @@ a:hover {
   line-height: 125%; /* 20px */
   letter-spacing: 0.8px;
 }
+
+.ticket {
+  padding-block: 76px;
+  position: relative;
+  background-color: #FFE4B5;
+}
+.ticket::before, .ticket::after {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 60px;
+}
+@media screen and (max-width: 768px) {
+  .ticket::before, .ticket::after {
+    height: 42px;
+  }
+}
+.ticket::before {
+  background: url(../img/ticket-bg-top-pc.png) repeat-x;
+  top: -59px;
+}
+@media screen and (max-width: 768px) {
+  .ticket::before {
+    background: url(../img/ticket-bg-top.png) repeat-x;
+    top: -41px;
+  }
+}
+.ticket::after {
+  background: url(../img/ticket-bg-bottom-pc.png) repeat-x;
+  bottom: -59px;
+}
+@media screen and (max-width: 768px) {
+  .ticket::after {
+    bottom: -41px;
+    background: url(../img/ticket-bg-bottom.png) repeat-x;
+  }
+}
