@@ -1251,6 +1251,22 @@ a:hover {
   }
 }
 
+.shop__inner {
+  position: relative;
+}
+.shop__inner::before {
+  content: "";
+  position: absolute;
+  left: -40px;
+  top: -70px;
+  width: 195px;
+  height: 195px;
+  background-image: url("../img/shoplist-dog01.png");
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
 .shop__container {
   margin-top: 48px;
 }
