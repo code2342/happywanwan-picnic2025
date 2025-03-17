@@ -327,9 +327,15 @@ a:hover {
 @media screen and (max-width: 1024px) {
   .header {
     background: none;
-    position: static;
     top: auto;
     left: auto;
+    padding: 20px 23px;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: end;
+        -ms-flex-pack: end;
+            justify-content: flex-end;
   }
 }
 
@@ -351,6 +357,7 @@ a:hover {
 }
 @media screen and (max-width: 1024px) {
   .header__inner {
+    display: none;
     -webkit-box-pack: end;
         -ms-flex-pack: end;
             justify-content: flex-end;
@@ -372,14 +379,14 @@ a:hover {
       -ms-flex-pack: center;
           justify-content: center;
 }
-.header__logo a img {
-  width: 96px;
-  height: 80px;
-}
 @media screen and (max-width: 1024px) {
   .header__logo {
     display: none;
   }
+}
+.header__logo a img {
+  width: 96px;
+  height: 80px;
 }
 
 .header__container {
@@ -399,11 +406,6 @@ a:hover {
     gap: 28px;
   }
 }
-@media screen and (max-width: 1024px) {
-  .header__container {
-    display: none;
-  }
-}
 
 .header__nav {
   display: -webkit-box;
@@ -412,11 +414,6 @@ a:hover {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-}
-@media screen and (max-width: 768px) {
-  .header__nav {
-    display: none;
-  }
 }
 
 .header-nav__list {
@@ -451,75 +448,59 @@ a:hover {
 
 .drawer-icon {
   display: none;
-  position: relative;
-  margin-top: 6px;
-  z-index: 100;
-}
-.drawer-icon.is-checked .drawer-icon__bar:nth-of-type(1) {
-  -webkit-transform: rotate(30deg);
-          transform: rotate(30deg);
-  top: 10px;
-}
-.drawer-icon.is-checked .drawer-icon__bar:nth-of-type(2) {
-  display: none;
-}
-.drawer-icon.is-checked .drawer-icon__bar:nth-of-type(3) {
-  -webkit-transform: rotate(-30deg);
-          transform: rotate(-30deg);
-  top: 10px;
 }
 @media screen and (max-width: 1024px) {
   .drawer-icon {
-    display: none;
+    display: block;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    position: relative;
+    margin-top: 6px;
+    z-index: 100;
   }
 }
-.drawer-icon__bar {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 36px;
-  height: 3px;
-  border-radius: 6px;
-  background: #111;
-  -webkit-transition: top 0.3s linear, -webkit-transform 0.3s linear;
-  transition: top 0.3s linear, -webkit-transform 0.3s linear;
-  transition: transform 0.3s linear, top 0.3s linear;
-  transition: transform 0.3s linear, top 0.3s linear, -webkit-transform 0.3s linear;
+
+.drawer-content {
+  display: none;
 }
-.drawer-icon__bar:nth-of-type(2) {
-  top: 9px;
-}
-.drawer-icon__bar:nth-of-type(3) {
-  top: 18px;
+@media screen and (max-width: 768px) {
+  .drawer-content {
+    width: 320px;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    right: 0;
+    background: #f7ba1a;
+    z-index: 50;
+    padding: 86px 40px 40px;
+    -webkit-transform: translateX(100%);
+            transform: translateX(100%);
+    -webkit-transition: -webkit-transform 0.3s linear;
+    transition: -webkit-transform 0.3s linear;
+    transition: transform 0.3s linear;
+    transition: transform 0.3s linear, -webkit-transform 0.3s linear;
+  }
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 1024px) {
   .header-open__image {
-    width: 54px;
-    height: 50px;
+    width: 75px;
+    height: 75px;
   }
 }
 @media screen and (max-width: 480px) {
   .header-open__image {
-    width: 36px;
-    height: 33px;
+    width: 50px;
+    height: 50px;
   }
 }
 .header-open__image img {
   width: 100%;
-}
-
-.header-open__text {
-  color: #ff5817;
-  font-weight: 800;
-  font-size: 18px;
-  letter-spacing: 0.9px;
-}
-@media screen and (max-width: 480px) {
-  .header-open__text {
-    font-size: 12px;
-    letter-spacing: 0.6px;
-  }
 }
 
 .main {
@@ -1356,7 +1337,7 @@ a:hover {
 .shop__inner {
   position: relative;
 }
-.shop__inner::before {
+.shop__inner::after {
   content: "";
   position: absolute;
   left: -40px;
@@ -1670,10 +1651,15 @@ a:hover {
   grid-template-columns: repeat(3, 1fr);
   gap: 21px 19px;
 }
+@media screen and (max-width: 1024px) {
+  .faq__boxes {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+  }
+}
 @media screen and (max-width: 768px) {
   .faq__boxes {
     grid-template-columns: repeat(1, 1fr);
-    gap: 20px;
   }
 }
 
