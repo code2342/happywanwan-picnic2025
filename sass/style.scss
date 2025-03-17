@@ -369,6 +369,12 @@ a {
   width: 100%;
   height: auto;
   z-index: 10000;
+  @include mq(lg) {
+    background: none;
+    position: static;
+    top: auto;
+    left: auto;
+  }
 }
 .header__inner {
   display: flex;
@@ -379,6 +385,11 @@ a {
   max-width: calc(1130px + 15px * 2);
   width: 100%;
   margin: 0 auto;
+  @include mq(lg) {
+    justify-content: flex-end;
+    padding-block: 20px;
+    padding-inline: 23px;
+  }
 }
 .header__logo {
   display: flex;
@@ -387,9 +398,12 @@ a {
   justify-content: center;
   a {
     img {
-      width: 94px;
-      height: 68px;
+      width: 96px;
+      height: 80px;
     }
+  }
+  @include mq(lg) {
+    display: none;
   }
 }
 .header__container {
@@ -400,7 +414,6 @@ a {
   @include mq(xl) {
     gap: 28px;
   }
-
   @include mq(lg) {
     display: none;
   }
@@ -434,11 +447,93 @@ a {
   }
 }
 
-.header__open {
+.drawer-icon {
   display: none;
+  // .drawer-iconが起点になるのでrelative指定
+  position: relative;
+  margin-top: 6px;
+  z-index: 100;
 
+  &.is-checked {
+    .drawer-icon__bar {
+      &:nth-of-type(1) {
+        transform: rotate(30deg);
+        top: 10px;
+      }
+      &:nth-of-type(2) {
+        display: none;
+      }
+      &:nth-of-type(3) {
+        transform: rotate(-30deg);
+        top: 10px;
+      }
+    }
+  }
   @include mq(lg) {
-    display: block;
+    display: none;
+  }
+  &__bar {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 36px;
+    height: 3px;
+    border-radius: 6px;
+    background: #111;
+    transition: transform 0.3s linear, top 0.3s linear;
+    &:nth-of-type(2) {
+      top: 9px;
+    }
+    &:nth-of-type(3) {
+      top: 18px;
+    }
+  }
+}
+
+// .drawer-content {
+//   width: 320px;
+//   height: 100%;
+//   position: fixed;
+//   top: 0;
+//   right: 0;
+//   background: #f7ba1a;
+//   z-index: 50;
+//   padding: 86px 40px 40px;
+//   transform: translateX(100%);
+//   transition: transform 0.3s linear;
+//   &.is-checked {
+//     transform: translateX(0);
+//   }
+// }
+// .drawer-content {
+//   display: block;
+//   padding: 14px 0;
+//   text-align: right;
+//   font-weight: 700;
+//   letter-spacing: 0.48px;
+// }
+
+.header-open__image {
+  @include mq(md) {
+    width: 54px;
+    height: 50px;
+  }
+  @include mq(sm) {
+    width: 36px;
+    height: 33px;
+  }
+  img {
+    width: 100%;
+  }
+}
+.header-open__text {
+  color: #ff5817;
+  font-weight: 800;
+  font-size: 18px;
+  letter-spacing: 0.9px;
+  @include mq(sm) {
+    font-size: 12px;
+    letter-spacing: 0.6px;
   }
 }
 

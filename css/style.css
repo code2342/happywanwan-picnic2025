@@ -324,6 +324,14 @@ a:hover {
   height: auto;
   z-index: 10000;
 }
+@media screen and (max-width: 1024px) {
+  .header {
+    background: none;
+    position: static;
+    top: auto;
+    left: auto;
+  }
+}
 
 .header__inner {
   display: -webkit-box;
@@ -341,6 +349,15 @@ a:hover {
   width: 100%;
   margin: 0 auto;
 }
+@media screen and (max-width: 1024px) {
+  .header__inner {
+    -webkit-box-pack: end;
+        -ms-flex-pack: end;
+            justify-content: flex-end;
+    padding-block: 20px;
+    padding-inline: 23px;
+  }
+}
 
 .header__logo {
   display: -webkit-box;
@@ -356,8 +373,13 @@ a:hover {
           justify-content: center;
 }
 .header__logo a img {
-  width: 94px;
-  height: 68px;
+  width: 96px;
+  height: 80px;
+}
+@media screen and (max-width: 1024px) {
+  .header__logo {
+    display: none;
+  }
 }
 
 .header__container {
@@ -427,12 +449,76 @@ a:hover {
   color: #f5810e;
 }
 
-.header__open {
+.drawer-icon {
+  display: none;
+  position: relative;
+  margin-top: 6px;
+  z-index: 100;
+}
+.drawer-icon.is-checked .drawer-icon__bar:nth-of-type(1) {
+  -webkit-transform: rotate(30deg);
+          transform: rotate(30deg);
+  top: 10px;
+}
+.drawer-icon.is-checked .drawer-icon__bar:nth-of-type(2) {
   display: none;
 }
+.drawer-icon.is-checked .drawer-icon__bar:nth-of-type(3) {
+  -webkit-transform: rotate(-30deg);
+          transform: rotate(-30deg);
+  top: 10px;
+}
 @media screen and (max-width: 1024px) {
-  .header__open {
-    display: block;
+  .drawer-icon {
+    display: none;
+  }
+}
+.drawer-icon__bar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 36px;
+  height: 3px;
+  border-radius: 6px;
+  background: #111;
+  -webkit-transition: top 0.3s linear, -webkit-transform 0.3s linear;
+  transition: top 0.3s linear, -webkit-transform 0.3s linear;
+  transition: transform 0.3s linear, top 0.3s linear;
+  transition: transform 0.3s linear, top 0.3s linear, -webkit-transform 0.3s linear;
+}
+.drawer-icon__bar:nth-of-type(2) {
+  top: 9px;
+}
+.drawer-icon__bar:nth-of-type(3) {
+  top: 18px;
+}
+
+@media screen and (max-width: 768px) {
+  .header-open__image {
+    width: 54px;
+    height: 50px;
+  }
+}
+@media screen and (max-width: 480px) {
+  .header-open__image {
+    width: 36px;
+    height: 33px;
+  }
+}
+.header-open__image img {
+  width: 100%;
+}
+
+.header-open__text {
+  color: #ff5817;
+  font-weight: 800;
+  font-size: 18px;
+  letter-spacing: 0.9px;
+}
+@media screen and (max-width: 480px) {
+  .header-open__text {
+    font-size: 12px;
+    letter-spacing: 0.6px;
   }
 }
 
