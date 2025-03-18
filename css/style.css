@@ -474,6 +474,9 @@ a:hover {
   }
 }
 
+.drawer-content {
+  display: none;
+}
 @media screen and (max-width: 1024px) {
   .drawer-content {
     width: 100%;
@@ -483,7 +486,7 @@ a:hover {
     top: 0;
     right: 0;
     background: #f7ba1a;
-    z-index: 50;
+    z-index: 10000;
   }
 }
 

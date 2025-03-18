@@ -465,7 +465,7 @@ a {
   }
 }
 .drawer-content {
-  // display: none;
+  display: none;
   @include mq(lg) {
     width: 100%;
     height: 100%;
@@ -474,7 +474,7 @@ a {
     top: 0;
     right: 0;
     background: #f7ba1a;
-    z-index: 50;
+    z-index: 10000;
     // ↓スタイル調整の為一旦コメントアウト
     // transform: translateX(100%);
     // transition: transform 0.3s linear;
@@ -792,7 +792,6 @@ a {
   @include mq(md) {
     gap: 9px;
   }
-  
 }
 
 .contents__card:nth-child(1) .contents__card-bottom::before {
@@ -1556,9 +1555,9 @@ a {
 }
 
 .withdog__head {
-  .section__heading{
+  .section__heading {
     @include mq(md) {
-       gap: 8px;
+      gap: 8px;
     }
   }
   .section__heading-ja::before,
