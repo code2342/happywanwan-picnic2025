@@ -465,25 +465,16 @@ a:hover {
   }
 }
 
-.drawer-content {
-  display: none;
-}
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 1024px) {
   .drawer-content {
-    width: 320px;
+    width: 100%;
     height: 100%;
+    padding: 40px;
     position: fixed;
     top: 0;
     right: 0;
     background: #f7ba1a;
     z-index: 50;
-    padding: 86px 40px 40px;
-    -webkit-transform: translateX(100%);
-            transform: translateX(100%);
-    -webkit-transition: -webkit-transform 0.3s linear;
-    transition: -webkit-transform 0.3s linear;
-    transition: transform 0.3s linear;
-    transition: transform 0.3s linear, -webkit-transform 0.3s linear;
   }
 }
 
@@ -1330,6 +1321,7 @@ a:hover {
 }
 @media screen and (max-width: 768px) {
   .shop {
+    padding-block: 48px 107px;
     background-size: 200%;
   }
 }
@@ -1342,12 +1334,36 @@ a:hover {
   position: absolute;
   left: -40px;
   top: -70px;
-  width: 195px;
-  height: 195px;
+  width: clamp(95px, 93px + 99 * (100vw - 480px) / 960, 194px);
+  height: clamp(91px, 89px + 95 * (100vw - 480px) / 960, 186px);
   background-image: url("../img/shoplist-dog01.png");
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center;
+}
+@media screen and (max-width: 1360px) {
+  .shop__inner::after {
+    left: 0;
+    top: -46px;
+  }
+}
+@media screen and (max-width: 1024px) {
+  .shop__inner::after {
+    left: 14px;
+    top: -14px;
+  }
+}
+@media screen and (max-width: 768px) {
+  .shop__inner::after {
+    left: 40px;
+    top: -4px;
+  }
+}
+@media screen and (max-width: 480px) {
+  .shop__inner::after {
+    left: 15px;
+    top: 30px;
+  }
 }
 
 .shop__container {
@@ -1359,10 +1375,14 @@ a:hover {
   grid-template-columns: repeat(3, 1fr);
   gap: 90px;
 }
+@media screen and (max-width: 1024px) {
+  .shop__lists {
+    gap: 50px;
+  }
+}
 @media screen and (max-width: 768px) {
   .shop__lists {
     grid-template-columns: repeat(2, 1fr);
-    gap: 60px 70px;
   }
 }
 @media screen and (max-width: 480px) {
@@ -1371,8 +1391,29 @@ a:hover {
   }
 }
 
-.shop-list {
+.shop__list {
   text-align: center;
+}
+@media screen and (max-width: 768px) {
+  .shop__list:nth-child(1) .shop-list__title {
+    height: 38px;
+    font-size: 12px;
+    line-height: 21px;
+  }
+}
+@media screen and (max-width: 768px) {
+  .shop__list:nth-child(2) .shop-list__title {
+    height: 38px;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    -webkit-box-align: end;
+        -ms-flex-align: end;
+            align-items: flex-end;
+  }
 }
 
 .shop-list__title {
@@ -1383,17 +1424,19 @@ a:hover {
 }
 @media screen and (max-width: 1024px) {
   .shop-list__title {
-    font-size: 16px;
+    font-size: 18px;
     line-height: 22px;
   }
 }
-@media screen and (max-width: 768px) {
-  .shop-list__title {
-    font-size: 12px;
-  }
+.shop-list__title span {
+  font-size: 20px;
+  font-weight: 800;
 }
-.shop-list__title::nth-child(1) {
-  height: 38px;
+@media screen and (max-width: 768px) {
+  .shop-list__title span {
+    font-size: 18px;
+    display: block;
+  }
 }
 
 .shop-list__image {
@@ -1401,6 +1444,11 @@ a:hover {
 }
 .shop-list__image img {
   width: 100%;
+}
+@media screen and (max-width: 768px) {
+  .shop-list__image {
+    margin-top: 8px;
+  }
 }
 
 .shop-list__body {
@@ -1413,6 +1461,12 @@ a:hover {
       -ms-flex-direction: column;
           flex-direction: column;
   gap: 12px;
+}
+@media screen and (max-width: 768px) {
+  .shop-list__body {
+    margin-top: 8px;
+    gap: 8px;
+  }
 }
 
 .shop-list-body__no {
@@ -1436,7 +1490,9 @@ a:hover {
 }
 @media screen and (max-width: 768px) {
   .shop-list-body__tag {
+    min-width: 92px;
     font-size: 12px;
+    padding: 2px 8px;
   }
 }
 
@@ -1448,12 +1504,13 @@ a:hover {
 @media screen and (max-width: 768px) {
   .shop-list-body__text {
     font-size: 14px;
+    text-align: left;
   }
 }
 
 .dog-wrapper {
   position: absolute;
-  bottom: 20px;
+  bottom: 80px;
   left: 100%;
   z-index: 5; /* 犬を芝生の前面に配置 */
   display: -webkit-box;
@@ -1465,27 +1522,46 @@ a:hover {
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
-  width: 150px;
-  height: 70px;
+  width: 100%;
+}
+@media screen and (max-width: 768px) {
+  .dog-wrapper {
+    bottom: 70px;
+  }
 }
 .dog-wrapper img {
-  width: 100%;
-  height: 100%;
   position: absolute;
   top: 0;
   left: 0;
   opacity: 0;
 }
+@media screen and (max-width: 768px) {
+  .dog-wrapper img {
+    top: 10px;
+  }
+}
+.dog-wrapper img.active {
+  opacity: 1;
+}
 .dog-wrapper img:nth-child(1) {
   width: 117px;
   height: 66px;
+}
+@media screen and (max-width: 768px) {
+  .dog-wrapper img:nth-child(1) {
+    width: 92px;
+    height: 52px;
+  }
 }
 .dog-wrapper img:nth-child(2) {
   width: 132px;
   height: 57px;
 }
-.dog-wrapper img.active {
-  opacity: 1;
+@media screen and (max-width: 768px) {
+  .dog-wrapper img:nth-child(2) {
+    width: 98px;
+    height: 42px;
+  }
 }
 
 .withdog {

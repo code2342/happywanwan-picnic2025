@@ -141,22 +141,23 @@ const swiper = new Swiper("#js-gallery-swiper", {
 // =======================================
 // モーダル
 // =======================================
-jQuery(".js-modal-open").on("click", function (e) {
-  e.preventDefault();
+//一旦コメントアウトしてます！(3/18 はらみ)
+// jQuery(".js-modal-open").on("click", function (e) {
+//   e.preventDefault();
 
-  jQuery("#js-about-modal")[0].showModal();
-});
+//   jQuery("#js-about-modal")[0].showModal();
+// });
 
-jQuery(".js-modal-close").on("click", function (e) {
-  e.preventDefault();
+// jQuery(".js-modal-close").on("click", function (e) {
+//   e.preventDefault();
 
-  jQuery("#js-about-modal")[0].close();
-});
+//   jQuery("#js-about-modal")[0].close();
+// });
 
-jQuery('#js-drawer-content a[href^="#"]').on("click", function (e) {
-  jQuery("#js-drawer-icon").removeClass("is-checked");
-  jQuery("#js-drawer-content").removeClass("is-checked");
-});
+// jQuery('#js-drawer-content a[href^="#"]').on("click", function (e) {
+//   jQuery("#js-drawer-icon").removeClass("is-checked");
+//   jQuery("#js-drawer-content").removeClass("is-checked");
+// });
 
 // =======================================
 // スムーススクロール
