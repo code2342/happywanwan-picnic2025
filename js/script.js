@@ -101,7 +101,6 @@ document.addEventListener("DOMContentLoaded", function () {
 // =======================================
 // ドロワー
 // =======================================
-
 jQuery("#js-drawer-icon").on("click", function (e) {
   e.preventDefault();
   jQuery("#js-drawer-icon").toggleClass("is-checked");
@@ -118,6 +117,7 @@ jQuery(".js-accordion").on("click", function (e) {
     jQuery(this).next().slideDown();
   }
 });
+
 // =======================================
 // swiper
 // =======================================

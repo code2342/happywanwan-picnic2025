@@ -333,6 +333,20 @@ a:hover {
   height: auto;
   z-index: 10000;
 }
+@media screen and (max-width: 1024px) {
+  .header {
+    background: none;
+    top: auto;
+    left: auto;
+    padding: 20px 23px;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: end;
+        -ms-flex-pack: end;
+            justify-content: flex-end;
+  }
+}
 
 .header__inner {
   display: -webkit-box;
@@ -350,6 +364,16 @@ a:hover {
   width: 100%;
   margin: 0 auto;
 }
+@media screen and (max-width: 1024px) {
+  .header__inner {
+    display: none;
+    -webkit-box-pack: end;
+        -ms-flex-pack: end;
+            justify-content: flex-end;
+    padding-block: 20px;
+    padding-inline: 23px;
+  }
+}
 
 .header__logo {
   display: -webkit-box;
@@ -364,9 +388,14 @@ a:hover {
       -ms-flex-pack: center;
           justify-content: center;
 }
+@media screen and (max-width: 1024px) {
+  .header__logo {
+    display: none;
+  }
+}
 .header__logo a img {
-  width: 94px;
-  height: 68px;
+  width: 96px;
+  height: 80px;
 }
 
 .header__container {
@@ -386,11 +415,6 @@ a:hover {
     gap: 28px;
   }
 }
-@media screen and (max-width: 1024px) {
-  .header__container {
-    display: none;
-  }
-}
 
 .header__nav {
   display: -webkit-box;
@@ -399,11 +423,6 @@ a:hover {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-}
-@media screen and (max-width: 768px) {
-  .header__nav {
-    display: none;
-  }
 }
 
 .header-nav__list {
@@ -436,13 +455,61 @@ a:hover {
   color: #f5810e;
 }
 
-.header__open {
+.drawer-icon {
   display: none;
 }
 @media screen and (max-width: 1024px) {
-  .header__open {
+  .drawer-icon {
     display: block;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    position: relative;
+    margin-top: 6px;
+    z-index: 100;
   }
+}
+
+.drawer-content {
+  display: none;
+}
+@media screen and (max-width: 768px) {
+  .drawer-content {
+    width: 320px;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    right: 0;
+    background: #f7ba1a;
+    z-index: 50;
+    padding: 86px 40px 40px;
+    -webkit-transform: translateX(100%);
+            transform: translateX(100%);
+    -webkit-transition: -webkit-transform 0.3s linear;
+    transition: -webkit-transform 0.3s linear;
+    transition: transform 0.3s linear;
+    transition: transform 0.3s linear, -webkit-transform 0.3s linear;
+  }
+}
+
+@media screen and (max-width: 1024px) {
+  .header-open__image {
+    width: 75px;
+    height: 75px;
+  }
+}
+@media screen and (max-width: 480px) {
+  .header-open__image {
+    width: 50px;
+    height: 50px;
+  }
+}
+.header-open__image img {
+  width: 100%;
 }
 
 .main {
@@ -1351,6 +1418,22 @@ a:hover {
   }
 }
 
+.shop__inner {
+  position: relative;
+}
+.shop__inner::after {
+  content: "";
+  position: absolute;
+  left: -40px;
+  top: -70px;
+  width: 195px;
+  height: 195px;
+  background-image: url("../img/shoplist-dog01.png");
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
 .shop__container {
   margin-top: 48px;
 }
@@ -1659,10 +1742,15 @@ a:hover {
   grid-template-columns: repeat(3, 1fr);
   gap: 21px 19px;
 }
+@media screen and (max-width: 1024px) {
+  .faq__boxes {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+  }
+}
 @media screen and (max-width: 768px) {
   .faq__boxes {
     grid-template-columns: repeat(1, 1fr);
-    gap: 20px;
   }
 }
 
