@@ -466,17 +466,18 @@ a {
 }
 .drawer-content {
   display: none;
-  @include mq(md) {
-    width: 320px;
+  @include mq(lg) {
+    width: 100%;
     height: 100%;
+    padding: $pc-padding;
     position: fixed;
     top: 0;
     right: 0;
     background: #f7ba1a;
-    z-index: 50;
-    padding: 86px 40px 40px;
-    transform: translateX(100%);
-    transition: transform 0.3s linear;
+    z-index: 10000;
+    // ↓スタイル調整の為一旦コメントアウト
+    // transform: translateX(100%);
+    // transition: transform 0.3s linear;
   }
 }
 
@@ -791,7 +792,6 @@ a {
   @include mq(md) {
     gap: 9px;
   }
-  
 }
 
 .contents__card:nth-child(1) .contents__card-bottom::before {
@@ -1349,6 +1349,7 @@ a {
   position: relative;
   overflow: hidden;
   @include mq(md) {
+    padding-block: 48px 107px;
     background-size: 200%;
   }
 }
@@ -1359,12 +1360,36 @@ a {
     position: absolute;
     left: -40px;
     top: -70px;
-    width: 195px;
-    height: 195px;
+    width: clamp(
+      95px,
+      calc(93px + (194 - 95) * ((100vw - 480px) / (1440 - 480))),
+      194px
+    );
+    height: clamp(
+      91px,
+      calc(89px + (186 - 91) * ((100vw - 480px) / (1440 - 480))),
+      186px
+    );
     background-image: url("../img/shoplist-dog01.png");
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center;
+    @media screen and (max-width: 1360px) {
+      left: 0;
+      top: -46px;
+    }
+    @include mq(lg) {
+      left: 14px;
+      top: -14px;
+    }
+    @include mq(md) {
+      left: 40px;
+      top: -4px;
+    }
+    @include mq(sm) {
+      left: 15px;
+      top: 30px;
+    }
   }
 }
 .shop__container {
@@ -1374,25 +1399,54 @@ a {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 90px;
+  @include mq(lg) {
+    gap: 50px;
+  }
   @include mq(md) {
     grid-template-columns: repeat(2, 1fr);
-    gap: 60px 70px;
   }
   @include mq(sm) {
     gap: 48px 23px;
   }
 }
-.shop-list {
+.shop__list {
   text-align: center;
+  &:nth-child(1) {
+    .shop-list__title {
+      @include mq(md) {
+        height: 38px;
+        font-size: 12px;
+        line-height: 21px;
+      }
+    }
+  }
+  &:nth-child(2) {
+    .shop-list__title {
+      @include mq(md) {
+        height: 38px;
+        display: flex;
+        justify-content: center;
+        align-items: flex-end;
+      }
+    }
+  }
 }
 .shop-list__title {
   height: 30px;
   color: #59383b;
   font-size: 20px;
   font-weight: 800;
-  @include mq(md) {
+  @include mq(lg) {
     font-size: 18px;
     line-height: 22px;
+  }
+  span {
+    font-size: 20px;
+    font-weight: 800;
+    @include mq(md) {
+      font-size: 18px;
+      display: block;
+    }
   }
 }
 .shop-list__image {
@@ -1400,12 +1454,19 @@ a {
   img {
     width: 100%;
   }
+  @include mq(md) {
+    margin-top: 8px;
+  }
 }
 .shop-list__body {
   margin-top: 12px;
   display: flex;
   flex-direction: column;
   gap: 12px;
+  @include mq(md) {
+    margin-top: 8px;
+    gap: 8px;
+  }
 }
 .shop-list-body__no {
   font-size: 16px;
@@ -1423,7 +1484,9 @@ a {
   padding: 8px;
   margin: 0 auto;
   @include mq(md) {
+    min-width: 92px;
     font-size: 12px;
+    padding: 2px 8px;
   }
 }
 .shop-list-body__text {
@@ -1432,34 +1495,48 @@ a {
   font-weight: 500;
   @include mq(md) {
     font-size: 14px;
+    text-align: left;
   }
 }
 
 .dog-wrapper {
   position: absolute;
-  bottom: 0;
+  bottom: 80px;
   left: 100%;
-  width: 250px;
-  height: 134px;
   z-index: 5; /* 犬を芝生の前面に配置 */
   display: flex;
   align-items: center;
   justify-content: center;
+  width: 100%;
   @include mq(md) {
-    width: 180px;
-    height: 97px;
+    bottom: 70px;
   }
   img {
-    width: 100%;
-    height: 100%;
     position: absolute;
     top: 0;
     left: 0;
     opacity: 0;
+    @include mq(md) {
+      top: 10px;
+    }
     &.active {
       opacity: 1;
     }
-    @include mq(md) {
+    &:nth-child(1) {
+      width: 117px;
+      height: 66px;
+      @include mq(md) {
+        width: 92px;
+        height: 52px;
+      }
+    }
+    &:nth-child(2) {
+      width: 132px;
+      height: 57px;
+      @include mq(md) {
+        width: 98px;
+        height: 42px;
+      }
     }
   }
 }
@@ -1478,9 +1555,9 @@ a {
 }
 
 .withdog__head {
-  .section__heading{
+  .section__heading {
     @include mq(md) {
-       gap: 8px;
+      gap: 8px;
     }
   }
   .section__heading-ja::before,
