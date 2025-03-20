@@ -63,56 +63,50 @@
             ><img src="./img/logo.png" alt="ハッピーわんわんピクニック"
           /></a>
         </h1>
-        <div class="header__container">
-          <nav class="header__nav">
-            <ul class="header-nav__list">
-              <li class="header-nav__link">
-                <a href="#contents">コンテンツ</a>
-              </li>
-              <li class="header-nav__link"><a href="#shop">ショップ</a></li>
-              <li class="header-nav__link"><a href="#with-dog">注意事項</a></li>
-              <li class="header-nav__link"><a href="#faq">よくある質問</a></li>
-              <li class="header-nav__link"><a href="#map">会場MAP</a></li>
-            </ul>
-          </nav>
-          <div class="header__button">
-            <a href="#access" class="header__button button"
-              >チケットを購入する</a
-            >
+        <nav class="header__nav header-nav">
+          <ul class="header__list">
+            <li>
+              <a href="#contents" class="header-nav__link">コンテンツ</a>
+            </li>
+            <li><a href="#shop" class="header-nav__link">出店者一覧</a></li>
+            <li><a href="#with-dog" class="header-nav__link">注意事項</a></li>
+            <li><a href="#map" class="header-nav__link">会場MAP</a></li>
+            <li><a href="#access" class="header-nav__link">アクセス</a></li>
+          </ul>
+          <div class="header-nav__button ">
+            <a href="#" class="header__button button">チケットを購入する</a>
           </div>
-        </div>
+        </nav>
       </div>
-      <button id="js-drawer-icon" class="header__open header-open drawer-icon">
-        <img
-          src="./img/sp/menu-icon.png"
-          alt="MENU"
-          class="header-open__image"
-        />
+      <button
+        id="js-drawer-icon"
+        class="header__open drawer-icon"
+        aria-label="メニューを開く"
+      >
+        <!-- <img src="./img/sp/menu-icon.png" alt="MENU" class="drawer-icon__image" /> -->
       </button>
     </header>
 
-    <div id="js-drawer-content" class="drawer-content">
-      <h1 class="header__logo">
+    <div id="js-drawer-content" class="drawer">
+      <h1 class="header__logo-sp">
         <a href="#"
           ><img src="./img/logo.png" alt="ハッピーわんわんピクニック"
         /></a>
       </h1>
-      <nav class="header__nav">
-        <ul class="header-nav__list">
-          <li class="drawer-content__link">
-            <a href="#news">お知らせ</a>
+      <div class="drawer__body">
+        <ul class="drawer__list">
+          <li><a href="#news" class="drawer-content__link">お知らせ</a></li>
+          <li>
+            <a href="#contents" class="drawer-content__link">コンテンツ</a>
           </li>
-          <li class="drawer-content__link">
-            <a href="#contents">コンテンツ</a>
-          </li>
-          <li class="drawer-content__link"><a href="#shop">ショップ</a></li>
-          <li class="drawer-content__link"><a href="#with-dog">注意事項</a></li>
-          <li class="drawer-content__link"><a href="#faq">よくある質問</a></li>
-          <li class="drawer-content__link"><a href="#map">会場MAP</a></li>
+          <li><a href="#shop" class="drawer-content__link">ショップ</a></li>
+          <li><a href="#with-dog" class="drawer-content__link">注意事項</a></li>
+          <li><a href="#faq" class="drawer-content__link">よくある質問</a></li>
+          <li><a href="#map" class="drawer-content__link">会場MAP</a></li>
         </ul>
-      </nav>
-      <div class="header__button">
-        <a href="#access" class="header__button button">チケットを購入する</a>
+        <div class="drawer-content__button">
+          <a href="#access" class="drawer__button button button3">チケットを購入する</a>
+        </div>
       </div>
     </div>
 
@@ -665,8 +659,10 @@
                   <div class="ticket__card1-hukidashi">
                     <img src="./img/ticket-card1.svg" alt="吹き出し" />
                     <p class="ticket__card1-text">
-                      早く購入すると<br /><span>&nbsp;おトク</span><span> ！</span>
-                    </p>&nbsp;
+                      早く購入すると<br /><span>&nbsp;おトク</span
+                      ><span> ！</span>
+                    </p>
+                    &nbsp;
                   </div>
 
                   <div class="ticket__card1-dog">
@@ -701,6 +697,16 @@
       <!------------------------------
       map
       -------------------------------->
+      <section id="map" class="map">
+        <div class="map__inner section__inner">
+          <div class="map__head">
+            <div class="section__heading">
+              <h2 class="section__heading-ja">会場マップ</h2>
+              <p class="section__heading-en">MAP</p>
+            </div>
+          </div>
+        </div>
+      </section>
       <!------------------------------
       access
       -------------------------------->
@@ -740,6 +746,41 @@
                       会場内に約200台分の無料駐車場をご用意しております。
                     </p>
                   </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!------------------------------
+      sponsor
+      -------------------------------->
+      <section id="sponsor" class="sponsor">
+        <div class="sponsor__inner section__inner">
+          <div class="sponsor__container">
+            <div class="sponsor__head">
+              <div class="section__heading">
+                <h2 class="section__heading-ja">スポンサー</h2>
+                <p class="section__heading-en">SPONSOR</p>
+              </div>
+              <div class="sponsor__items">
+                <div class="sponsor__item">
+                  <img src="./img/sponsor-img01.png" alt="" />
+                </div>
+                <div class="sponsor__item">
+                  <img src="./img/sponsor-img02.png" alt="" />
+                </div>
+                <div class="sponsor__item">
+                  <img src="./img/sponsor-img03.png" alt="" />
+                </div>
+                <div class="sponsor__item">
+                  <img src="./img/sponsor-img04.png" alt="" />
+                </div>
+                <div class="sponsor__item">
+                  <img src="./img/sponsor-img05.png" alt="" />
+                </div>
+                <div class="sponsor__item">
+                  <img src="./img/sponsor-img06.png" alt="" />
                 </div>
               </div>
             </div>
