@@ -101,11 +101,19 @@ document.addEventListener("DOMContentLoaded", function () {
 // =======================================
 // ドロワー
 // =======================================
-
 jQuery("#js-drawer-icon").on("click", function (e) {
   e.preventDefault();
   jQuery("#js-drawer-icon").toggleClass("is-checked");
   jQuery("#js-drawer-content").toggleClass("is-checked");
+
+  // body要素のスクロールを制御
+  if (jQuery("#js-drawer-icon").hasClass("is-checked")) {
+    // ドロワーが開いた時
+    jQuery("body").css("overflow", "hidden");
+  } else {
+    // ドロワーが閉じた時
+    jQuery("body").css("overflow", "auto");
+  }
 });
 
 // =======================================
