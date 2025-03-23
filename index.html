@@ -73,7 +73,7 @@
             <li><a href="#map" class="header-nav__link">会場MAP</a></li>
             <li><a href="#access" class="header-nav__link">アクセス</a></li>
           </ul>
-          <div class="header-nav__button ">
+          <div class="header-nav__button">
             <a href="#" class="header__button button">チケットを購入する</a>
           </div>
         </nav>
@@ -82,9 +82,7 @@
         id="js-drawer-icon"
         class="header__open drawer-icon"
         aria-label="メニューを開く"
-      >
-        <!-- <img src="./img/sp/menu-icon.png" alt="MENU" class="drawer-icon__image" /> -->
-      </button>
+      ></button>
     </header>
 
     <div id="js-drawer-content" class="drawer">
@@ -105,21 +103,64 @@
           <li><a href="#map" class="drawer-content__link">会場MAP</a></li>
         </ul>
         <div class="drawer-content__button">
-          <a href="#access" class="drawer__button button button3">チケットを購入する</a>
+          <a href="/" class="drawer__button button button3"
+            >チケットを購入する</a
+          >
         </div>
       </div>
     </div>
 
     <main class="main">
-      <!-- section -->
-
       <!------------------------------
     fv
     -------------------------------->
       <div class="fv">
-        <div class="fv__inner inner"></div>
-      </div>
+        <div class="fv__inner">
+          <!-- <div class="fv__img">
+            <img
+              src="./img/fv-logo.webp"
+              alt=""
+              style="
+                translate: none;
+                rotate: none;
+                scale: none;
+                transform: translate(0px, 0px);
+                opacity: 1;
+              "
+            />
+          </div> -->
+          <div class="fv__title">
+            <img
+              src="./img/fv-logo.webp"
+              alt="ハッピーわんわんピクニック2025"
+            />
 
+            <figure class="fv__date">
+              <picture>
+                <source srcset="./img" media="(max-width: 767px)" />
+                <img src="./img/fv-date.webp" alt="" />
+              </picture>
+            </figure>
+          </div>
+          <div class="fv__bg1">
+            <picture>
+              <source srcset="./" media="(max-width: 767px)" />
+              <img src="./img/bg-before.webp" alt="" />
+            </picture>
+          </div>
+
+          <div class="fv__bg2">
+            <picture>
+              <source
+                srcset="./assets/img/kv_img2_2.webp"
+                media="(max-width: 767px)"
+              />
+              <img src="./img/bg-after.webp" alt="" />
+            </picture>
+          </div>
+        </div>
+      </div>
+      <!-- section -->
       <!------------------------------
       news
       -------------------------------->
@@ -521,7 +562,7 @@
             </div>
             <div class="faq__boxes">
               <div class="faq__box faq-box">
-                <button type="button" class="faq-box__head">
+                <button type="button" class="faq-box__head js-accordion">
                   <span class="faq-box__head-icon"
                     ><img src="./img/faq-icon01.png"
                   /></span>
@@ -531,14 +572,14 @@
                 </button>
                 <div class="faq-box__body">
                   <div class="faq-box__a">
-                    <span class="faq-box__a-text sp-hidden"
+                    <span class="faq-box__a-text"
                       >小雨決行です。荒天の場合は中止とし、開催前日の18時までにイベントのインスタグラムと当ホームページでご連絡いたします。</span
                     >
                   </div>
                 </div>
               </div>
               <div class="faq__box faq-box">
-                <button type="button" class="faq-box__head">
+                <button type="button" class="faq-box__head js-accordion">
                   <span class="faq-box__head-icon"
                     ><img src="./img/faq-icon02.png"
                   /></span>
@@ -553,7 +594,7 @@
                 </div>
               </div>
               <div class="faq__box faq-box">
-                <button type="button" class="faq-box__head">
+                <button type="button" class="faq-box__head js-accordion">
                   <span class="faq-box__head-icon"
                     ><img src="./img/faq-icon03.png"
                   /></span>
@@ -570,7 +611,7 @@
                 </div>
               </div>
               <div class="faq__box faq-box">
-                <button type="button" class="faq-box__head">
+                <button type="button" class="faq-box__head js-accordion">
                   <span class="faq-box__head-icon"
                     ><img src="./img/faq-icon04.png"
                   /></span>
@@ -587,7 +628,7 @@
                 </div>
               </div>
               <div class="faq__box faq-box">
-                <button type="button" class="faq-box__head">
+                <button type="button" class="faq-box__head js-accordion">
                   <span class="faq-box__head-icon"
                     ><img src="./img/faq-icon05.png"
                   /></span>
@@ -604,7 +645,7 @@
                 </div>
               </div>
               <div class="faq__box faq-box">
-                <button type="button" class="faq-box__head">
+                <button type="button" class="faq-box__head js-accordion">
                   <span class="faq-box__head-icon"
                     ><img src="./img/faq-icon06.png"
                   /></span>
@@ -620,8 +661,8 @@
                   </div>
                 </div>
               </div>
-              <div class="faq__box faq-box">
-                <button type="button" class="faq-box__head">
+              <div class="faq__box faq-box yurayura__parent">
+                <button type="button" class="faq-box__head js-accordion">
                   <span class="faq-box__head-icon"
                     ><img src="./img/faq-icon07.png"
                   /></span>
@@ -697,7 +738,7 @@
       <!------------------------------
       map
       -------------------------------->
-      <section id="map" class="map">
+      <section id="map" class="map animated__fadeIn">
         <div class="map__inner section__inner">
           <div class="map__head">
             <div class="section__heading">
@@ -705,6 +746,24 @@
               <p class="section__heading-en">MAP</p>
             </div>
           </div>
+          <div class="map-container yurayura__parent">
+            <button class="modal__img" data-dialog="modal">
+              <img src="./img/map-img.jpg" />
+            </button>
+          </div>
+          <dialog
+            id="modal"
+            aria-labelledby="modal-head1"
+            aria-describedby="modal-text1"
+            class="modal__content"
+          >
+            <div class="modal__inner">
+              <div class="modal__wrapper">
+                <button class="modal__close-btn"></button>
+                <img src="./img/map-img.jpg" alt="会場マップ" />
+              </div>
+            </div>
+          </dialog>
         </div>
       </section>
       <!------------------------------
@@ -755,7 +814,7 @@
       <!------------------------------
       sponsor
       -------------------------------->
-      <section id="sponsor" class="sponsor">
+      <section id="sponsor" class="sponsor animated__fadeIn">
         <div class="sponsor__inner section__inner">
           <div class="sponsor__container">
             <div class="sponsor__head">

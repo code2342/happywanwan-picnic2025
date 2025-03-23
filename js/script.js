@@ -119,18 +119,42 @@ jQuery("#js-drawer-icon").on("click", function (e) {
 // =======================================
 // アコーディオンパネル
 // =======================================
-jQuery(".js-accordion").on("click", function (e) {
-  e.preventDefault();
+jQuery(function ($) {
+  function setupAccordion() {
+    const windowWidth = $(window).width();
 
-  if (jQuery(this).parent().hasClass("is-open")) {
-    jQuery(this).parent().removeClass("is-open");
-    jQuery(this).next().slideUp();
-  } else {
-    jQuery(this).parent().addClass("is-open");
-    jQuery(this).next().slideDown();
+    if (windowWidth <= 768) {
+      // すでにイベントが登録されていたらスキップ（重複防止）
+      if (!$(".js-accordion").data("bound")) {
+        $(".js-accordion")
+          .data("bound", true)
+          .on("click", function (e) {
+            e.preventDefault();
+
+            const $parent = $(this).parent();
+            const $body = $(this).next();
+
+            if ($parent.hasClass("is-open")) {
+              $parent.removeClass("is-open");
+              $body.slideUp();
+            } else {
+              $parent.addClass("is-open");
+              $body.slideDown();
+            }
+          });
+      }
+    } else {
+      // 769px以上ならイベント解除（完全に無効化）
+      $(".js-accordion").off("click").removeData("bound");
+    }
   }
+  // 初回設定
+  setupAccordion();
+  // 画面リサイズ時にも実行
+  $(window).on("resize", function () {
+    setupAccordion();
+  });
 });
-
 // =======================================
 // swiper
 // =======================================
@@ -154,24 +178,71 @@ const swiper = new Swiper("#js-gallery-swiper", {
 // =======================================
 // モーダル
 // =======================================
-//一旦コメントアウトしてます！(3/18 はらみ)
-// jQuery(".js-modal-open").on("click", function (e) {
-//   e.preventDefault();
+document.addEventListener("DOMContentLoaded", function () {
+  const isMobile = () => window.innerWidth <= 768;
+  let modalInitialized = false;
 
-//   jQuery("#js-about-modal")[0].showModal();
-// });
+  const openButtons = document.querySelectorAll(".modal__img");
+  const closeButtons = document.querySelectorAll(".modal__close-btn");
+  const dialogs = document.querySelectorAll("dialog");
 
-// jQuery(".js-modal-close").on("click", function (e) {
-//   e.preventDefault();
+  const handleOpen = (event) => {
+    const dialogId = event.currentTarget.getAttribute("data-dialog");
+    const dialog = document.getElementById(dialogId);
+    if (dialog) {
+      dialog.showModal();
+      dialog.classList.add("js-show");
+    }
+  };
 
-//   jQuery("#js-about-modal")[0].close();
-// });
+  const handleClose = (event) => {
+    const dialog = event.currentTarget.closest("dialog");
+    if (dialog) {
+      dialog.classList.remove("js-show");
+      dialog.close();
+      document.activeElement.blur();
+    }
+  };
 
-// jQuery('#js-drawer-content a[href^="#"]').on("click", function (e) {
-//   jQuery("#js-drawer-icon").removeClass("is-checked");
-//   jQuery("#js-drawer-content").removeClass("is-checked");
-// });
+  const handleBackdropClick = (event) => {
+    const dialog = event.currentTarget;
+    if (!event.target.closest(".modal__inner")) {
+      dialog.classList.remove("js-show");
+      dialog.close();
+    }
+  };
 
+  const setupModalEvents = () => {
+    openButtons.forEach((btn) => btn.addEventListener("click", handleOpen));
+    closeButtons.forEach((btn) => btn.addEventListener("click", handleClose));
+    dialogs.forEach((dialog) =>
+      dialog.addEventListener("click", handleBackdropClick)
+    );
+    modalInitialized = true;
+  };
+
+  const removeModalEvents = () => {
+    openButtons.forEach((btn) => btn.removeEventListener("click", handleOpen));
+    closeButtons.forEach((btn) =>
+      btn.removeEventListener("click", handleClose)
+    );
+    dialogs.forEach((dialog) =>
+      dialog.removeEventListener("click", handleBackdropClick)
+    );
+    modalInitialized = false;
+  };
+
+  const checkAndUpdateModal = () => {
+    if (isMobile() && !modalInitialized) {
+      setupModalEvents();
+    } else if (!isMobile() && modalInitialized) {
+      removeModalEvents();
+    }
+  };
+
+  checkAndUpdateModal();
+  window.addEventListener("resize", checkAndUpdateModal);
+});
 // =======================================
 // スムーススクロール
 // =======================================
@@ -489,4 +560,115 @@ jQuery(function ($) {
   $(window).on("load resize", function () {
     $(window).trigger("scroll");
   });
+});
+
+// =======================================
+// fv
+// =======================================
+class TopAnimation1 {
+  constructor() {
+    if (document.querySelector("body.-top")) {
+      this.opening();
+    }
+  }
+
+  opening() {
+    const timeline1 = gsap.timeline();
+    const el_title = document.querySelector(".fv__title");
+    const el_date = document.querySelector(".fv__date");
+    const el_bg1 = document.querySelector(".fv__bg1");
+    const el_bg2 = document.querySelector(".fv__bg2");
+    const el_buttonScroll = document.querySelector(".fv__button");
+
+    gsap.set(el_title, {
+      opacity: 0,
+      y: 24,
+    });
+
+    gsap.set(el_date, {
+      opacity: 0,
+      y: 24,
+    });
+
+    gsap.set(el_bg1, {
+      opacity: 0,
+      scale: 0.5,
+    });
+
+    gsap.set(el_bg2, {
+      opacity: 0,
+      scale: 0.5,
+    });
+
+    gsap.set(el_buttonScroll, {
+      opacity: 0,
+    });
+
+    // load後に実行
+    window.addEventListener("load", () => {
+      timeline1
+        .to(
+          el_title,
+          {
+            duration: 1,
+            opacity: 1,
+            y: 0,
+            ease: "elastic.out(1,0.3)",
+          },
+          "-=1"
+        )
+        .to(
+          el_date,
+          {
+            duration: 1,
+            opacity: 1,
+            y: 0,
+            ease: "elastic.out(1,0.3)",
+          },
+          "-=0.9"
+        )
+        .to(
+          el_bg1,
+          {
+            duration: 2,
+            opacity: 1,
+            scale: 1,
+            ease: "elastic.out(1,0.3)",
+          },
+          "-=1"
+        )
+        .to(
+          el_bg2,
+          {
+            duration: 2,
+            opacity: 1,
+            scale: 1,
+            ease: "elastic.out(1,0.3)",
+          },
+          "-=1.9"
+        )
+        .to(
+          el_buttonScroll,
+          {
+            duration: 2,
+            opacity: 1,
+            ease: "elastic.out(1,0.3)",
+            onUpdate: () => {
+              el_buttonScroll.classList.add("-loaded");
+            },
+          },
+          "-=2"
+        );
+    });
+  }
+}
+
+// 初期化関数
+const init = () => {
+  new TopAnimation1();
+};
+
+// DOMContentLoadedイベントリスナー
+window.addEventListener("DOMContentLoaded", () => {
+  init();
 });

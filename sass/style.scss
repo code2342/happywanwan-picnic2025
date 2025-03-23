@@ -380,7 +380,7 @@ a {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  @include mq(md) {
+  @media screen and (max-width: 850px) {
     justify-content: end;
     background: none;
   }
@@ -405,7 +405,7 @@ a {
 }
 .header__logo {
   flex-shrink: 0;
-  @include mq(md) {
+  @media screen and (max-width: 850px) {
     display: none;
   }
   a {
@@ -423,7 +423,7 @@ a {
   @include mq(xl) {
     gap: 23px;
   }
-  @include mq(md) {
+  @media screen and (max-width: 850px) {
     display: none;
   }
 }
@@ -434,14 +434,6 @@ a {
   gap: 40px;
   @include mq(xl) {
     gap: 20px;
-  }
-  @include mq(lg) {
-    li:nth-child(1) {
-      display: none;
-    }
-    li:nth-child(2) {
-      margin-left: -20px;
-    }
   }
 }
 .header-nav__link {
@@ -467,9 +459,6 @@ a {
 
 //ドロワーアイコン ====================
 .drawer-icon {
-  // position: fixed;
-  // z-index: 200;
-  // display: flex;
   width: 50px;
   height: 50px;
   margin-top: 20px;
@@ -477,7 +466,7 @@ a {
   display: none;
   z-index: 300;
   background: url(../img/sp/menu-icon.png) no-repeat center center/contain;
-  @include mq(md) {
+  @media screen and (max-width: 850px) {
     display: block;
   }
 
@@ -485,36 +474,7 @@ a {
     background: url(../img/drawer-close.png) no-repeat center center / contain;
   }
 }
-// .drawer-icon__image {
-//   max-width: 50px;
-//   margin-top: 20px;
-//   margin-right: 20px;
-//   aspect-ratio: 50/50;
-//   width: 100%;
-//   display: none;
-//   background: url(../img/sp/menu-icon.png) no-repeat center center/contain;
-//   @include mq(md) {
-//     display: block;
-//   }
-//   // img {
-//   //   aspect-ratio: 50/50;
-//   //   object-fit: contain;
-//   // }
-// }
-// //メニューが開いている時 ========
-// .drawer__icon.js-show {
-//   .drawer__icon--bar:nth-of-type(1) {
-//     rotate: 45deg;
-//     translate: 0 7.5px;
-//   }
-//   .drawer__icon--bar:nth-of-type(2) {
-//     display: none;
-//   }
-//   .drawer__icon--bar:nth-of-type(3) {
-//     rotate: -45deg;
-//     translate: 0 -7.5px;
-//   }
-// }
+
 //ドロワーメニュー
 .drawer {
   position: fixed;
@@ -527,7 +487,7 @@ a {
   transform: translateX(100%);
   transition: all 0.3s ease;
   display: none;
-  @include mq(md) {
+  @media screen and (max-width: 850px) {
     display: block;
   }
 
@@ -541,7 +501,7 @@ a {
   margin-left: 20px;
   width: 96px;
   display: none;
-  @include mq(md) {
+  @media screen and (max-width: 850px) {
     display: block;
   }
   img {
@@ -550,7 +510,6 @@ a {
   }
 }
 .drawer__body {
-  // width: 100%;
   text-align: center;
   height: fit-content;
   padding-block: 32px 30px;
@@ -560,15 +519,19 @@ a {
   display: flex;
   flex-direction: column;
   row-gap: 32px;
-  li a {
+  li {
+    &:hover {
+      color: #f5810e;
+    }
+  }
+  a {
     font-size: 18px;
     font-weight: 500;
   }
 }
 .drawer__button {
-    margin-top: 38px;
-    margin-inline: auto;
-
+  margin-top: 38px;
+  margin-inline: auto;
 }
 
 //=====================================
@@ -585,26 +548,210 @@ a {
 //fv
 //=====================================
 .fv {
-  position: relative;
+  background: url(../img/fv.jpg) repeat center center / cover;
   width: 100%;
-  height: 766px;
-  background: url("../img/fv.jpg") no-repeat center/cover;
+  height: clamp(600px, 90vh, 766px);
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
   @include mq(md) {
-    position: relative; // `.drawer-icon` の基準点にする
-    z-index: 250; // `.drawer-icon` より低く設定
+    height: 600px;
   }
-  &::after {
-    content: "";
+}
+
+// @media (min-width: 768px) {
+//   .p-kv1__human1 {
+//     position: absolute;
+//     top: 0.25rem;
+//     left: 0;
+//     right: 0;
+//     margin: auto;
+//     width: 79.375rem;
+//     height: 37.6875rem;
+//   }
+// }
+// .fv__img img {
+//   position: absolute;
+//   top: 0;
+//   left: 0;
+//   height: auto;
+
+//   width: 10.0625rem;
+//   top: 7.875rem;
+//   left: 0;
+//   @include mq(md) {
+//     width: 23.4375rem;
+//     top: 1.1875rem;
+//     left: 8.1875rem;
+//   }
+// }
+// .p-kv1__human1 img:nth-of-type(1) {
+//   width: 10.0625rem;
+//   top: 7.875rem;
+//   left: 0;
+// }
+// @media (min-width: 768px) {
+//   .p-kv1__human1 img:nth-of-type(1) {
+//     width: 23.4375rem;
+//     top: 1.1875rem;
+//     left: 8.1875rem;
+//   }
+// }
+// .p-kv1__human1 img:nth-of-type(2) {
+//   width: 10.1875rem;
+//   top: 3.1875rem;
+//   left: 7.8125rem;
+// }
+// @media (min-width: 768px) {
+//   .p-kv1__human1 img:nth-of-type(2) {
+//     width: 21.125rem;
+//     top: 0rem;
+//     left: 30.75rem;
+//   }
+// }
+// .p-kv1__human1 img:nth-of-type(3) {
+//   width: 11.375rem;
+//   top: 10.5625rem;
+//   left: 15.9375rem;
+// }
+// @media (min-width: 768px) {
+//   .p-kv1__human1 img:nth-of-type(3) {
+//     width: 26.5rem;
+//     top: 4.4375rem;
+//     left: 52.875rem;
+//   }
+// }
+.fv__title {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 17.875rem;
+  margin: auto;
+  width: 22.375rem;
+  translate: none;
+  rotate: none;
+  scale: none;
+  transform: translate(0px, 0px);
+  opacity: 1;
+}
+@media (min-width: 768px) {
+  .fv__title1 {
+    width: 37.5rem;
+    top: 18rem;
+  }
+}
+
+.fv__date {
+  position: absolute;
+  top: 25rem;
+  left: 0;
+  right: 0;
+  margin: auto;
+  width: 22.125rem;
+  z-index: 1;
+  translate: none;
+  rotate: none;
+  scale: none;
+  transform: translate(0px, 0px);
+  opacity: 1;
+}
+@media (min-width: 768px) {
+  .p-kv1__date1 {
+    width: 42.4375rem;
+    top: 32.375rem;
+  }
+}
+
+// .p-kv1__button1 {
+//   position: absolute;
+//   left: 0;
+//   right: 0;
+//   bottom: 1.5rem;
+//   margin: auto;
+//   width: 5.1875rem;
+//   z-index: 1;
+//   transition: all 0.7s cubic-bezier(0.23, 1, 0.32, 1);
+// }
+// @media (min-width: 768px) {
+//   .p-kv1__button1 {
+//     width: 1.75rem;
+//     left: initial;
+//     bottom: 5.75rem;
+//     right: 2rem;
+//   }
+// }
+// @media (min-width: 768px) {
+//   .p-kv1__button1:hover {
+//     translate: 0 0.5rem;
+//   }
+// }
+// .p-kv1__button1.-loaded {
+//   animation: p-kv1__button1 2s ease-out infinite;
+// }
+// @keyframes p-kv1__button1 {
+//   0% {
+//     transform: translate(0, 0);
+//     opacity: 0;
+//   }
+//   100% {
+//     opacity: 1;
+//     transform: translate(0, 1rem);
+//   }
+// }
+
+.fv__bg1 {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  translate: none;
+  rotate: none;
+  scale: none;
+  transform: translate(0px, 0px);
+  opacity: 1;
+  @include mq(md) {
+    height: 100%;
+  }
+}
+// @media (min-width: 768px) {
+//   .p-kv1__bg1 {
+//     height: 100%;
+//   }
+// }
+@media (min-width: 768px) {
+  .fv__bg1 picture {
     position: absolute;
-    bottom: 0;
-    left: 0;
+    top: 50%;
+    left: 50%;
     width: 100%;
-    height: 10%; /* ぼかし部分の高さ */
-    background: linear-gradient(
-      180deg,
-      rgba(255, 250, 231, 0) 0%,
-      #fffae7 100%
-    );
+    transform: translate(-50%, -50%);
+  }
+}
+
+.fv__bg2 {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: -1;
+  translate: none;
+  rotate: none;
+  scale: none;
+  transform: translate(0px, 0px);
+  opacity: 1;
+}
+@media (min-width: 768px) {
+  .fv__bg2 {
+    height: 100%;
+  }
+}
+@media (min-width: 768px) {
+  .p-kv1__bg2 picture {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 100%;
+    transform: translate(-50%, -50%);
   }
 }
 
@@ -1442,18 +1589,19 @@ a {
     top: -70px;
     width: clamp(
       95px,
-      calc(93px + (194 - 95) * ((100vw - 480px) / (1440 - 480))),
+      calc(95px + (194 - 95) * ((100vw - 480px) / (1440 - 480))),
       194px
     );
     height: clamp(
       91px,
-      calc(89px + (186 - 91) * ((100vw - 480px) / (1440 - 480))),
+      calc(91px + (186 - 91) * ((100vw - 480px) / (1440 - 480))),
       186px
     );
-    background-image: url("../img/shoplist-dog01.png");
-    background-size: contain;
-    background-repeat: no-repeat;
-    background-position: center;
+    // background-image: url("../img/shoplist-dog01.png");
+    // background-size: contain;
+    // background-repeat: no-repeat;
+    // background-position: center;
+    background: url("../img/shoplist-dog01.png") no-repeat center / contain;
     @media screen and (max-width: 1360px) {
       left: 0;
       top: -46px;
@@ -1583,7 +1731,7 @@ a {
   position: absolute;
   bottom: 80px;
   left: 100%;
-  z-index: 5; /* 犬を芝生の前面に配置 */
+  z-index: 5;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -1775,6 +1923,9 @@ a {
 //=====================================
 .faq {
   padding-block: 72px;
+  @include mq(md) {
+    padding-block: 48px 120px;
+  }
 }
 
 .faq__inner {
@@ -1795,47 +1946,164 @@ a {
 }
 
 .faq__box {
-  padding: 15px 16px;
+  padding: calc(16px - 2px) calc(16px - 2px);
   border-radius: 20px;
   border: 2px solid #6cb740;
   background: #fff;
+  @include mq(md) {
+    padding: calc(16px - 2px);
+    &.is-open {
+      .faq-box__head {
+        &::after {
+          transform: translateY(-50%) rotate(0deg);
+        }
+      }
+    }
+  }
+  &:nth-child(7) {
+    position: relative;
+    &::after {
+      content: "";
+      position: absolute;
+      right: -445px;
+      bottom: 30px;
+      width: clamp(
+        85px,
+        calc(85px + (140 - 85) * ((100vw - 480px) / (1440 - 480))),
+        140px
+      );
+      height: clamp(
+        94px,
+        calc(94px + (155 - 94) * ((100vw - 480px) / (1440 - 480))),
+        155px
+      );
+      z-index: 10;
+      background: url("../img/faq-dog.png") no-repeat center / contain;
+      pointer-events: none;
+      @include mq(lg) {
+        right: -260px;
+      }
+      @include mq(md) {
+        right: 200px;
+        bottom: -115px;
+      }
+      @include mq(sm) {
+        right: 130px;
+      }
+    }
+    &::before {
+      content: "";
+      position: absolute;
+      bottom: 25px;
+      right: -550px;
+      width: clamp(
+        85px,
+        calc(93px + (84 - 85) * ((100vw - 480px) / (1440 - 480))),
+        84px
+      );
+      height: clamp(
+        46px,
+        calc(89px + (71 - 46) * ((100vw - 480px) / (1440 - 480))),
+        71px
+      );
+      aspect-ratio: 1 / 1;
+      background: url("../img/faq-lawn.png") no-repeat center / contain;
+      z-index: 0;
+      pointer-events: none;
+      @include mq(lg) {
+        right: -355px;
+        bottom: 30px;
+      }
+      @include mq(md) {
+        right: 105px;
+        bottom: -105px;
+      }
+      @include mq(sm) {
+        right: 50px;
+      }
+    }
+  }
+  &.is-open {
+  }
+  &.is-open {
+    .faq-box__head {
+      border-bottom: 2px dotted #c2c2c2 !important;
+      padding-bottom: 14px !important;
+    }
+  }
 }
-
 .faq-box__head {
   display: flex;
+  flex-direction: row;
   justify-content: flex-start;
   align-items: center;
-  gap: 20px;
+  gap: 16.5px;
   width: 100%;
   border-bottom: 2px dotted #c2c2c2;
-  padding-bottom: 14px;
+  padding-bottom: calc(14px - 2px);
+  position: relative;
+  @include mq(md) {
+    gap: 9px;
+    border-bottom: none;
+    padding-bottom: 0;
+  }
+  &.js-accordion {
+    padding-right: 44px;
+  }
+  &::after {
+    @include mq(md) {
+      content: "";
+      position: absolute;
+      top: 50%;
+      right: 0;
+      transform: translateY(-50%) rotate(180deg);
+      width: 14.62px;
+      height: 8.56px;
+      background: url(../img/faq-arrow.png) no-repeat center center / contain;
+      transform: rotate(180deg);
+    }
+  }
 }
 
 .faq-box__head-icon {
   flex-shrink: 0;
   width: 47px;
-  img {
-    width: 100%;
+  height: auto;
+  @include mq(md) {
+    width: 43px;
   }
 }
 
 .faq-box__head-text {
+  flex-shrink: 1;
   text-align: left;
   color: #59383b;
   font-size: 16px;
   font-weight: 800;
-  letter-spacing: 0.8px;
+  letter-spacing: 0.5px;
+  @include mq(md) {
+    font-size: 14px;
+    line-height: 22px;
+  }
 }
 
 .faq-box__body {
   margin-top: 14px;
+  display: none;
+  @media screen and (min-width: 769px) {
+    display: block !important;
+  }
 }
 
 .faq-box__a-text {
   font-size: 16px;
   font-weight: 500;
-  line-height: 125%; /* 20px */
+  line-height: 125%;
   letter-spacing: 0.8px;
+  @include mq(md) {
+    font-size: 14px;
+    line-height: normal;
+  }
 }
 
 //=====================================
@@ -2114,6 +2382,235 @@ a {
 //=====================================
 .map {
   padding-block: 72px 88px;
+  @include mq(xl) {
+    padding-block: 72px 103px;
+  }
+  @include mq(md) {
+    padding-block: 48px 103px;
+  }
+}
+.map__inner {
+  position: relative;
+  @include mq(md) {
+    padding-inline: 20px;
+  }
+}
+.map__head {
+  position: relative;
+  &::before {
+    content: "";
+    position: absolute;
+    top: 25px;
+    left: -120px;
+    width: clamp(
+      87px,
+      calc(62px + (236 - 87) * ((100vw - 480px) / (1440 - 480))),
+      236px
+    );
+    height: clamp(
+      61px,
+      calc(61px + (167 - 61) * ((100vw - 480px) / (1440 - 480))),
+      167px
+    );
+    z-index: -10;
+    background: url("../img/map-footprints01.png") no-repeat center / contain;
+    pointer-events: none;
+    @media screen and (max-width: 1360px) {
+      top: 65px;
+      left: -60px;
+    }
+    @include mq(xl) {
+      top: 0;
+      left: 15px;
+    }
+    @include mq(md) {
+      top: 10px;
+    }
+    @include mq(sm) {
+      top: 29px;
+      left: -15px;
+    }
+  }
+}
+.map-container {
+  max-width: 800px;
+  width: 100%;
+  margin-inline: auto;
+  margin-top: 51px;
+  position: relative;
+  @include mq(md) {
+    margin-top: 40px;
+    background: rgba(255, 255, 255, 0.3);
+    padding: 48px 17px 52px 18px;
+  }
+  &::before {
+    content: "";
+    position: absolute;
+    right: -310px;
+    bottom: 0;
+    width: clamp(
+      87px,
+      calc(62px + (236 - 87) * ((100vw - 480px) / (1440 - 480))),
+      236px
+    );
+    height: clamp(
+      61px,
+      calc(61px + (167 - 61) * ((100vw - 480px) / (1440 - 480))),
+      167px
+    );
+    z-index: -10;
+    background: url("../img/map-footprints02.png") no-repeat center / contain;
+    pointer-events: none;
+    @media screen and (max-width: 1430px) {
+      right: -265px;
+      bottom: 20px;
+    }
+    @media screen and (max-width: 1310px) {
+      right: -200px;
+    }
+    @include mq(xl) {
+      right: -115px;
+      bottom: -80px;
+    }
+    @media screen and (max-width: 1015px) {
+      right: -60px;
+      bottom: -100px;
+    }
+    @media screen and (max-width: 950px) {
+      right: -20px;
+      bottom: -100px;
+    }
+    @include mq(md) {
+      right: 0px;
+      bottom: -90px;
+    }
+    @include mq(sm) {
+    }
+  }
+  &::after {
+    content: "";
+    position: absolute;
+    right: -170px;
+    bottom: 165px;
+    width: clamp(
+      62px,
+      calc(62px + (220 - 62) * ((100vw - 480px) / (1440 - 480))),
+      220px
+    );
+    height: clamp(
+      68px,
+      calc(68px + (240 - 68) * ((100vw - 480px) / (1440 - 480))),
+      240px
+    );
+    z-index: 30;
+    background: url("../img/map-dog.png") no-repeat center / contain;
+    pointer-events: none;
+    @include mq(xl) {
+      right: -105px;
+      bottom: 185px;
+    }
+    @include mq(lg) {
+      right: -75px;
+      bottom: 195px;
+    }
+    @media screen and (max-width: 950px) {
+      right: -30px;
+      top: -180px;
+    }
+    @include mq(md) {
+      right: 50px;
+      top: -85px;
+    }
+    @include mq(sm) {
+      right: 45px;
+      top: -85px;
+    }
+  }
+}
+.modal__img {
+  outline: none;
+  position: relative;
+  &::after {
+    @include mq(md) {
+      position: absolute;
+      content: "";
+      position: absolute;
+      right: -17px;
+      top: -16px;
+      width: 36px;
+      height: 36px;
+      z-index: 20;
+      background: url("../img/map-lupe.png") no-repeat center / contain;
+    }
+  }
+  &:focus,
+  &:focus-visible {
+    outline: none;
+  }
+  img {
+    display: block;
+    max-width: 800px;
+    width: 100%;
+    height: auto;
+  }
+}
+dialog {
+  &::backdrop {
+    opacity: 0;
+    transition: background 0.3s ease-in-out;
+  }
+  &::backdrop {
+    opacity: 1;
+    background: rgba(48, 48, 48, 0.4);
+    backdrop-filter: blur(6px);
+  }
+}
+.modal__content {
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out;
+  width: min(600px, 95%);
+  max-height: 80vh;
+  aspect-ratio: auto;
+  background: transparent;
+  &.js-show {
+    opacity: 1;
+  }
+}
+.modal__inner {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  padding-inline: 10px;
+  position: relative;
+}
+.modal__wrapper {
+  position: relative;
+  display: inline-block;
+
+  img {
+    display: block;
+    max-width: 100%;
+    height: auto;
+  }
+}
+.modal__close-btn {
+  position: absolute;
+  top: -16px;
+  right: -16px;
+  width: 36px;
+  height: 36px;
+  z-index: 10;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  &::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: url("../img/map-cross.png") no-repeat center / contain;
+    pointer-events: none;
+  }
 }
 
 //=====================================
@@ -2346,31 +2843,31 @@ a {
 //=====================================
 .sponsor {
   padding-block: 82px 90px;
+  @include mq(md) {
+    padding-block: 30px;
+  }
 }
 .sponsor__inner {
   max-width: calc(1080px + 40px * 2);
-  // margin-left: auto;
-  // margin-right: auto;
+  margin-left: auto;
+  margin-right: auto;
 }
 .sponsor__container {
   border-radius: 30px;
   border: 3px solid #6cb740;
   background: #fff;
-  padding-block: 42px;
+  padding: 42px 20px;
   @include mq(md) {
-    padding: 38px 18px 36px;
-  }
-  @include mq(md) {
-    padding-block: 32px;
+    padding: 32px 20px;
   }
 }
 .sponsor__items {
   margin-top: 32px;
-  max-width: 666px;
+  max-width: 696px;
   margin-left: auto;
   margin-right: auto;
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
   place-items: center;
   gap: 26px 48px;
   @include mq(md) {
@@ -2386,15 +2883,18 @@ a {
 .sponsor__item {
   display: grid;
   place-items: center;
-  width: 128px;
-  height: 48px;
+  width: 100%;
+  max-width: 200px;
+  height: auto;
   @include mq(sm) {
-    width: 135px;
-    height: 25px;
+    max-width: 135px;
   }
   img {
-    width: 100%;
-    height: auto;
+    @include mq(sm) {
+      width: 150px;
+      height: 36px;
+      object-fit: contain;
+    }
   }
 }
 //=====================================
