@@ -615,7 +615,7 @@ a:hover {
   position: absolute;
   top: 0;
   left: 0;
-  width: 100%;
+  width: 1340px;
   translate: none;
   rotate: none;
   scale: none;
@@ -626,11 +626,6 @@ a:hover {
 @media screen and (max-width: 768px) {
   .fv__bg1 {
     height: 100%;
-  }
-}
-
-@media (min-width: 768px) {
-  .fv__bg1 picture {
     position: absolute;
     top: 50%;
     left: 50%;
@@ -639,35 +634,11 @@ a:hover {
             transform: translate(-50%, -50%);
   }
 }
+
 .fv__bg2 {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  z-index: -1;
-  translate: none;
-  rotate: none;
-  scale: none;
-  -webkit-transform: translate(0px, 0px);
-          transform: translate(0px, 0px);
-  opacity: 1;
+  display: none;
 }
 
-@media (min-width: 768px) {
-  .fv__bg2 {
-    height: 100%;
-  }
-}
-@media (min-width: 768px) {
-  .p-kv1__bg2 picture {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 100%;
-    -webkit-transform: translate(-50%, -50%);
-            transform: translate(-50%, -50%);
-  }
-}
 .news {
   padding-block: 72px;
 }

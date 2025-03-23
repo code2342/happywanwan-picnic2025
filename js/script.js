@@ -567,7 +567,7 @@ jQuery(function ($) {
 // =======================================
 class TopAnimation1 {
   constructor() {
-    if (document.querySelector("body.-top")) {
+    if (document.querySelector("main .fv")) {
       this.opening();
     }
   }
