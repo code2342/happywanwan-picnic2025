@@ -567,20 +567,26 @@ jQuery(function ($) {
 // =======================================
 class TopAnimation1 {
   constructor() {
-    if (document.querySelector("body.-top")) {
+    if (document.querySelector("main .fv")) {
       this.opening();
     }
   }
 
   opening() {
     const timeline1 = gsap.timeline();
-    const el_title = document.querySelector(".fv__title");
+    const el_text = document.querySelector(".fv__text");
+    const el_logo = document.querySelector(".fv__logo");
     const el_date = document.querySelector(".fv__date");
     const el_bg1 = document.querySelector(".fv__bg1");
     const el_bg2 = document.querySelector(".fv__bg2");
     const el_buttonScroll = document.querySelector(".fv__button");
 
-    gsap.set(el_title, {
+    gsap.set(el_text, {
+      opacity: 0,
+      y: 24,
+    });
+
+    gsap.set(el_logo, {
       opacity: 0,
       y: 24,
     });
@@ -608,7 +614,17 @@ class TopAnimation1 {
     window.addEventListener("load", () => {
       timeline1
         .to(
-          el_title,
+          el_text,
+          {
+            duration: 1,
+            opacity: 1,
+            y: 0,
+            ease: "elastic.out(1,0.3)",
+          },
+          "-=0.9"
+        )
+        .to(
+          el_logo,
           {
             duration: 1,
             opacity: 1,
