@@ -525,6 +525,7 @@ a {
     }
   }
   a {
+    color: #491700;
     font-size: 18px;
     font-weight: 500;
   }
@@ -548,13 +549,15 @@ a {
 .fv {
   background: url(../img/fv.jpg) repeat center center / cover;
   width: 100%;
-  height: clamp(600px, 90vh, 766px);
+  height: 766px;
   overflow: hidden;
   z-index: 1;
   position: relative;
+
   @include mq(md) {
     height: 600px;
   }
+
   &::after {
     content: "";
     position: absolute;
@@ -568,21 +571,34 @@ a {
       #fffae7 100%
     );
     pointer-events: none;
-    z-index: 2;
     @include mq(md) {
       height: 80px;
     }
   }
+  // 下線を消す
+  // &::before {
+  //   content: "";
+  //   position: absolute;
+  //   bottom: -5px;
+  //   left: 0;
+  //   width: 100%;
+  //   height: 15px;
+  //   background: #fffae7; // ベース色
+  //   z-index: 3;
+  // }
 }
+
 .fv__inner {
   padding-top: 165px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  @include mq(md) {
+
+  @media screen and (max-width: 850px) {
     padding-top: 128px;
   }
 }
+
 .fv__text,
 .fv__logo,
 .fv__date {
@@ -594,6 +610,7 @@ a {
   opacity: 1;
   z-index: 200;
 }
+
 .fv__text {
   left: 0;
   right: 0;
@@ -604,6 +621,7 @@ a {
     414px
   );
 }
+
 .fv__logo {
   left: 0;
   right: 0;
@@ -615,11 +633,13 @@ a {
     400px
   );
   margin-top: 20px;
-  @include mq(md) {
+
+  @media screen and (max-width: 850px) {
     top: 163px;
     margin-top: 11px;
   }
 }
+
 .fv__date {
   top: 553px;
   left: 0;
@@ -630,61 +650,100 @@ a {
     calc(186px + (291 - 186) * ((100vw - 375px) / (1440 - 375))),
     291px
   );
-  @include mq(md) {
+  @media screen and (max-width: 850px) {
     top: 351px;
   }
 }
+
 .fv__bg1 {
-  display: flex;
-  justify-content: center;
   position: absolute;
-  top: 0;
-  left: 0;
-  width: 1340px;
-  translate: none;
-  rotate: none;
-  scale: none;
-  transform: translate(0px, 0px);
-  opacity: 1;
+  top: clamp(215px, calc(395px - 15vw), 295px);
+  left: calc(50% - 18px);
+  transform: translateX(-50%);
+  width: 100%;
+  max-width: 1340px;
   z-index: 180;
-  picture {
-    display: none;
+  @media screen and (max-width: 850px) {
+    width: auto;
+    max-width: none;
+    top: 150px;
+    left: 140px;
     @include mq(md) {
-      display: block;
+      top: 150px;
     }
   }
-  img {
-    max-width: 100%;
-    height: auto;
-    display: block;
+}
+.bg1-pc__img {
+  display: block;
+  @media screen and (max-width: 850px) {
+    display: none;
   }
-  @include mq(md) {
-    height: 100%;
-    top: 50%;
-    left: 50%;
+}
+.bg1-sp__img {
+  display: none;
+  @media screen and (max-width: 850px) {
+    display: block;
     width: 100%;
-    transform: translate(-50%, -50%);
+    max-width: 100%;
+  }
+  img {
+    @media screen and (max-width: 850px) {
+      display: block;
+      width: 100%;
+      height: auto;
+      aspect-ratio: 144 / 250;
+      object-fit: contain;
+    }
   }
 }
 
 .fv__bg2 {
-  display: none;
   position: absolute;
-  top: 0;
-  left: 0;
+  top: clamp(415px, calc(312px + 11.66vw), 447px);
+  left: 50%;
+  transform: translateX(-50%);
   width: 100%;
-  z-index: 190;
-  translate: none;
-  rotate: none;
-  scale: none;
-  transform: translate(0px, 0px);
-  opacity: 1;
-  @include mq(md) {
-    position: absolute;
-    top: 50%;
+  max-width: 1280px;
+  z-index: 180;
+  @media screen and (max-width: 850px) {
+    left: auto;
+    transform: none;
+    right: -45px;
+    top: 110px;
+    width: auto;
+    max-width: none;
+  }
+  @media screen and (min-width: 851px) {
     left: 50%;
+    transform: translateX(-50%);
+    right: auto;
+  }
+  @include mq(md) {
+    right: -215px;
+  }
+}
+
+.bg2-pc__img {
+  display: block;
+  @media screen and (max-width: 850px) {
+    display: none;
+  }
+}
+.bg2-sp__img {
+  display: none;
+  @media screen and (max-width: 850px) {
+    display: block;
     width: 100%;
-    transform: translate(-50%, -50%);
+    max-width: 100%;
+  }
+  img {
+    @media screen and (max-width: 850px) {
+      display: block;
+      width: 100%;
+      height: auto;
+      aspect-ratio: 142 / 261;
+      object-fit: contain;
+    }
   }
 }
 

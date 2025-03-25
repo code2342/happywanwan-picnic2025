@@ -539,6 +539,7 @@ a:hover {
   color: #f5810e;
 }
 .drawer__list a {
+  color: #491700;
   font-size: 18px;
   font-weight: 500;
 }
@@ -557,7 +558,7 @@ a:hover {
 .fv {
   background: url(../img/fv.jpg) repeat center center/cover;
   width: 100%;
-  height: clamp(600px, 90vh, 766px);
+  height: 766px;
   overflow: hidden;
   z-index: 1;
   position: relative;
@@ -577,7 +578,6 @@ a:hover {
   background: -webkit-gradient(linear, left top, left bottom, from(rgba(255, 250, 231, 0)), to(#fffae7));
   background: linear-gradient(180deg, rgba(255, 250, 231, 0) 0%, #fffae7 100%);
   pointer-events: none;
-  z-index: 2;
 }
 @media screen and (max-width: 768px) {
   .fv::after {
@@ -598,7 +598,7 @@ a:hover {
       -ms-flex-align: center;
           align-items: center;
 }
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 850px) {
   .fv__inner {
     padding-top: 128px;
   }
@@ -632,7 +632,7 @@ a:hover {
   width: clamp(203px, 203px + 197 * (100vw - 375px) / 1065, 400px);
   margin-top: 20px;
 }
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 850px) {
   .fv__logo {
     top: 163px;
     margin-top: 11px;
@@ -646,77 +646,128 @@ a:hover {
   margin: auto;
   width: clamp(186px, 186px + 105 * (100vw - 375px) / 1065, 291px);
 }
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 850px) {
   .fv__date {
     top: 351px;
   }
 }
 
 .fv__bg1 {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
   position: absolute;
-  top: 0;
-  left: 0;
-  width: 1340px;
-  translate: none;
-  rotate: none;
-  scale: none;
-  -webkit-transform: translate(0px, 0px);
-          transform: translate(0px, 0px);
-  opacity: 1;
+  top: clamp(215px, 395px - 15vw, 295px);
+  left: calc(50% - 18px);
+  -webkit-transform: translateX(-50%);
+          transform: translateX(-50%);
+  width: 100%;
+  max-width: 1340px;
   z-index: 180;
 }
-.fv__bg1 picture {
-  display: none;
-}
-@media screen and (max-width: 768px) {
-  .fv__bg1 picture {
-    display: block;
+@media screen and (max-width: 850px) {
+  .fv__bg1 {
+    width: auto;
+    max-width: none;
+    top: 150px;
+    left: 140px;
   }
 }
-.fv__bg1 img {
-  max-width: 100%;
-  height: auto;
+@media screen and (max-width: 850px) and (max-width: 768px) {
+  .fv__bg1 {
+    top: 150px;
+  }
+}
+
+.bg1-pc__img {
   display: block;
 }
-@media screen and (max-width: 768px) {
-  .fv__bg1 {
-    height: 100%;
-    top: 50%;
-    left: 50%;
+@media screen and (max-width: 850px) {
+  .bg1-pc__img {
+    display: none;
+  }
+}
+
+.bg1-sp__img {
+  display: none;
+}
+@media screen and (max-width: 850px) {
+  .bg1-sp__img {
+    display: block;
     width: 100%;
-    -webkit-transform: translate(-50%, -50%);
-            transform: translate(-50%, -50%);
+    max-width: 100%;
+  }
+}
+@media screen and (max-width: 850px) {
+  .bg1-sp__img img {
+    display: block;
+    width: 100%;
+    height: auto;
+    aspect-ratio: 144/250;
+    -o-object-fit: contain;
+       object-fit: contain;
   }
 }
 
 .fv__bg2 {
-  display: none;
   position: absolute;
-  top: 0;
-  left: 0;
+  top: clamp(415px, 312px + 11.66vw, 447px);
+  left: 50%;
+  -webkit-transform: translateX(-50%);
+          transform: translateX(-50%);
   width: 100%;
-  z-index: 190;
-  translate: none;
-  rotate: none;
-  scale: none;
-  -webkit-transform: translate(0px, 0px);
-          transform: translate(0px, 0px);
-  opacity: 1;
+  max-width: 1280px;
+  z-index: 180;
+}
+@media screen and (max-width: 850px) {
+  .fv__bg2 {
+    left: auto;
+    -webkit-transform: none;
+            transform: none;
+    right: -45px;
+    top: 110px;
+    width: auto;
+    max-width: none;
+  }
+}
+@media screen and (min-width: 851px) {
+  .fv__bg2 {
+    left: 50%;
+    -webkit-transform: translateX(-50%);
+            transform: translateX(-50%);
+    right: auto;
+  }
 }
 @media screen and (max-width: 768px) {
   .fv__bg2 {
-    position: absolute;
-    top: 50%;
-    left: 50%;
+    right: -215px;
+  }
+}
+
+.bg2-pc__img {
+  display: block;
+}
+@media screen and (max-width: 850px) {
+  .bg2-pc__img {
+    display: none;
+  }
+}
+
+.bg2-sp__img {
+  display: none;
+}
+@media screen and (max-width: 850px) {
+  .bg2-sp__img {
+    display: block;
     width: 100%;
-    -webkit-transform: translate(-50%, -50%);
-            transform: translate(-50%, -50%);
+    max-width: 100%;
+  }
+}
+@media screen and (max-width: 850px) {
+  .bg2-sp__img img {
+    display: block;
+    width: 100%;
+    height: auto;
+    aspect-ratio: 142/261;
+    -o-object-fit: contain;
+       object-fit: contain;
   }
 }
 
