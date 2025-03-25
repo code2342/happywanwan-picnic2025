@@ -538,8 +538,6 @@ a {
 //main
 //=====================================
 .main {
-  //↓navと.mainを重ねる為下の文をコメントアウトしました↓
-  // -webkit-padding-before: 90px;
   padding-block-start: 0;
   min-height: 100vh;
 }
@@ -551,95 +549,94 @@ a {
   background: url(../img/fv.jpg) repeat center center / cover;
   width: 100%;
   height: clamp(600px, 90vh, 766px);
-  position: relative;
   overflow: hidden;
   z-index: 1;
+  position: relative;
   @include mq(md) {
     height: 600px;
   }
+  &::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 96px;
+    background: linear-gradient(
+      180deg,
+      rgba(255, 250, 231, 0) 0%,
+      #fffae7 100%
+    );
+    pointer-events: none;
+    z-index: 2;
+    @include mq(md) {
+      height: 80px;
+    }
+  }
 }
 .fv__inner {
-}
-
-.fv__title {
-  position: absolute;
-  left: 0;
-  right: 0;
-  top: 17.875rem;
-  margin: auto;
-  width: 22.375rem;
-  translate: none;
-  rotate: none;
-  scale: none;
-  transform: translate(0px, 0px);
-  opacity: 1;
-}
-@media (min-width: 768px) {
-  .fv__title1 {
-    width: 37.5rem;
-    top: 18rem;
+  padding-top: 165px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  @include mq(md) {
+    padding-top: 128px;
   }
 }
-
+.fv__text,
+.fv__logo,
 .fv__date {
-  position: absolute;
-  top: 25rem;
-  left: 0;
-  right: 0;
-  margin: auto;
-  width: 22.125rem;
-  z-index: 1;
+  position: static;
+  transform: none;
   translate: none;
   rotate: none;
   scale: none;
-  transform: translate(0px, 0px);
   opacity: 1;
+  z-index: 200;
 }
-@media (min-width: 768px) {
-  .p-kv1__date1 {
-    width: 42.4375rem;
-    top: 32.375rem;
+.fv__text {
+  left: 0;
+  right: 0;
+  margin: auto;
+  width: clamp(
+    339px,
+    calc(339px + (414 - 339) * ((100vw - 375px) / (1440 - 375))),
+    414px
+  );
+}
+.fv__logo {
+  left: 0;
+  right: 0;
+  top: 215px;
+  margin: auto;
+  width: clamp(
+    203px,
+    calc(203px + (400 - 203) * ((100vw - 375px) / (1440 - 375))),
+    400px
+  );
+  margin-top: 20px;
+  @include mq(md) {
+    top: 163px;
+    margin-top: 11px;
   }
 }
-
-// .p-kv1__button1 {
-//   position: absolute;
-//   left: 0;
-//   right: 0;
-//   bottom: 1.5rem;
-//   margin: auto;
-//   width: 5.1875rem;
-//   z-index: 1;
-//   transition: all 0.7s cubic-bezier(0.23, 1, 0.32, 1);
-// }
-// @media (min-width: 768px) {
-//   .p-kv1__button1 {
-//     width: 1.75rem;
-//     left: initial;
-//     bottom: 5.75rem;
-//     right: 2rem;
-//   }
-// }
-// @media (min-width: 768px) {
-//   .p-kv1__button1:hover {
-//     translate: 0 0.5rem;
-//   }
-// }
-// .p-kv1__button1.-loaded {
-//   animation: p-kv1__button1 2s ease-out infinite;
-// }
-// @keyframes p-kv1__button1 {
-//   0% {
-//     transform: translate(0, 0);
-//     opacity: 0;
-//   }
-//   100% {
-//     opacity: 1;
-//     transform: translate(0, 1rem);
-//   }
-// }
-
+.fv__date {
+  top: 553px;
+  left: 0;
+  right: 0;
+  margin: auto;
+  width: clamp(
+    186px,
+    calc(186px + (291 - 186) * ((100vw - 375px) / (1440 - 375))),
+    291px
+  );
+  @include mq(md) {
+    top: 351px;
+  }
+}
 .fv__bg1 {
+  display: flex;
+  justify-content: center;
   position: absolute;
   top: 0;
   left: 0;
@@ -649,9 +646,20 @@ a {
   scale: none;
   transform: translate(0px, 0px);
   opacity: 1;
+  z-index: 180;
+  picture {
+    display: none;
+    @include mq(md) {
+      display: block;
+    }
+  }
+  img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+  }
   @include mq(md) {
     height: 100%;
-    position: absolute;
     top: 50%;
     left: 50%;
     width: 100%;
@@ -661,23 +669,23 @@ a {
 
 .fv__bg2 {
   display: none;
-  // position: absolute;
-  // top: 0;
-  // left: 0;
-  // width: 100%;
-  // z-index: -1;
-  // translate: none;
-  // rotate: none;
-  // scale: none;
-  // transform: translate(0px, 0px);
-  // opacity: 1;
-  // @include mq(md) {
-  //   position: absolute;
-  //   top: 50%;
-  //   left: 50%;
-  //   width: 100%;
-  //   transform: translate(-50%, -50%);
-  // }
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 190;
+  translate: none;
+  rotate: none;
+  scale: none;
+  transform: translate(0px, 0px);
+  opacity: 1;
+  @include mq(md) {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 100%;
+    transform: translate(-50%, -50%);
+  }
 }
 
 //=====================================
