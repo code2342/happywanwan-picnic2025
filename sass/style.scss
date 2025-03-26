@@ -1914,7 +1914,7 @@ a {
   margin-top: 32px;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 21px 19px;
+  gap: 19px 19px;
   @include mq(lg) {
     grid-template-columns: repeat(2, 1fr);
     gap: 20px;
@@ -1922,10 +1922,13 @@ a {
   @include mq(md) {
     grid-template-columns: repeat(1, 1fr);
   }
+  @include mq(sm) {
+    margin-top: 35px;
+  }
 }
 
 .faq__box {
-  padding: calc(16px - 2px) calc(16px - 2px);
+  padding: 14px 14px 20px 14px;
   border-radius: 20px;
   border: 2px solid #6cb740;
   background: #fff;
@@ -1939,13 +1942,76 @@ a {
       }
     }
   }
+  @include mq(sm) {
+    border-radius: 30px;
+    padding: 14px 14px 14px 14px;
+  }
+  &:nth-child(1) {
+    .faq-box__head-text {
+      padding-top: 4px;
+    }
+  }
+  &:nth-child(2) {
+    .faq-box {
+      @include mq(sm) {
+        padding: 14px 14px 16px 14px;
+      }
+    }
+  }
+  &:nth-child(3) {
+    @include mq(sm) {
+      margin-top: 2px;
+      padding: 14px 14px 17px 14px;
+    }
+  }
+  &:nth-child(4) {
+    padding: 16px 14px 12px 14px;
+    .faq-box__head {
+      @include mq(sm) {
+        padding-right: 41px;
+      }
+      &::after {
+        @include mq(sm) {
+          top: 39%;
+        }
+      }
+    }
+  }
+  &:nth-child(5) {
+    padding: 18px 14px 12px 14px;
+    .faq-box__head {
+      @include mq(sm) {
+        padding-right: 41px;
+      }
+    }
+  }
+  &:nth-child(6) {
+    padding: 18px 14px 12px 14px;
+    .faq-box__head-icon {
+      margin-bottom: 25px;
+      @include mq(xl) {
+        margin-bottom: 0;
+      }
+      @include mq(sm) {
+        margin-bottom: 5px;
+      }
+    }
+  }
   &:nth-child(7) {
     position: relative;
+    margin-top: -5px;
+    padding: 14px 14px 24px 14px;
+    @include mq(lg) {
+      margin-top: 0;
+    }
+    @include mq(sm) {
+      padding: 14px 14px 18px 14px;
+    }
     &::after {
       content: "";
       position: absolute;
-      right: -445px;
-      bottom: 30px;
+      right: -437px;
+      bottom: 12px;
       width: clamp(
         85px,
         calc(85px + (140 - 85) * ((100vw - 480px) / (1440 - 480))),
@@ -1963,18 +2029,19 @@ a {
         right: -260px;
       }
       @include mq(md) {
-        right: 200px;
         bottom: -115px;
+        right: 200px;
       }
       @include mq(sm) {
-        right: 130px;
+        bottom: -106px;
+        right: 78px;
       }
     }
     &::before {
       content: "";
       position: absolute;
-      bottom: 25px;
-      right: -550px;
+      bottom: 22px;
+      right: -541px;
       width: clamp(
         85px,
         calc(93px + (84 - 85) * ((100vw - 480px) / (1440 - 480))),
@@ -1998,7 +2065,26 @@ a {
         bottom: -105px;
       }
       @include mq(sm) {
-        right: 50px;
+        width: 71px;
+        background: url("../img/sp/faq-lawn.png") no-repeat center / contain;
+        right: -1px;
+        bottom: -113px;
+      }
+    }
+    .faq-box__a {
+      padding-top: 5px;
+      @include mq(sm) {
+        letter-spacing: normal;
+      }
+    }
+    .faq-box__head {
+      @include mq(sm) {
+        padding-right: 41px;
+      }
+    }
+    .faq-box__head-text {
+      @include mq(sm) {
+        padding-top: 6px;
       }
     }
   }
@@ -2017,7 +2103,7 @@ a {
   gap: 16.5px;
   width: 100%;
   border-bottom: 2px dotted #c2c2c2;
-  padding-bottom: calc(14px - 2px);
+  padding-bottom: 16px;
   position: relative;
   @include mq(md) {
     gap: 9px;
@@ -2025,14 +2111,17 @@ a {
     padding-bottom: 0;
   }
   &.js-accordion {
-    padding-right: 44px;
+    padding-right: 11px;
+    @include mq(md) {
+      padding-right: 44px;
+    }
   }
   &::after {
     @include mq(md) {
       content: "";
       position: absolute;
-      top: 50%;
-      right: 0;
+      top: 45%;
+      right: 5px;
       transform: translateY(-50%) rotate(180deg);
       width: 14.62px;
       height: 8.56px;
@@ -2057,7 +2146,6 @@ a {
   color: #59383b;
   font-size: 16px;
   font-weight: 800;
-  letter-spacing: 0.5px;
   @include mq(md) {
     font-size: 14px;
     line-height: 22px;
@@ -2072,7 +2160,7 @@ a {
   }
 }
 
-.faq-box__a-text {
+.faq-box__a {
   font-size: 16px;
   font-weight: 500;
   line-height: 125%;
@@ -2080,6 +2168,10 @@ a {
   @include mq(md) {
     font-size: 14px;
     line-height: normal;
+  }
+  @include mq(sm) {
+    letter-spacing: normal;
+    line-height: 22px;
   }
 }
 
