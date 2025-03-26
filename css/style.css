@@ -666,13 +666,9 @@ a:hover {
   .fv__bg1 {
     width: auto;
     max-width: none;
-    top: 150px;
-    left: 140px;
-  }
-}
-@media screen and (max-width: 850px) and (max-width: 768px) {
-  .fv__bg1 {
-    top: 150px;
+    top: auto;
+    bottom: -40px;
+    left: 150px;
   }
 }
 
@@ -718,13 +714,11 @@ a:hover {
 }
 @media screen and (max-width: 850px) {
   .fv__bg2 {
-    left: auto;
-    -webkit-transform: none;
-            transform: none;
-    right: -45px;
-    top: 110px;
     width: auto;
     max-width: none;
+    top: auto;
+    bottom: -40px;
+    right: 40px;
   }
 }
 @media screen and (min-width: 851px) {
@@ -733,11 +727,6 @@ a:hover {
     -webkit-transform: translateX(-50%);
             transform: translateX(-50%);
     right: auto;
-  }
-}
-@media screen and (max-width: 768px) {
-  .fv__bg2 {
-    right: -215px;
   }
 }
 
