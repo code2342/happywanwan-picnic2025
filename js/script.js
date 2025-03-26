@@ -124,16 +124,13 @@ jQuery(function ($) {
     const windowWidth = $(window).width();
 
     if (windowWidth <= 768) {
-      // すでにイベントが登録されていたらスキップ（重複防止）
       if (!$(".js-accordion").data("bound")) {
         $(".js-accordion")
           .data("bound", true)
           .on("click", function (e) {
             e.preventDefault();
-
-            const $parent = $(this).parent();
-            const $body = $(this).next();
-
+            const $parent = $(this).parent(); // .faq__box
+            const $body = $(this).next(); // .faq-box__body
             if ($parent.hasClass("is-open")) {
               $parent.removeClass("is-open");
               $body.slideUp();
@@ -142,12 +139,17 @@ jQuery(function ($) {
               $body.slideDown();
             }
           });
+        const $firstFaq = $(".faq__box").first();
+        $firstFaq.addClass("is-open");
+        $firstFaq.find(".faq-box__body").slideDown();
       }
     } else {
-      // 769px以上ならイベント解除（完全に無効化）
       $(".js-accordion").off("click").removeData("bound");
+      $(".faq__box").removeClass("is-open");
+      $(".faq-box__body").removeAttr("style");
     }
   }
+
   // 初回設定
   setupAccordion();
   // 画面リサイズ時にも実行
