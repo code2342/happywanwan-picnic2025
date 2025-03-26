@@ -390,7 +390,7 @@ a {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding-block: 18px;
+  padding-block: 11px;
   padding-inline: 15px;
   max-width: calc(1130px + 15px * 2);
   margin-left: auto;
@@ -410,7 +410,7 @@ a {
   }
   a {
     img {
-      width: 86px;
+      width: 94px;
     }
   }
 }
@@ -431,7 +431,7 @@ a {
 .header__list {
   display: flex;
   justify-content: space-between;
-  gap: 40px;
+  gap: 37px;
   @include mq(xl) {
     gap: 20px;
   }
@@ -646,7 +646,7 @@ a {
 
 .fv__bg1 {
   position: absolute;
-  top: clamp(215px, calc(395px - 15vw), 295px);
+  top: clamp(220px, calc(395px - 15vw), 295px);
   left: calc(50% - 18px);
   transform: translateX(-50%);
   width: 100%;
@@ -689,11 +689,12 @@ a {
 .fv__bg2 {
   position: absolute;
   top: clamp(415px, calc(312px + 11.66vw), 447px);
-  left: 50%;
+  left: 48%;
   transform: translateX(-50%);
   width: 100%;
   max-width: 1280px;
   z-index: 180;
+  right: auto;
   @media screen and (max-width: 850px) {
     width: auto;
     max-width: none;
@@ -701,13 +702,14 @@ a {
     bottom: -40px;
     right: 40px;
   }
-  @media screen and (min-width: 851px) {
-    left: 50%;
-    transform: translateX(-50%);
-    right: auto;
-  }
-  // @include mq(md) {
+  // @media screen and (min-width: 851px) {
+  //   left: 48%;
+  //   transform: translateX(-50%);
+  //   right: auto;
   // }
+  @include mq(md) {
+    right: -215px;
+  }
 }
 
 .bg2-pc__img {
@@ -788,7 +790,7 @@ a {
 
 .news__link {
   width: 100%;
-  padding-block: 16px;
+  padding-block: 15px 16px;
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -879,7 +881,7 @@ a {
   justify-self: end;
   padding-inline: 2px;
   border-bottom: 1px solid #000;
-  margin-top: 5px;
+  margin-top: 8px;
 
   @include mq(md) {
     font-size: 16px;
@@ -910,7 +912,7 @@ a {
 }
 
 .contents__container {
-  margin-top: 72px;
+  margin-top: 70px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -978,6 +980,9 @@ a {
 
   &:nth-child(even) {
     flex-direction: row-reverse;
+    .contents__card-bottom {
+      margin-inline: 31px;
+    }
     @include mq(md) {
       flex-direction: column;
       justify-content: center;
@@ -986,6 +991,9 @@ a {
 
   &:nth-child(odd) {
     flex-direction: row;
+    .contents__card-bottom {
+      margin-inline: 26px;
+    }
     @include mq(md) {
       flex-direction: column;
       justify-content: center;
@@ -1550,7 +1558,7 @@ a {
 //shop
 //=====================================
 .shop {
-  padding-block: 72px 160px;
+  padding-block: 72px 217px;
   background: url(../img/shoplist-lawn.png) repeat-x center bottom / contain;
   position: relative;
   overflow: hidden;
@@ -1605,7 +1613,8 @@ a {
 .shop__lists {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 90px;
+  row-gap: 80px;
+  column-gap: 90px;
   @include mq(lg) {
     gap: 50px;
   }
@@ -1688,12 +1697,18 @@ a {
   border-radius: 20px;
   background: #ffe4b5;
   min-width: 108px;
-  padding: 8px;
+  padding: 5px;
   margin: 0 auto;
+  font-size: 10px;
+  font-weight: 500;
+  line-height: normal;
+  letter-spacing: 0.5px;
   @include mq(md) {
     min-width: 92px;
     font-size: 12px;
     padding: 2px 8px;
+    font-size: 12px;
+    letter-spacing: 0.6px;
   }
 }
 .shop-list-body__text {
@@ -1752,7 +1767,7 @@ a {
 //WITH DOG
 //=====================================
 .withdog {
-  padding-block: 69px;
+  padding-block: 72px;
   background: url(../img/withdog-bg.png) repeat center center / cover;
 
   @include mq(md) {
@@ -1842,6 +1857,7 @@ a {
   img {
     aspect-ratio: 117/107;
     object-fit: contain;
+    margin-top: 3px;
   }
 
   @include mq(md) {
@@ -1853,6 +1869,7 @@ a {
 .withdog__bottom-container {
   position: relative;
   max-width: 442px;
+  margin-top: -3px;
 
   @include mq(md) {
     margin-left: 28px;
@@ -1901,7 +1918,7 @@ a {
 //FAQ
 //=====================================
 .faq {
-  padding-block: 72px;
+  padding-block: 74px;
   @include mq(md) {
     padding-block: 48px 120px;
   }
@@ -2075,11 +2092,11 @@ a {
 .faq-box__a-text {
   font-size: 16px;
   font-weight: 500;
-  line-height: 125%;
+  // line-height: 23px;
   letter-spacing: 0.8px;
   @include mq(md) {
     font-size: 14px;
-    line-height: normal;
+    // line-height: 14px;
   }
 }
 
@@ -2957,7 +2974,6 @@ dialog {
   height: 168px;
   align-items: center;
   margin-top: 4px;
-  // justify-content: space-between;
 
   @include mq(lg) {
     margin-left: 7px;
@@ -2984,25 +3000,6 @@ dialog {
   @include mq(lg) {
     font-size: 14px;
   }
-  // &::before {
-  //   content: "";
-  //   position: absolute;
-  //   background: $color-text-white;
-  //   width: 100%;
-  //   height: 1px;
-  //   left: 0;
-  //   bottom: 0;
-  //   transform-origin: center top;
-  //   transform: scale(0, 1);
-  //   transition: transform 0.3s;
-  // }
-
-  // &:hover {
-  //   opacity: 1;
-  //   &::before {
-  //     transform: scale(1, 1);
-  //   }
-  // }
 }
 
 .footer__bottom {
@@ -3077,18 +3074,6 @@ dialog {
 //=====================================
 //mochico ver.1
 //=====================================
-.mochico-wrap {
-  position: fixed;
-  z-index: 50;
-  top: 50px;
-  right: 0;
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-  justify-content: center;
-  align-items: center;
-}
-
 .mochico {
   position: fixed;
   z-index: 100000;
@@ -3196,135 +3181,3 @@ dialog {
     width: 100%;
   }
 }
-
-//=====================================
-//mochico ver.2
-//=====================================
-.mochico2 {
-  margin-top: 100px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-}
-
-.mochico__hukidashi2 {
-  position: relative;
-  width: 195px;
-  aspect-ratio: 195/136;
-  @include mq(lg) {
-    width: 100px;
-  }
-  @include mq(md) {
-    width: 87px;
-    aspect-ratio: 87/61;
-  }
-}
-
-.mochico__image2 {
-  transform-origin: center bottom;
-  animation: yurayura 2s linear infinite;
-  width: clamp(
-    64px,
-    calc(64px + (144 - 64) * ((100vw - 480px) / (1440 - 480))),
-    144px
-  );
-  // height: clamp(
-  //   109px,
-  //   calc(109px + (242 - 109) * ((100vw - 480px) / (1440 - 480))),
-  //   242px
-  // );
-  img {
-    aspect-ratio: 144/242;
-    width: 100%;
-  }
-}
-
-@keyframes yurayura {
-  0%,
-  100% {
-    transform: rotate(10deg);
-  }
-  50% {
-    transform: rotate(-10deg);
-  }
-}
-//=====================================
-//mochico ver.3
-//=====================================
-.mochico3 {
-  position: fixed;
-  z-index: 100000;
-  right: 5px;
-  bottom: 83px;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  transition: "transform 0.3s ease-out";
-  gap: 7px;
-  @include mq(md) {
-    bottom: 50px;
-  }
-}
-
-.mochico__hukidashi3 {
-  position: relative;
-  width: 146px;
-  aspect-ratio: 146/146;
-
-  @include mq(lg) {
-    width: 100px;
-  }
-
-  @include mq(md) {
-    width: 72px;
-  }
-}
-
-.mochico__hukidashi3-image {
-  animation: 12s linear infinite rotation1;
-}
-
-@keyframes rotation1 {
-  0% {
-    transform: rotate(0);
-  }
-  100% {
-    transform: rotate(360deg);
-  }
-}
-
-.mochico__hukidashi-dot {
-  width: 18px;
-  height: 29px;
-  position: absolute;
-  bottom: -19px;
-  right: 34px;
-  z-index: 1;
-  @include mq(lg) {
-    right: 7px;
-  }
-}
-
-.mochiko__text3 {
-  top: 50%;
-  left: 53%;
-}
-
-// .mochico__image {
-//   width: clamp(
-//     80px,
-//     calc(80px + (146 - 80) * ((100vw - 480px) / (1440 - 480))),
-//     146px
-//   );
-//   // height: clamp(
-//   //   80px,
-//   //   calc(80px + (146 - 80) * ((100vw - 480px) / (1440 - 480))),
-//   //   146px
-//   // );
-//   margin-top: 7px;
-//   img {
-//     aspect-ratio: 144/242;
-//     width: 100%;
-//   }
-// }

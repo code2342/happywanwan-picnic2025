@@ -362,7 +362,7 @@ a:hover {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  padding-block: 18px;
+  padding-block: 11px;
   padding-inline: 15px;
   max-width: 1160px;
   margin-left: auto;
@@ -392,7 +392,7 @@ a:hover {
   }
 }
 .header__logo a img {
-  width: 86px;
+  width: 94px;
 }
 
 .header__nav {
@@ -425,7 +425,7 @@ a:hover {
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
-  gap: 40px;
+  gap: 37px;
 }
 @media screen and (max-width: 1200px) {
   .header__list {
@@ -654,7 +654,7 @@ a:hover {
 
 .fv__bg1 {
   position: absolute;
-  top: clamp(215px, 395px - 15vw, 295px);
+  top: clamp(220px, 395px - 15vw, 295px);
   left: calc(50% - 18px);
   -webkit-transform: translateX(-50%);
           transform: translateX(-50%);
@@ -705,12 +705,13 @@ a:hover {
 .fv__bg2 {
   position: absolute;
   top: clamp(415px, 312px + 11.66vw, 447px);
-  left: 50%;
+  left: 48%;
   -webkit-transform: translateX(-50%);
           transform: translateX(-50%);
   width: 100%;
   max-width: 1280px;
   z-index: 180;
+  right: auto;
 }
 @media screen and (max-width: 850px) {
   .fv__bg2 {
@@ -721,12 +722,9 @@ a:hover {
     right: 40px;
   }
 }
-@media screen and (min-width: 851px) {
+@media screen and (max-width: 768px) {
   .fv__bg2 {
-    left: 50%;
-    -webkit-transform: translateX(-50%);
-            transform: translateX(-50%);
-    right: auto;
+    right: -215px;
   }
 }
 
@@ -813,7 +811,7 @@ a:hover {
 
 .news__link {
   width: 100%;
-  padding-block: 16px;
+  padding-block: 15px 16px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -929,7 +927,7 @@ a:hover {
   justify-self: end;
   padding-inline: 2px;
   border-bottom: 1px solid #000;
-  margin-top: 5px;
+  margin-top: 8px;
 }
 @media screen and (max-width: 768px) {
   .news__button {
@@ -960,7 +958,7 @@ a:hover {
 }
 
 .contents__container {
-  margin-top: 72px;
+  margin-top: 70px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -1077,6 +1075,9 @@ a:hover {
       -ms-flex-direction: row-reverse;
           flex-direction: row-reverse;
 }
+.contents__card:nth-child(even) .contents__card-bottom {
+  margin-inline: 31px;
+}
 @media screen and (max-width: 768px) {
   .contents__card:nth-child(even) {
     -webkit-box-orient: vertical;
@@ -1093,6 +1094,9 @@ a:hover {
   -webkit-box-direction: normal;
       -ms-flex-direction: row;
           flex-direction: row;
+}
+.contents__card:nth-child(odd) .contents__card-bottom {
+  margin-inline: 26px;
 }
 @media screen and (max-width: 768px) {
   .contents__card:nth-child(odd) {
@@ -1632,7 +1636,7 @@ a:hover {
 }
 
 .shop {
-  padding-block: 72px 160px;
+  padding-block: 72px 217px;
   background: url(../img/shoplist-lawn.png) repeat-x center bottom/contain;
   position: relative;
   overflow: hidden;
@@ -1688,7 +1692,10 @@ a:hover {
 .shop__lists {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 90px;
+  row-gap: 80px;
+  -webkit-column-gap: 90px;
+     -moz-column-gap: 90px;
+          column-gap: 90px;
 }
 @media screen and (max-width: 1024px) {
   .shop__lists {
@@ -1800,14 +1807,20 @@ a:hover {
   border-radius: 20px;
   background: #ffe4b5;
   min-width: 108px;
-  padding: 8px;
+  padding: 5px;
   margin: 0 auto;
+  font-size: 10px;
+  font-weight: 500;
+  line-height: normal;
+  letter-spacing: 0.5px;
 }
 @media screen and (max-width: 768px) {
   .shop-list-body__tag {
     min-width: 92px;
     font-size: 12px;
     padding: 2px 8px;
+    font-size: 12px;
+    letter-spacing: 0.6px;
   }
 }
 
@@ -1880,7 +1893,7 @@ a:hover {
 }
 
 .withdog {
-  padding-block: 69px;
+  padding-block: 72px;
   background: url(../img/withdog-bg.png) repeat center center/cover;
 }
 @media screen and (max-width: 768px) {
@@ -1989,6 +2002,7 @@ a:hover {
   aspect-ratio: 117/107;
   -o-object-fit: contain;
      object-fit: contain;
+  margin-top: 3px;
 }
 @media screen and (max-width: 768px) {
   .withdog__bottom-dog {
@@ -2000,6 +2014,7 @@ a:hover {
 .withdog__bottom-container {
   position: relative;
   max-width: 442px;
+  margin-top: -3px;
 }
 @media screen and (max-width: 768px) {
   .withdog__bottom-container {
@@ -2051,7 +2066,7 @@ a:hover {
 }
 
 .faq {
-  padding-block: 72px;
+  padding-block: 74px;
 }
 @media screen and (max-width: 768px) {
   .faq {
@@ -2243,13 +2258,11 @@ a:hover {
 .faq-box__a-text {
   font-size: 16px;
   font-weight: 500;
-  line-height: 125%;
   letter-spacing: 0.8px;
 }
 @media screen and (max-width: 768px) {
   .faq-box__a-text {
     font-size: 14px;
-    line-height: normal;
   }
 }
 
@@ -3450,27 +3463,6 @@ dialog::backdrop {
   }
 }
 
-.mochico-wrap {
-  position: fixed;
-  z-index: 50;
-  top: 50px;
-  right: 0;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
-  gap: 20px;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-}
-
 .mochico {
   position: fixed;
   z-index: 100000;
@@ -3620,157 +3612,4 @@ dialog::backdrop {
 .mochico__image img {
   aspect-ratio: 144/242;
   width: 100%;
-}
-
-.mochico2 {
-  margin-top: 100px;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-}
-
-.mochico__hukidashi2 {
-  position: relative;
-  width: 195px;
-  aspect-ratio: 195/136;
-}
-@media screen and (max-width: 1024px) {
-  .mochico__hukidashi2 {
-    width: 100px;
-  }
-}
-@media screen and (max-width: 768px) {
-  .mochico__hukidashi2 {
-    width: 87px;
-    aspect-ratio: 87/61;
-  }
-}
-
-.mochico__image2 {
-  -webkit-transform-origin: center bottom;
-          transform-origin: center bottom;
-  -webkit-animation: yurayura 2s linear infinite;
-          animation: yurayura 2s linear infinite;
-  width: clamp(64px, 64px + 80 * (100vw - 480px) / 960, 144px);
-}
-.mochico__image2 img {
-  aspect-ratio: 144/242;
-  width: 100%;
-}
-
-@-webkit-keyframes yurayura {
-  0%, 100% {
-    -webkit-transform: rotate(10deg);
-            transform: rotate(10deg);
-  }
-  50% {
-    -webkit-transform: rotate(-10deg);
-            transform: rotate(-10deg);
-  }
-}
-
-@keyframes yurayura {
-  0%, 100% {
-    -webkit-transform: rotate(10deg);
-            transform: rotate(10deg);
-  }
-  50% {
-    -webkit-transform: rotate(-10deg);
-            transform: rotate(-10deg);
-  }
-}
-.mochico3 {
-  position: fixed;
-  z-index: 100000;
-  right: 5px;
-  bottom: 83px;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  -webkit-transition: "transform 0.3s ease-out";
-  transition: "transform 0.3s ease-out";
-  gap: 7px;
-}
-@media screen and (max-width: 768px) {
-  .mochico3 {
-    bottom: 50px;
-  }
-}
-
-.mochico__hukidashi3 {
-  position: relative;
-  width: 146px;
-  aspect-ratio: 146/146;
-}
-@media screen and (max-width: 1024px) {
-  .mochico__hukidashi3 {
-    width: 100px;
-  }
-}
-@media screen and (max-width: 768px) {
-  .mochico__hukidashi3 {
-    width: 72px;
-  }
-}
-
-.mochico__hukidashi3-image {
-  -webkit-animation: 12s linear infinite rotation1;
-          animation: 12s linear infinite rotation1;
-}
-
-@-webkit-keyframes rotation1 {
-  0% {
-    -webkit-transform: rotate(0);
-            transform: rotate(0);
-  }
-  100% {
-    -webkit-transform: rotate(360deg);
-            transform: rotate(360deg);
-  }
-}
-
-@keyframes rotation1 {
-  0% {
-    -webkit-transform: rotate(0);
-            transform: rotate(0);
-  }
-  100% {
-    -webkit-transform: rotate(360deg);
-            transform: rotate(360deg);
-  }
-}
-.mochico__hukidashi-dot {
-  width: 18px;
-  height: 29px;
-  position: absolute;
-  bottom: -19px;
-  right: 34px;
-  z-index: 1;
-}
-@media screen and (max-width: 1024px) {
-  .mochico__hukidashi-dot {
-    right: 7px;
-  }
-}
-
-.mochiko__text3 {
-  top: 50%;
-  left: 53%;
 }
