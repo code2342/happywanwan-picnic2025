@@ -117,6 +117,14 @@ jQuery("#js-drawer-icon").on("click", function (e) {
     jQuery("body").css("overflow", "auto");
   }
 });
+jQuery(".drawer-content__link").on("click", function () {
+  // ドロワーを閉じる
+  jQuery("#js-drawer-icon").removeClass("is-checked");
+  jQuery("#js-drawer-content").removeClass("is-checked");
+
+  // ボディのスクロールを戻す
+  jQuery("body").css("overflow", "auto");
+});
 
 // =======================================
 // アコーディオンパネル
@@ -531,22 +539,21 @@ const init = () => {
 
 window.addEventListener("DOMContentLoaded", init);
 
-
 // document.addEventListener('DOMContentLoaded', function() {
 //   // すべてのメディア要素を検索
 //   const mediaElements = document.querySelectorAll('img, video, canvas, svg');
-  
+
 //   // 各要素にスタイルを直接適用
 //   mediaElements.forEach(el => {
 //     el.style.setProperty('overflow', 'hidden', 'important');
 //     el.style.setProperty('contain', 'paint', 'important');
-    
+
 //     // 親要素も修正
 //     if (el.parentElement) {
 //       el.parentElement.style.setProperty('overflow', 'hidden', 'important');
 //     }
 //   });
-  
+
 //   // 動的に追加される要素のための監視
 //   const observer = new MutationObserver(mutations => {
 //     mutations.forEach(mutation => {
@@ -560,6 +567,6 @@ window.addEventListener("DOMContentLoaded", init);
 //       }
 //     });
 //   });
-  
+
 //   observer.observe(document.body, { childList: true, subtree: true });
 // });

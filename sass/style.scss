@@ -702,11 +702,6 @@ a {
     bottom: -40px;
     right: 40px;
   }
-  // @media screen and (min-width: 851px) {
-  //   left: 48%;
-  //   transform: translateX(-50%);
-  //   right: auto;
-  // }
   @include mq(md) {
     right: -215px;
   }
@@ -3076,7 +3071,7 @@ dialog {
 //=====================================
 .mochico {
   position: fixed;
-  z-index: 100000;
+  z-index: 250;
   right: 5px;
   bottom: 100px;
   display: flex;
