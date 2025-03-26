@@ -657,9 +657,10 @@ a {
     max-width: none;
     top: auto;
     bottom: -40px;
-    left: 150px;
-    // @include mq(md) {
-    // }
+    left: 198px;
+  }
+  @include mq(md) {
+   bottom: 0;
   }
 }
 .bg1-pc__img {
@@ -674,6 +675,9 @@ a {
     display: block;
     width: 100%;
     max-width: 100%;
+  }
+  @include mq(md) {
+    width: 76%;
   }
   img {
     @media screen and (max-width: 850px) {
@@ -700,16 +704,26 @@ a {
     max-width: none;
     top: auto;
     bottom: -40px;
-    right: 40px;
+    right: -206px;
+    left: auto;
   }
+  @include mq(md) {
+
+  }
+   @include mq(md) {
+
+  }
+
+  @include mq(sm) {
+
+  }
+
   // @media screen and (min-width: 851px) {
   //   left: 48%;
   //   transform: translateX(-50%);
   //   right: auto;
   // }
-  @include mq(md) {
-    right: -215px;
-  }
+ 
 }
 
 .bg2-pc__img {
@@ -725,10 +739,18 @@ a {
     width: 100%;
     max-width: 100%;
   }
+  @include mq(md) {
+    width: 74%;  /* bg1と同じように縮小率を設定 */
+  }
+  /* ここでmax-widthを直接指定している部分が問題かもしれません */
+  @include mq(sm) {
+    /* max-width: 142px; を削除または */
+    width: 74%;  /* パーセントで指定 */
+  }
   img {
     @media screen and (max-width: 850px) {
       display: block;
-      width: 100%;
+      width: 100%; /* 親要素に合わせる */
       height: auto;
       aspect-ratio: 142 / 261;
       object-fit: contain;
