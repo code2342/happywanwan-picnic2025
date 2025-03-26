@@ -668,7 +668,12 @@ a:hover {
     max-width: none;
     top: auto;
     bottom: -40px;
-    left: 150px;
+    left: 198px;
+  }
+}
+@media screen and (max-width: 768px) {
+  .fv__bg1 {
+    bottom: 0;
   }
 }
 
@@ -689,6 +694,11 @@ a:hover {
     display: block;
     width: 100%;
     max-width: 100%;
+  }
+}
+@media screen and (max-width: 768px) {
+  .bg1-sp__img {
+    width: 76%;
   }
 }
 @media screen and (max-width: 850px) {
@@ -719,15 +729,10 @@ a:hover {
     max-width: none;
     top: auto;
     bottom: -40px;
-    right: 40px;
+    right: -206px;
+    left: auto;
   }
 }
-@media screen and (max-width: 768px) {
-  .fv__bg2 {
-    right: -215px;
-  }
-}
-
 .bg2-pc__img {
   display: block;
 }
@@ -739,6 +744,7 @@ a:hover {
 
 .bg2-sp__img {
   display: none;
+  /* ここでmax-widthを直接指定している部分が問題かもしれません */
 }
 @media screen and (max-width: 850px) {
   .bg2-sp__img {
@@ -747,10 +753,21 @@ a:hover {
     max-width: 100%;
   }
 }
+@media screen and (max-width: 768px) {
+  .bg2-sp__img {
+    width: 74%; /* bg1と同じように縮小率を設定 */
+  }
+}
+@media screen and (max-width: 480px) {
+  .bg2-sp__img {
+    /* max-width: 142px; を削除または */
+    width: 74%; /* パーセントで指定 */
+  }
+}
 @media screen and (max-width: 850px) {
   .bg2-sp__img img {
     display: block;
-    width: 100%;
+    width: 100%; /* 親要素に合わせる */
     height: auto;
     aspect-ratio: 142/261;
     -o-object-fit: contain;
