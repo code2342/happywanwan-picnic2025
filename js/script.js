@@ -579,38 +579,17 @@ class TopAnimation1 {
     const el_date = document.querySelector(".fv__date");
     const el_bg1 = document.querySelector(".fv__bg1");
     const el_bg2 = document.querySelector(".fv__bg2");
-    const el_buttonScroll = document.querySelector(".fv__button");
 
-    gsap.set(el_text, {
+    gsap.set([el_text, el_logo, el_date], {
       opacity: 0,
       y: 24,
     });
 
-    gsap.set(el_logo, {
-      opacity: 0,
-      y: 24,
-    });
-
-    gsap.set(el_date, {
-      opacity: 0,
-      y: 24,
-    });
-
-    gsap.set(el_bg1, {
+    gsap.set([el_bg1, el_bg2], {
       opacity: 0,
       scale: 0.5,
     });
 
-    gsap.set(el_bg2, {
-      opacity: 0,
-      scale: 0.5,
-    });
-
-    gsap.set(el_buttonScroll, {
-      opacity: 0,
-    });
-
-    // load後に実行
     window.addEventListener("load", () => {
       timeline1
         .to(
@@ -642,9 +621,11 @@ class TopAnimation1 {
             ease: "elastic.out(1,0.3)",
           },
           "-=0.9"
-        )
-        .to(
-          el_bg1,
+        );
+
+      if (window.innerWidth <= 850) {
+        timeline1.to(
+          [el_bg1, el_bg2],
           {
             duration: 2,
             opacity: 1,
@@ -652,39 +633,36 @@ class TopAnimation1 {
             ease: "elastic.out(1,0.3)",
           },
           "-=1"
-        )
-        .to(
-          el_bg2,
-          {
-            duration: 2,
-            opacity: 1,
-            scale: 1,
-            ease: "elastic.out(1,0.3)",
-          },
-          "-=1.9"
-        )
-        .to(
-          el_buttonScroll,
-          {
-            duration: 2,
-            opacity: 1,
-            ease: "elastic.out(1,0.3)",
-            onUpdate: () => {
-              el_buttonScroll.classList.add("-loaded");
-            },
-          },
-          "-=2"
         );
+      } else {
+        timeline1
+          .to(
+            el_bg1,
+            {
+              duration: 2,
+              opacity: 1,
+              scale: 1,
+              ease: "elastic.out(1,0.3)",
+            },
+            "-=1"
+          )
+          .to(
+            el_bg2,
+            {
+              duration: 2,
+              opacity: 1,
+              scale: 1,
+              ease: "elastic.out(1,0.3)",
+            },
+            "-=1.9"
+          );
+      }
     });
   }
 }
 
-// 初期化関数
 const init = () => {
   new TopAnimation1();
 };
 
-// DOMContentLoadedイベントリスナー
-window.addEventListener("DOMContentLoaded", () => {
-  init();
-});
+window.addEventListener("DOMContentLoaded", init);
