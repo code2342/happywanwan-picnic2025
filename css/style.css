@@ -362,7 +362,7 @@ a:hover {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  padding-block: 11px;
+  padding-block: 10px;
   padding-inline: 15px;
   max-width: 1160px;
   margin-left: auto;
@@ -405,7 +405,7 @@ a:hover {
   -webkit-box-pack: end;
       -ms-flex-pack: end;
           justify-content: end;
-  gap: 48px;
+  gap: 45px;
 }
 @media screen and (max-width: 1200px) {
   .header__nav {
@@ -459,10 +459,10 @@ a:hover {
 }
 
 .drawer-icon {
-  width: 50px;
-  height: 50px;
-  margin-top: 20px;
-  margin-right: 20px;
+  width: 55px;
+  height: 55px;
+  margin-top: 18px;
+  margin-right: 23px;
   display: none;
   z-index: 300;
   background: url(../img/sp/menu-icon.png) no-repeat center center/contain;
@@ -586,7 +586,7 @@ a:hover {
 }
 
 .fv__inner {
-  padding-top: 165px;
+  padding-top: 163px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -625,17 +625,14 @@ a:hover {
 }
 
 .fv__logo {
-  left: 0;
-  right: 0;
-  top: 215px;
   margin: auto;
-  width: clamp(203px, 203px + 197 * (100vw - 375px) / 1065, 400px);
+  width: clamp(224px, 224px + 176 * (100vw - 375px) / 1065, 400px);
   margin-top: 20px;
 }
 @media screen and (max-width: 850px) {
   .fv__logo {
     top: 163px;
-    margin-top: 11px;
+    margin-top: 7px;
   }
 }
 
@@ -654,7 +651,7 @@ a:hover {
 
 .fv__bg1 {
   position: absolute;
-  top: clamp(220px, 395px - 15vw, 295px);
+  top: clamp(219px, 395px - 15vw, 295px);
   left: calc(50% - 18px);
   -webkit-transform: translateX(-50%);
           transform: translateX(-50%);
@@ -673,7 +670,14 @@ a:hover {
 }
 @media screen and (max-width: 768px) {
   .fv__bg1 {
+    left: 100px;
     bottom: 0;
+  }
+}
+@media screen and (max-width: 480px) {
+  .fv__bg1 {
+    left: 72px;
+    bottom: 23px;
   }
 }
 
@@ -692,13 +696,17 @@ a:hover {
 @media screen and (max-width: 850px) {
   .bg1-sp__img {
     display: block;
-    width: 100%;
-    max-width: 100%;
+    width: 420px;
   }
 }
 @media screen and (max-width: 768px) {
   .bg1-sp__img {
-    width: 76%;
+    width: 252px;
+  }
+}
+@media screen and (max-width: 480px) {
+  .bg1-sp__img {
+    width: 211px;
   }
 }
 @media screen and (max-width: 850px) {
@@ -714,7 +722,7 @@ a:hover {
 
 .fv__bg2 {
   position: absolute;
-  top: clamp(415px, 312px + 11.66vw, 447px);
+  top: clamp(415px, 312px + 11.66vw, 443px);
   left: 48%;
   -webkit-transform: translateX(-50%);
           transform: translateX(-50%);
@@ -728,11 +736,28 @@ a:hover {
     width: auto;
     max-width: none;
     top: auto;
-    bottom: -40px;
-    right: -206px;
+    bottom: 18px;
+    right: -205px;
     left: auto;
   }
 }
+@media screen and (max-width: 768px) {
+  .fv__bg2 {
+    top: auto;
+    bottom: 49px;
+    right: -19px;
+    left: auto;
+    -webkit-transform: translateX(0);
+            transform: translateX(0);
+  }
+}
+@media screen and (max-width: 480px) {
+  .fv__bg2 {
+    bottom: 54px;
+    right: -23px;
+  }
+}
+
 .bg2-pc__img {
   display: block;
 }
@@ -744,32 +769,29 @@ a:hover {
 
 .bg2-sp__img {
   display: none;
-  /* ここでmax-widthを直接指定している部分が問題かもしれません */
 }
 @media screen and (max-width: 850px) {
   .bg2-sp__img {
     display: block;
-    width: 100%;
-    max-width: 100%;
+    width: 399px;
   }
 }
 @media screen and (max-width: 768px) {
   .bg2-sp__img {
-    width: 74%; /* bg1と同じように縮小率を設定 */
+    width: 224px;
   }
 }
 @media screen and (max-width: 480px) {
   .bg2-sp__img {
-    /* max-width: 142px; を削除または */
-    width: 74%; /* パーセントで指定 */
+    width: 199px;
   }
 }
 @media screen and (max-width: 850px) {
   .bg2-sp__img img {
     display: block;
-    width: 100%; /* 親要素に合わせる */
+    width: 100%;
     height: auto;
-    aspect-ratio: 142/261;
+    aspect-ratio: 400/622;
     -o-object-fit: contain;
        object-fit: contain;
   }
@@ -789,7 +811,7 @@ a:hover {
   border-radius: 30px;
   border: 3px solid #6cb740;
   background: #fff;
-  padding: 32px 60px 29px;
+  padding: 28px 58px 29px;
   position: relative;
 }
 @media screen and (max-width: 768px) {
@@ -828,7 +850,7 @@ a:hover {
 
 .news__link {
   width: 100%;
-  padding-block: 15px 16px;
+  padding-block: 19px 13px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -1671,8 +1693,8 @@ a:hover {
 .shop__inner::after {
   content: "";
   position: absolute;
-  left: -40px;
-  top: -70px;
+  left: -57px;
+  top: -55px;
   width: clamp(95px, 95px + 99 * (100vw - 480px) / 960, 194px);
   height: clamp(91px, 91px + 95 * (100vw - 480px) / 960, 186px);
   background: url("../img/shoplist-dog01.png") no-repeat center/contain;
@@ -1754,6 +1776,9 @@ a:hover {
             align-items: flex-end;
   }
 }
+.shop__list:nth-child(6) .shop-list-body__text {
+  max-width: 272px;
+}
 
 .shop-list__title {
   height: 30px;
@@ -1799,7 +1824,13 @@ a:hover {
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
-  gap: 12px;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  gap: 13px;
 }
 @media screen and (max-width: 768px) {
   .shop-list__body {
@@ -2031,7 +2062,7 @@ a:hover {
 .withdog__bottom-container {
   position: relative;
   max-width: 442px;
-  margin-top: -3px;
+  margin-top: -7px;
 }
 @media screen and (max-width: 768px) {
   .withdog__bottom-container {
@@ -3508,6 +3539,20 @@ dialog::backdrop {
   .mochico {
     bottom: 60px;
   }
+}
+
+#page-top {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  -webkit-transition: opacity 0.3s, visibility 0.3s;
+  transition: opacity 0.3s, visibility 0.3s;
+}
+
+#page-top.is-visible {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
 }
 
 .mochico__hukidashi {

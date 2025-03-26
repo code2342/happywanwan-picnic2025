@@ -355,85 +355,186 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 });
 
+
+// =======================================
+// mochiko
+// =======================================
+// jQuery(function ($) {
+//   const mochicoButton = $("#page-top");
+//   let buttonActivated = false;
+
+//   // 初期状態は非表示
+//   mochicoButton.hide();
+
+//   // ブレイクポイントに応じたオフセット値を取得する関数
+//   function getOffsetAdjustment() {
+//     const windowWidth = $(window).width();
+
+//     // CSSのmqに合わせたブレイクポイント設定
+//     if (windowWidth >= 1200) {
+//       return 100;
+//     } else if (windowWidth >= 768) {
+//       return 160;
+//     } else {
+//       return 130;
+//     }
+//   }
+
+//   // スクロール処理
+//   $(window).on("scroll", function () {
+//     // contents セクションの位置を取得
+//     const contentsSection = $(".contents");
+//     const contentsSectionTop = contentsSection.offset().top;
+
+//     // 画面の上端と下端の位置
+//     const scrollTop = $(window).scrollTop();
+//     const windowHeight = $(window).height();
+//     const scrollBottom = scrollTop + windowHeight;
+
+//     // contentsセクションが画面内に入ったかをチェック
+//     const sectionVisible =
+//       (contentsSectionTop >= scrollTop && contentsSectionTop <= scrollBottom) || // セクション上端が画面内
+//       scrollTop >= contentsSectionTop; // スクロールがセクション開始位置を超えた
+
+//     // セクションが画面内に見えたら表示
+//     if (sectionVisible) {
+//       if (!buttonActivated) {
+//         buttonActivated = true;
+//         mochicoButton.fadeIn();
+//       }
+//     }
+//     // contentsセクションが画面内に入る前なら非表示
+//     else if (contentsSectionTop > scrollBottom) {
+//       buttonActivated = false;
+//       mochicoButton.fadeOut();
+//     }
+
+//     // フッター位置の調整（ボタンが表示されている場合のみ）
+//     if (buttonActivated) {
+//       const footerOffset = $("footer").offset().top;
+//       const distanceToFooter = footerOffset - scrollBottom;
+//       const OFFSET_ADJUSTMENT = getOffsetAdjustment(); // 現在のビューポートに応じたオフセット
+
+//       if (distanceToFooter < 0) {
+//         // フッターが見えている時：調整された位置に移動
+//         const moveAmount = Math.abs(distanceToFooter) - OFFSET_ADJUSTMENT;
+//         const finalMove = Math.max(0, moveAmount);
+
+//         mochicoButton.css({
+//           transform: `translateY(-${finalMove}px)`,
+//         });
+//       } else {
+//         // フッターが見えていない時：元の位置
+//         mochicoButton.css({
+//           transform: "translateY(0)",
+//         });
+//       }
+//     }
+//   });
+
+//   // ページ読み込み時とリサイズ時にも状態を確認
+//   $(window).on("load resize", function () {
+//     $(window).trigger("scroll");
+//   });
+// });
+
 jQuery(function ($) {
   const mochicoButton = $("#page-top");
-  let buttonActivated = false;
 
-  // 初期状態は非表示
-  mochicoButton.hide();
+  // すぐに実行されるCSS対策（CSSでデフォルト非表示にしていない場合の保険）
+  mochicoButton.css({
+    opacity: "0",
+    visibility: "hidden",
+    "pointer-events": "none",
+  });
 
   // ブレイクポイントに応じたオフセット値を取得する関数
   function getOffsetAdjustment() {
     const windowWidth = $(window).width();
-
-    // CSSのmqに合わせたブレイクポイント設定
-    if (windowWidth >= 1200) {
-      return 100;
-    } else if (windowWidth >= 768) {
-      return 160;
-    } else {
-      return 130;
-    }
+    if (windowWidth >= 1200) return 100;
+    else if (windowWidth >= 768) return 160;
+    else return 130;
   }
 
-  // スクロール処理
-  $(window).on("scroll", function () {
-    // contents セクションの位置を取得
+  // スクロール位置に基づいてボタンの表示/非表示を制御する関数
+  function updateButtonVisibility() {
+    // FVセクションの高さを取得
+    const fvSection = $(".fv");
     const contentsSection = $(".contents");
-    const contentsSectionTop = contentsSection.offset().top;
 
-    // 画面の上端と下端の位置
+    if (fvSection.length === 0 || contentsSection.length === 0) return;
+
+    const fvHeight = fvSection.outerHeight();
     const scrollTop = $(window).scrollTop();
     const windowHeight = $(window).height();
     const scrollBottom = scrollTop + windowHeight;
 
-    // contentsセクションが画面内に入ったかをチェック
-    const sectionVisible =
-      (contentsSectionTop >= scrollTop && contentsSectionTop <= scrollBottom) || // セクション上端が画面内
-      scrollTop >= contentsSectionTop; // スクロールがセクション開始位置を超えた
+    // 明確な条件: FVの高さを完全に超えた場合のみ表示
+    const shouldShowButton = scrollTop > fvHeight;
 
-    // セクションが画面内に見えたら表示
-    if (sectionVisible) {
-      if (!buttonActivated) {
-        buttonActivated = true;
-        mochicoButton.fadeIn();
+    // 表示/非表示の切り替え
+    if (shouldShowButton) {
+      if (!mochicoButton.hasClass("is-visible")) {
+        mochicoButton.addClass("is-visible").css({
+          opacity: "1",
+          visibility: "visible",
+          "pointer-events": "auto",
+        });
       }
-    }
-    // contentsセクションが画面内に入る前なら非表示
-    else if (contentsSectionTop > scrollBottom) {
-      buttonActivated = false;
-      mochicoButton.fadeOut();
-    }
 
-    // フッター位置の調整（ボタンが表示されている場合のみ）
-    if (buttonActivated) {
+      // フッター調整の処理
       const footerOffset = $("footer").offset().top;
       const distanceToFooter = footerOffset - scrollBottom;
-      const OFFSET_ADJUSTMENT = getOffsetAdjustment(); // 現在のビューポートに応じたオフセット
+      const offsetAdjustment = getOffsetAdjustment();
 
       if (distanceToFooter < 0) {
-        // フッターが見えている時：調整された位置に移動
-        const moveAmount = Math.abs(distanceToFooter) - OFFSET_ADJUSTMENT;
+        const moveAmount = Math.abs(distanceToFooter) - offsetAdjustment;
         const finalMove = Math.max(0, moveAmount);
-
-        mochicoButton.css({
-          transform: `translateY(-${finalMove}px)`,
-        });
+        mochicoButton.css("transform", `translateY(-${finalMove}px)`);
       } else {
-        // フッターが見えていない時：元の位置
-        mochicoButton.css({
-          transform: "translateY(0)",
+        mochicoButton.css("transform", "translateY(0)");
+      }
+    } else {
+      if (mochicoButton.hasClass("is-visible")) {
+        mochicoButton.removeClass("is-visible").css({
+          opacity: "0",
+          visibility: "hidden",
+          "pointer-events": "none",
         });
       }
     }
+  }
+
+  // スクロールイベント
+  $(window).on("scroll", updateButtonVisibility);
+
+  // 安全のためにDOMContentLoadedでも強制的に非表示
+  $(document).ready(function () {
+    mochicoButton.css({
+      opacity: "0",
+      visibility: "hidden",
+      "pointer-events": "none",
+    });
   });
 
-  // ページ読み込み時とリサイズ時にも状態を確認
-  $(window).on("load resize", function () {
-    $(window).trigger("scroll");
+  // ページ読み込み完了後、ボタンの状態を初期化
+  $(window).on("load", function () {
+    // 最初は非表示を保証
+    mochicoButton
+      .css({
+        opacity: "0",
+        visibility: "hidden",
+        "pointer-events": "none",
+      })
+      .removeClass("is-visible");
+
+    // 少し遅延させてから現在のスクロール位置をチェック
+    setTimeout(updateButtonVisibility, 300);
   });
+
+  // リサイズ時
+  $(window).on("resize", updateButtonVisibility);
 });
-
 // =======================================
 // fv
 // =======================================
