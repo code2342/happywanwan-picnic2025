@@ -59,6 +59,7 @@ const callback = (entries, observer) => {
 
 const observer = new IntersectionObserver(callback, {
   threshold: 0.3, // 発火タイミングを遅くするためにthresholdを追加
+  rootMargin: "0px", // rootMarginを追加
 });
 
 elements.forEach((element) => {
@@ -89,6 +90,7 @@ document.addEventListener("DOMContentLoaded", function () {
     },
     {
       threshold: 0.8,
+      rootMargin: "0px", // rootMarginを追加
     }
   );
 
@@ -305,6 +307,7 @@ document.addEventListener("DOMContentLoaded", function () {
     },
     {
       threshold: 0.1, // 要素の10%が見えたときに発火
+      rootMargin: "0px", // rootMarginを追加
     }
   );
 
@@ -341,147 +344,6 @@ document.addEventListener("DOMContentLoaded", function () {
     repeat: -1,
   });
 });
-
-// // =======================================
-// // もちこちゃん レスポンシブ対応版
-// // =======================================
-// jQuery(function ($) {
-//   const pageTop = $("#page-top");
-//   const DEFAULT_BOTTOM = 50; // 通常時のbottom位置（px）
-
-//   // フッターの高さをブレイクポイントに応じて設定
-//   function getFooterHeight() {
-//     // ブレイクポイントに応じて値を返す（PCとSPで分岐）
-//     if (window.matchMedia("(max-width: 768px)").matches) {
-//       return 563; // SP時のフッター高さ
-//     } else {
-//       return 353; // PC時のフッター高さ
-//     }
-//   }
-
-//   // 初期設定
-//   pageTop.hide();
-//   pageTop.css({
-//     position: "fixed",
-//     bottom: DEFAULT_BOTTOM + "px",
-//     right: "0"
-//   });
-
-//   // スクロール処理
-//   $(window).on("scroll", function () {
-//     const scrollHeight = $(document).height();
-//     const scrollPosition = $(window).height() + $(window).scrollTop();
-//     const footHeight = getFooterHeight(); // ブレイクポイントに応じた高さを取得
-//     const distanceToFooter = scrollHeight - scrollPosition;
-
-//     // 表示/非表示制御
-//     if ($(this).scrollTop() > 500) {
-//       pageTop.fadeIn();
-//     } else {
-//       pageTop.fadeOut();
-//     }
-
-//     // フッター付近では、fixedのまま、bottomの値だけ調整
-//     if (distanceToFooter <= footHeight) {
-//       // フッターとの距離に基づいてbottomを計算
-//       const newBottom = footHeight - distanceToFooter + DEFAULT_BOTTOM;
-//       pageTop.css({
-//         bottom: newBottom + "px"
-//         // position: "fixed" は変更しない
-//       });
-//     } else {
-//       // 通常位置
-//       pageTop.css({
-//         bottom: DEFAULT_BOTTOM + "px"
-//         // position: "fixed" は変更しない
-//       });
-//     }
-//   });
-
-//   // リサイズ時にもスクロール処理を発火させる（ブレイクポイント切り替え時の対応）
-//   $(window).on("resize", function() {
-//     $(window).trigger("scroll");
-//   });
-
-//   // クリックイベント
-//   pageTop.click(function () {
-//     $("body,html").animate(
-//       {
-//         scrollTop: 0
-//       },
-//       500
-//     );
-//     return false;
-//   });
-// });
-
-// =======================================
-// もちこちゃん
-// =======================================
-// jQuery(function ($) {
-//   const mochicoButton = $("#page-top"); // もちこちゃんボタンのID
-//   const OFFSET_ADJUSTMENT = 100;
-//   let buttonActivated = false;
-
-//   // 初期状態は非表示
-//   mochicoButton.hide();
-
-//   // スクロール処理
-//   $(window).on("scroll", function () {
-//     // contents セクションの位置を取得
-//     const contentsSection = $(".contents");
-//     const contentsSectionTop = contentsSection.offset().top;
-
-//     // 画面の上端と下端の位置
-//     const scrollTop = $(window).scrollTop();
-//     const windowHeight = $(window).height();
-//     const scrollBottom = scrollTop + windowHeight;
-
-//     // contentsセクションが画面内に入ったかをチェック
-//     const sectionVisible =
-//       (contentsSectionTop >= scrollTop && contentsSectionTop <= scrollBottom) || // セクション上端が画面内
-//       scrollTop >= contentsSectionTop; // スクロールがセクション開始位置を超えた
-
-//     // セクションが画面内に見えたら表示
-//     if (sectionVisible) {
-//       if (!buttonActivated) {
-//         buttonActivated = true;
-//         mochicoButton.fadeIn();
-//       }
-//     }
-//     // contentsセクションが画面内に入る前なら非表示
-//     else if (contentsSectionTop > scrollBottom) {
-//       buttonActivated = false;
-//       mochicoButton.fadeOut();
-//     }
-
-//     // フッター位置の調整（ボタンが表示されている場合のみ）
-//     if (buttonActivated) {
-//       const footerOffset = $("footer").offset().top;
-//       const distanceToFooter = footerOffset - scrollBottom;
-
-//       if (distanceToFooter < 0) {
-//         // フッターが見えている時：調整された位置に移動
-//         const moveAmount = Math.abs(distanceToFooter) - OFFSET_ADJUSTMENT;
-//         const finalMove = Math.max(0, moveAmount);
-
-//         mochicoButton.css({
-//           transform: `translateY(-${finalMove}px)`,
-//         });
-//       } else {
-//         // フッターが見えていない時：元の位置
-//         mochicoButton.css({
-//           transform: "translateY(0)",
-//         });
-//       }
-//     }
-//   });
-
-//   // ページ読み込み時にも状態を確認
-//   $(window).on("load", function () {
-//     $(window).trigger("scroll");
-//   });
-// });
 
 jQuery(function ($) {
   const mochicoButton = $("#page-top");
@@ -666,3 +528,36 @@ const init = () => {
 };
 
 window.addEventListener("DOMContentLoaded", init);
+
+
+// document.addEventListener('DOMContentLoaded', function() {
+//   // すべてのメディア要素を検索
+//   const mediaElements = document.querySelectorAll('img, video, canvas, svg');
+  
+//   // 各要素にスタイルを直接適用
+//   mediaElements.forEach(el => {
+//     el.style.setProperty('overflow', 'hidden', 'important');
+//     el.style.setProperty('contain', 'paint', 'important');
+    
+//     // 親要素も修正
+//     if (el.parentElement) {
+//       el.parentElement.style.setProperty('overflow', 'hidden', 'important');
+//     }
+//   });
+  
+//   // 動的に追加される要素のための監視
+//   const observer = new MutationObserver(mutations => {
+//     mutations.forEach(mutation => {
+//       if (mutation.addedNodes) {
+//         mutation.addedNodes.forEach(node => {
+//           if (node.tagName && ['IMG', 'VIDEO', 'CANVAS', 'SVG'].includes(node.tagName)) {
+//             node.style.setProperty('overflow', 'hidden', 'important');
+//             node.style.setProperty('contain', 'paint', 'important');
+//           }
+//         });
+//       }
+//     });
+//   });
+  
+//   observer.observe(document.body, { childList: true, subtree: true });
+// });
