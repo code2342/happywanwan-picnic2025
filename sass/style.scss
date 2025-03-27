@@ -227,7 +227,7 @@ a {
 //--footer--//
 .button4 {
   padding: 12px 31px 12px 45px;
-  @include mq(md) {
+  @include mq(sm) {
     padding: 20px 24px 20px 36px;
   }
 }
@@ -459,10 +459,10 @@ a {
 
 //ドロワーアイコン ====================
 .drawer-icon {
-  width: 55px;
-  height: 55px;
-  margin-top: 18px;
-  margin-right: 23px;
+  width: 43px;
+  height: 43px;
+  margin-top: 15px;
+  margin-right: 16px;
   display: none;
   z-index: 300;
   background: url(../img/sp/menu-icon.png) no-repeat center center/contain;
@@ -497,8 +497,8 @@ a {
 }
 
 .header__logo-sp {
-  margin-top: 20px;
-  margin-left: 20px;
+  margin-top: 19px;
+  margin-left: 17px;
   width: 96px;
   display: none;
   @media screen and (max-width: 850px) {
@@ -518,7 +518,7 @@ a {
 .drawer__list {
   display: flex;
   flex-direction: column;
-  row-gap: 32px;
+  row-gap: 20px;
   li {
     &:hover {
       color: #f5810e;
@@ -531,7 +531,7 @@ a {
   }
 }
 .drawer__button {
-  margin-top: 38px;
+  margin-top: 34px;
   margin-inline: auto;
 }
 
@@ -762,7 +762,7 @@ a {
   padding-block: 72px;
 
   @include mq(md) {
-    padding-block: 40px;
+    padding-block: 38px;
   }
 }
 
@@ -781,7 +781,7 @@ a {
   }
 
   @include mq(sm) {
-    padding: 17px 13px;
+    padding: 14px 13px 16px;
   }
 
   &::after {
@@ -809,7 +809,7 @@ a {
 
 .news__link {
   width: 100%;
-  padding-block: 19px 13px;
+  padding-block: 19px 15px;
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -822,6 +822,10 @@ a {
 
   &:not(:last-of-type) {
     border-bottom: 1px solid #ebe6e6;
+  }
+
+  &:nth-of-type(2) {
+    padding-block: 17px 13px;
   }
 
   &:nth-of-type(2),
@@ -904,7 +908,7 @@ a {
 
   @include mq(md) {
     font-size: 16px;
-    margin-top: 7px;
+    margin-top: 6px;
     justify-self: center;
   }
 
@@ -1001,6 +1005,9 @@ a {
     flex-direction: row-reverse;
     .contents__card-bottom {
       margin-inline: 31px;
+      @include mq(md) {
+        margin-inline: 0;
+      }
     }
     @include mq(md) {
       flex-direction: column;
@@ -1012,6 +1019,9 @@ a {
     flex-direction: row;
     .contents__card-bottom {
       margin-inline: 26px;
+      @include mq(md) {
+        margin-inline: 0;
+      }
     }
     @include mq(md) {
       flex-direction: column;
@@ -1161,7 +1171,7 @@ a {
 
 .contents__card:nth-child(3) .contents__card-text {
   @include mq(md) {
-    margin-top: 4px;
+    margin-top: 3px;
   }
 }
 
@@ -1193,7 +1203,7 @@ a {
   }
 
   @include mq(md) {
-    top: 27px;
+    top: 25px;
     right: 12px;
   }
 }
@@ -1512,7 +1522,7 @@ a {
 
   @include mq(sm) {
     font-size: 18px;
-    padding: 4px 16px 4px 20px;
+    padding: 5px 19px 2px 20px;
   }
 }
 
@@ -1529,8 +1539,8 @@ a {
   }
 
   @include mq(sm) {
-    padding: 8px 20px 8px 16px;
-    gap: 5px;
+    padding: 9px 12px 8px 14px;
+    gap: 4px;
     align-items: flex-start;
   }
 }
@@ -1582,7 +1592,7 @@ a {
   position: relative;
   overflow: hidden;
   @include mq(md) {
-    padding-block: 48px 107px;
+    padding-block: 45px 167px;
     background-size: 200%;
   }
 }
@@ -1621,13 +1631,16 @@ a {
       top: -4px;
     }
     @include mq(sm) {
-      left: 15px;
-      top: 30px;
+      left: 11px;
+      top: 14px;
     }
   }
 }
 .shop__container {
   margin-top: 48px;
+  @include mq(sm) {
+    margin-top: 35px;
+  }
 }
 .shop__lists {
   display: grid;
@@ -1654,17 +1667,55 @@ a {
         line-height: 21px;
       }
     }
+    .shop-list__image {
+      @include mq(md) {
+        margin-top: 10px;
+      }
+    }
   }
   &:nth-child(2) {
     .shop-list__title {
       @include mq(md) {
+        margin-top: -2px;
         height: 38px;
         display: flex;
         justify-content: center;
         align-items: flex-end;
       }
     }
+    .shop-list__image {
+      margin-top: 10px;
+    }
   }
+  &:nth-child(3) {
+    @include mq(md) {
+      margin-top: -1px;
+    }
+    .shop-list__body {
+      @include mq(md) {
+        margin-top: 10px;
+      }
+    }
+  }
+  &:nth-child(4) {
+    @include mq(md) {
+      margin-top: -1px;
+    }
+    .shop-list__body {
+      @include mq(md) {
+        margin-top: 10px;
+      }
+    }
+  }
+  &:nth-child(5),
+  &:nth-child(6) {
+    .shop-list__body {
+      @include mq(md) {
+        margin-top: 10px;
+      }
+    }
+  }
+
   &:nth-child(6) {
     .shop-list-body__text {
       max-width: 272px;
@@ -1672,7 +1723,7 @@ a {
   }
 }
 .shop-list__title {
-  height: 30px;
+  height: px;
   color: #59383b;
   font-size: 20px;
   font-weight: 800;
@@ -1695,7 +1746,7 @@ a {
     width: 100%;
   }
   @include mq(md) {
-    margin-top: 8px;
+    margin-top: 6px;
   }
 }
 .shop-list__body {
@@ -1730,7 +1781,7 @@ a {
   line-height: normal;
   letter-spacing: 0.5px;
   @include mq(md) {
-    min-width: 92px;
+    min-width: 107px;
     font-size: 12px;
     padding: 2px 8px;
     font-size: 12px;
@@ -1761,7 +1812,7 @@ a {
   }
   img {
     position: absolute;
-    top: -15px;
+    top: -11px;
     left: 0;
     opacity: 0;
     @include mq(md) {
@@ -1771,16 +1822,20 @@ a {
       opacity: 1;
     }
     &:nth-child(1) {
-      width: 128px;
-      height: 70px;
+      // width: 128px;
+      // height: 70px;
+      width: 117px;
+      height: 66px;
       @include mq(md) {
         width: 88px;
         height: 48px;
       }
     }
     &:nth-child(2) {
-      width: 155px;
-      height: 70px;
+      // width: 155px;
+      // height: 70px;
+      width: 132px;
+      height: 56px;
       @include mq(md) {
         width: 98px;
         height: 42px;
@@ -1793,7 +1848,7 @@ a {
 //WITH DOG
 //=====================================
 .withdog {
-  padding-block: 72px;
+  padding-block: 77px;
   background: url(../img/withdog-bg.png) repeat center center / cover;
 
   @include mq(md) {
@@ -1884,6 +1939,9 @@ a {
     aspect-ratio: 117/107;
     object-fit: contain;
     margin-top: 3px;
+    @include mq(md) {
+      margin-top: 0;
+    }
   }
 
   @include mq(md) {
@@ -1896,9 +1954,14 @@ a {
   position: relative;
   max-width: 442px;
   margin-top: -7px;
+  @include mq(md) {
+    max-width: 310px;
+  }
 
   @include mq(md) {
     margin-left: 28px;
+    margin-top: -5px;
+    margin-right: -5px;
   }
 
   img {
@@ -1944,7 +2007,7 @@ a {
 //FAQ
 //=====================================
 .faq {
-  padding-block: 74px;
+  padding-block: 68px;
   @include mq(md) {
     padding-block: 48px 120px;
   }
@@ -1967,6 +2030,13 @@ a {
   }
   @include mq(sm) {
     margin-top: 35px;
+    gap: 19px;
+  }
+}
+
+.faq__box:nth-child(2) {
+  @include mq(md) {
+    margin-top: 2px;
   }
 }
 
@@ -1987,12 +2057,18 @@ a {
   }
   @include mq(sm) {
     border-radius: 30px;
-    padding: 14px 14px 14px 14px;
+    padding: 15px 14px 14px 14px;
   }
   &:nth-child(1) {
     padding: 14px 14px 11px 14px;
+    @include mq(md) {
+      padding: 16px 14px 13px 14px;
+    }
     .faq-box__head-text {
       padding-top: 4px;
+      @include mq(md) {
+        padding-top: 0;
+      }
     }
   }
   &:nth-child(2) {
@@ -2012,20 +2088,24 @@ a {
     padding: 16px 14px 12px 14px;
     .faq-box__head {
       @include mq(sm) {
-        padding-right: 41px;
+        padding-right: 38px;
       }
       &::after {
         @include mq(sm) {
-          top: 39%;
+          top: 41%;
         }
       }
     }
   }
   &:nth-child(5) {
     padding: 18px 14px 12px 14px;
+    @include mq(sm) {
+      padding: 16px 14px 14px 14px;
+      margin-top: 2px;
+    }
     .faq-box__head {
       @include mq(sm) {
-        padding-right: 41px;
+        padding-right: 39px;
       }
     }
   }
@@ -2040,11 +2120,16 @@ a {
         margin-bottom: 5px;
       }
     }
+    .faq-box__head {
+      @include mq(sm) {
+        padding-right: 39px;
+      }
+    }
   }
   &:nth-child(7) {
     position: relative;
     margin-top: -5px;
-    padding: 14px 14px 24px 14px;
+    padding: 14px 14px 20px 14px;
     @include mq(lg) {
       margin-top: 0;
     }
@@ -2123,12 +2208,12 @@ a {
     }
     .faq-box__head {
       @include mq(sm) {
-        padding-right: 41px;
+        padding-right: 38px;
       }
     }
     .faq-box__head-text {
       @include mq(sm) {
-        padding-top: 6px;
+        padding-top: 5px;
       }
     }
   }
@@ -2147,10 +2232,10 @@ a {
   gap: 16.5px;
   width: 100%;
   border-bottom: 2px dotted #c2c2c2;
-  padding-bottom: 16px;
+  padding-bottom: 12px;
   position: relative;
   @include mq(md) {
-    gap: 9px;
+    gap: 11px;
     border-bottom: none;
     padding-bottom: 0;
   }
@@ -2171,6 +2256,10 @@ a {
       height: 8.56px;
       background: url(../img/faq-arrow.png) no-repeat center center / contain;
       transform: rotate(180deg);
+      @include mq(md) {
+        top: 41%;
+        right: 3px;
+      }
     }
   }
 }
@@ -2207,7 +2296,7 @@ a {
 .faq-box__a {
   font-size: 16px;
   font-weight: 500;
-  // line-height: 23px;
+  line-height: 20px;
   letter-spacing: 0.8px;
   @include mq(md) {
     font-size: 14px;
@@ -2215,7 +2304,7 @@ a {
   }
   @include mq(sm) {
     letter-spacing: normal;
-    line-height: 22px;
+    line-height: normal;
   }
 }
 
@@ -2229,7 +2318,7 @@ a {
   background-color: #ffe4b5;
 
   @include mq(md) {
-    margin-block: 41px;
+    margin-block: 40px;
     padding-block: 14px;
   }
 
@@ -2274,7 +2363,7 @@ a {
   background: $color-bg;
   @include mq(md) {
     padding-block: 40px;
-    gap: 36px;
+    gap: 35px;
   }
 }
 
@@ -2357,7 +2446,7 @@ a {
   }
   @include mq(sm) {
     width: 90px;
-    margin-right: -5px;
+    margin-right: -7px;
     margin-top: 9px;
   }
   img {
@@ -2487,6 +2576,7 @@ a {
   text-align: center;
   @include mq(md) {
     font-size: 12px;
+    margin-top: 17px;
   }
 }
 
@@ -2494,12 +2584,12 @@ a {
 //MAP
 //=====================================
 .map {
-  padding-block: 72px 88px;
+  padding-block: 72px 83px;
   @include mq(xl) {
     padding-block: 72px 103px;
   }
   @include mq(md) {
-    padding-block: 48px 103px;
+    padding-block: 46px 97px;
   }
 }
 .map__inner {
@@ -2513,16 +2603,16 @@ a {
   &::before {
     content: "";
     position: absolute;
-    top: 25px;
-    left: -120px;
+    top: 56px;
+    left: -157px;
     width: clamp(
-      87px,
-      calc(62px + (236 - 87) * ((100vw - 480px) / (1440 - 480))),
-      236px
+      88px,
+      calc(88px + (237 - 88) * ((100vw - 480px) / (1440 - 480))),
+      237px
     );
     height: clamp(
-      61px,
-      calc(61px + (167 - 61) * ((100vw - 480px) / (1440 - 480))),
+      62px,
+      calc(62px + (167 - 62) * ((100vw - 480px) / (1440 - 480))),
       167px
     );
     z-index: -10;
@@ -2552,23 +2642,23 @@ a {
   margin-top: 51px;
   position: relative;
   @include mq(md) {
-    margin-top: 40px;
+    margin-top: 39px;
     background: rgba(255, 255, 255, 0.3);
     padding: 48px 17px 52px 18px;
   }
   &::before {
     content: "";
     position: absolute;
-    right: -310px;
-    bottom: 0;
+    right: -317px;
+    bottom: 8px;
     width: clamp(
-      87px,
-      calc(62px + (236 - 87) * ((100vw - 480px) / (1440 - 480))),
-      236px
+      88px,
+      calc(88px + (237 - 88) * ((100vw - 480px) / (1440 - 480))),
+      237px
     );
     height: clamp(
-      61px,
-      calc(61px + (167 - 61) * ((100vw - 480px) / (1440 - 480))),
+      62px,
+      calc(62px + (167 - 62) * ((100vw - 480px) / (1440 - 480))),
       167px
     );
     z-index: -10;
@@ -2594,8 +2684,8 @@ a {
       bottom: -100px;
     }
     @include mq(md) {
-      right: 0px;
-      bottom: -90px;
+      right: -13px;
+      bottom: -73px;
     }
     @include mq(sm) {
     }
@@ -2603,17 +2693,17 @@ a {
   &::after {
     content: "";
     position: absolute;
-    right: -170px;
-    bottom: 165px;
+    right: -177px;
+    bottom: 169px;
     width: clamp(
-      62px,
-      calc(62px + (220 - 62) * ((100vw - 480px) / (1440 - 480))),
-      220px
+      64px,
+      calc(64px + (230 - 64) * ((100vw - 480px) / (1440 - 480))),
+      230px
     );
     height: clamp(
       68px,
-      calc(68px + (240 - 68) * ((100vw - 480px) / (1440 - 480))),
-      240px
+      calc(68px + (250 - 68) * ((100vw - 480px) / (1440 - 480))),
+      250px
     );
     z-index: 30;
     background: url("../img/map-dog.png") no-repeat center / contain;
@@ -2635,8 +2725,8 @@ a {
       top: -85px;
     }
     @include mq(sm) {
-      right: 45px;
-      top: -85px;
+      right: -9px;
+      top: -87px;
     }
   }
 }
@@ -2648,8 +2738,9 @@ a {
       position: absolute;
       content: "";
       position: absolute;
-      right: -17px;
-      top: -16px;
+      right: -18px;
+      top: -20px;
+
       width: 36px;
       height: 36px;
       z-index: 20;
@@ -2734,7 +2825,7 @@ dialog {
   background: url(../img/access-bg__pc.png) repeat;
 
   @include mq(md) {
-    padding-block: 30px 35px;
+    padding-block: 30px 33px;
     background: url(../img/access-bg_sp.png);
   }
 }
@@ -2750,6 +2841,9 @@ dialog {
   justify-content: center;
   position: relative;
 
+  @include mq(md) {
+    padding: 38px 18px 38px;
+  }
   &::before {
     content: "";
     position: absolute;
@@ -2803,12 +2897,8 @@ dialog {
     }
 
     @include mq(sm) {
-      bottom: 112px;
+      bottom: 114px;
     }
-  }
-
-  @include mq(md) {
-    padding: 38px 18px 36px;
   }
 }
 
@@ -2869,7 +2959,7 @@ dialog {
     gap: 24px;
   }
   @include mq(md) {
-    margin-top: 26px;
+    margin-top: 24px;
     gap: 23px;
   }
 }
@@ -2945,7 +3035,7 @@ dialog {
   margin-top: 10px;
   line-height: 24px;
   @include mq(md) {
-    margin-top: 2px;
+    margin-top: 3px;
     font-size: 14px;
     line-height: 22px;
   }
@@ -2955,9 +3045,9 @@ dialog {
 //SPONSOR
 //=====================================
 .sponsor {
-  padding-block: 82px 90px;
+  padding-block: 69px;
   @include mq(md) {
-    padding-block: 30px;
+    padding-block: 29px 31px;
   }
 }
 .sponsor__inner {
@@ -2969,9 +3059,9 @@ dialog {
   border-radius: 30px;
   border: 3px solid #6cb740;
   background: #fff;
-  padding: 42px 20px;
+  padding: 38px 20px;
   @include mq(md) {
-    padding: 32px 20px;
+    padding: 28px 20px;
   }
 }
 .sponsor__items {
@@ -2982,7 +3072,7 @@ dialog {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
   place-items: center;
-  gap: 26px 48px;
+  gap: 14px 48px;
   @include mq(md) {
     margin-top: 24px;
     grid-template-columns: repeat(2, 1fr);
@@ -3000,14 +3090,10 @@ dialog {
   max-width: 200px;
   height: auto;
   @include mq(sm) {
-    max-width: 135px;
+    max-width: 150px;
   }
   img {
-    @include mq(sm) {
-      width: 150px;
-      height: 36px;
-      object-fit: contain;
-    }
+    width: 100%;
   }
 }
 //=====================================
@@ -3075,12 +3161,12 @@ dialog {
   gap: 72px;
   align-items: start;
   margin-top: -2px;
-  @include mq(lg) {
+  @include mq(md) {
     margin-top: 0;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    gap: 32px;
+    gap: 26px;
   }
 }
 
@@ -3098,7 +3184,7 @@ dialog {
     margin-left: 7px;
     margin-top: 0;
     width: 244px;
-    height: 132px;
+    height: 139px;
     gap: 17px 44px;
   }
 }
@@ -3184,7 +3270,7 @@ dialog {
   line-height: normal;
   letter-spacing: 0.8px;
   @include mq(md) {
-    margin-top: 40px;
+    margin-top: 38px;
     font-size: 12px;
     letter-spacing: 0.6px;
   }

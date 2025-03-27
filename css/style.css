@@ -172,7 +172,7 @@ a:hover {
 .button4 {
   padding: 12px 31px 12px 45px;
 }
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 480px) {
   .button4 {
     padding: 20px 24px 20px 36px;
   }
@@ -459,10 +459,10 @@ a:hover {
 }
 
 .drawer-icon {
-  width: 55px;
-  height: 55px;
-  margin-top: 18px;
-  margin-right: 23px;
+  width: 43px;
+  height: 43px;
+  margin-top: 15px;
+  margin-right: 16px;
   display: none;
   z-index: 300;
   background: url(../img/sp/menu-icon.png) no-repeat center center/contain;
@@ -501,8 +501,8 @@ a:hover {
 }
 
 .header__logo-sp {
-  margin-top: 20px;
-  margin-left: 20px;
+  margin-top: 19px;
+  margin-left: 17px;
   width: 96px;
   display: none;
 }
@@ -533,7 +533,7 @@ a:hover {
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
-  row-gap: 32px;
+  row-gap: 20px;
 }
 .drawer__list li:hover {
   color: #f5810e;
@@ -545,7 +545,7 @@ a:hover {
 }
 
 .drawer__button {
-  margin-top: 38px;
+  margin-top: 34px;
   margin-inline: auto;
 }
 
@@ -802,7 +802,7 @@ a:hover {
 }
 @media screen and (max-width: 768px) {
   .news {
-    padding-block: 40px;
+    padding-block: 38px;
   }
 }
 
@@ -822,7 +822,7 @@ a:hover {
 }
 @media screen and (max-width: 480px) {
   .news__container {
-    padding: 17px 13px;
+    padding: 14px 13px 16px;
   }
 }
 .news__container::after {
@@ -850,7 +850,7 @@ a:hover {
 
 .news__link {
   width: 100%;
-  padding-block: 19px 13px;
+  padding-block: 19px 15px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -879,6 +879,9 @@ a:hover {
 }
 .news__link:not(:last-of-type) {
   border-bottom: 1px solid #ebe6e6;
+}
+.news__link:nth-of-type(2) {
+  padding-block: 17px 13px;
 }
 .news__link:nth-of-type(2) .news__category, .news__link:nth-of-type(3) .news__category, .news__link:nth-of-type(4) .news__category {
   background: #ff6347;
@@ -971,7 +974,7 @@ a:hover {
 @media screen and (max-width: 768px) {
   .news__button {
     font-size: 16px;
-    margin-top: 7px;
+    margin-top: 6px;
     justify-self: center;
   }
 }
@@ -1118,6 +1121,11 @@ a:hover {
   margin-inline: 31px;
 }
 @media screen and (max-width: 768px) {
+  .contents__card:nth-child(even) .contents__card-bottom {
+    margin-inline: 0;
+  }
+}
+@media screen and (max-width: 768px) {
   .contents__card:nth-child(even) {
     -webkit-box-orient: vertical;
     -webkit-box-direction: normal;
@@ -1136,6 +1144,11 @@ a:hover {
 }
 .contents__card:nth-child(odd) .contents__card-bottom {
   margin-inline: 26px;
+}
+@media screen and (max-width: 768px) {
+  .contents__card:nth-child(odd) .contents__card-bottom {
+    margin-inline: 0;
+  }
 }
 @media screen and (max-width: 768px) {
   .contents__card:nth-child(odd) {
@@ -1272,7 +1285,7 @@ a:hover {
 
 @media screen and (max-width: 768px) {
   .contents__card:nth-child(3) .contents__card-text {
-    margin-top: 4px;
+    margin-top: 3px;
   }
 }
 
@@ -1299,7 +1312,7 @@ a:hover {
 }
 @media screen and (max-width: 768px) {
   .contents__card:nth-child(3) .contents__card-bottom::before {
-    top: 27px;
+    top: 25px;
     right: 12px;
   }
 }
@@ -1593,7 +1606,7 @@ a:hover {
 @media screen and (max-width: 480px) {
   .contents__card-list-title {
     font-size: 18px;
-    padding: 4px 16px 4px 20px;
+    padding: 5px 19px 2px 20px;
   }
 }
 
@@ -1621,8 +1634,8 @@ a:hover {
 }
 @media screen and (max-width: 480px) {
   .contents__card-list {
-    padding: 8px 20px 8px 16px;
-    gap: 5px;
+    padding: 9px 12px 8px 14px;
+    gap: 4px;
     -webkit-box-align: start;
         -ms-flex-align: start;
             align-items: flex-start;
@@ -1682,7 +1695,7 @@ a:hover {
 }
 @media screen and (max-width: 768px) {
   .shop {
-    padding-block: 48px 107px;
+    padding-block: 45px 167px;
     background-size: 200%;
   }
 }
@@ -1719,13 +1732,18 @@ a:hover {
 }
 @media screen and (max-width: 480px) {
   .shop__inner::after {
-    left: 15px;
-    top: 30px;
+    left: 11px;
+    top: 14px;
   }
 }
 
 .shop__container {
   margin-top: 48px;
+}
+@media screen and (max-width: 480px) {
+  .shop__container {
+    margin-top: 35px;
+  }
 }
 
 .shop__lists {
@@ -1763,7 +1781,13 @@ a:hover {
   }
 }
 @media screen and (max-width: 768px) {
+  .shop__list:nth-child(1) .shop-list__image {
+    margin-top: 10px;
+  }
+}
+@media screen and (max-width: 768px) {
   .shop__list:nth-child(2) .shop-list__title {
+    margin-top: -2px;
     height: 38px;
     display: -webkit-box;
     display: -ms-flexbox;
@@ -1776,12 +1800,40 @@ a:hover {
             align-items: flex-end;
   }
 }
+.shop__list:nth-child(2) .shop-list__image {
+  margin-top: 10px;
+}
+@media screen and (max-width: 768px) {
+  .shop__list:nth-child(3) {
+    margin-top: -1px;
+  }
+}
+@media screen and (max-width: 768px) {
+  .shop__list:nth-child(3) .shop-list__body {
+    margin-top: 10px;
+  }
+}
+@media screen and (max-width: 768px) {
+  .shop__list:nth-child(4) {
+    margin-top: -1px;
+  }
+}
+@media screen and (max-width: 768px) {
+  .shop__list:nth-child(4) .shop-list__body {
+    margin-top: 10px;
+  }
+}
+@media screen and (max-width: 768px) {
+  .shop__list:nth-child(5) .shop-list__body, .shop__list:nth-child(6) .shop-list__body {
+    margin-top: 10px;
+  }
+}
 .shop__list:nth-child(6) .shop-list-body__text {
   max-width: 272px;
 }
 
 .shop-list__title {
-  height: 30px;
+  height: px;
   color: #59383b;
   font-size: 20px;
   font-weight: 800;
@@ -1811,7 +1863,7 @@ a:hover {
 }
 @media screen and (max-width: 768px) {
   .shop-list__image {
-    margin-top: 8px;
+    margin-top: 6px;
   }
 }
 
@@ -1864,7 +1916,7 @@ a:hover {
 }
 @media screen and (max-width: 768px) {
   .shop-list-body__tag {
-    min-width: 92px;
+    min-width: 107px;
     font-size: 12px;
     padding: 2px 8px;
     font-size: 12px;
@@ -1907,7 +1959,7 @@ a:hover {
 }
 .dog-wrapper img {
   position: absolute;
-  top: -15px;
+  top: -11px;
   left: 0;
   opacity: 0;
 }
@@ -1920,8 +1972,8 @@ a:hover {
   opacity: 1;
 }
 .dog-wrapper img:nth-child(1) {
-  width: 128px;
-  height: 70px;
+  width: 117px;
+  height: 66px;
 }
 @media screen and (max-width: 768px) {
   .dog-wrapper img:nth-child(1) {
@@ -1930,8 +1982,8 @@ a:hover {
   }
 }
 .dog-wrapper img:nth-child(2) {
-  width: 155px;
-  height: 70px;
+  width: 132px;
+  height: 56px;
 }
 @media screen and (max-width: 768px) {
   .dog-wrapper img:nth-child(2) {
@@ -1941,7 +1993,7 @@ a:hover {
 }
 
 .withdog {
-  padding-block: 72px;
+  padding-block: 77px;
   background: url(../img/withdog-bg.png) repeat center center/cover;
 }
 @media screen and (max-width: 768px) {
@@ -2053,6 +2105,11 @@ a:hover {
   margin-top: 3px;
 }
 @media screen and (max-width: 768px) {
+  .withdog__bottom-dog img {
+    margin-top: 0;
+  }
+}
+@media screen and (max-width: 768px) {
   .withdog__bottom-dog {
     margin-left: 9px;
     margin-top: -5px;
@@ -2066,7 +2123,14 @@ a:hover {
 }
 @media screen and (max-width: 768px) {
   .withdog__bottom-container {
+    max-width: 310px;
+  }
+}
+@media screen and (max-width: 768px) {
+  .withdog__bottom-container {
     margin-left: 28px;
+    margin-top: -5px;
+    margin-right: -5px;
   }
 }
 .withdog__bottom-container img {
@@ -2114,7 +2178,7 @@ a:hover {
 }
 
 .faq {
-  padding-block: 74px;
+  padding-block: 68px;
 }
 @media screen and (max-width: 768px) {
   .faq {
@@ -2142,6 +2206,13 @@ a:hover {
 @media screen and (max-width: 480px) {
   .faq__boxes {
     margin-top: 35px;
+    gap: 19px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .faq__box:nth-child(2) {
+    margin-top: 2px;
   }
 }
 
@@ -2163,14 +2234,24 @@ a:hover {
 @media screen and (max-width: 480px) {
   .faq__box {
     border-radius: 30px;
-    padding: 14px 14px 14px 14px;
+    padding: 15px 14px 14px 14px;
   }
 }
 .faq__box:nth-child(1) {
   padding: 14px 14px 11px 14px;
 }
+@media screen and (max-width: 768px) {
+  .faq__box:nth-child(1) {
+    padding: 16px 14px 13px 14px;
+  }
+}
 .faq__box:nth-child(1) .faq-box__head-text {
   padding-top: 4px;
+}
+@media screen and (max-width: 768px) {
+  .faq__box:nth-child(1) .faq-box__head-text {
+    padding-top: 0;
+  }
 }
 @media screen and (max-width: 480px) {
   .faq__box:nth-child(2) .faq-box {
@@ -2188,20 +2269,26 @@ a:hover {
 }
 @media screen and (max-width: 480px) {
   .faq__box:nth-child(4) .faq-box__head {
-    padding-right: 41px;
+    padding-right: 38px;
   }
 }
 @media screen and (max-width: 480px) {
   .faq__box:nth-child(4) .faq-box__head::after {
-    top: 39%;
+    top: 41%;
   }
 }
 .faq__box:nth-child(5) {
   padding: 18px 14px 12px 14px;
 }
 @media screen and (max-width: 480px) {
+  .faq__box:nth-child(5) {
+    padding: 16px 14px 14px 14px;
+    margin-top: 2px;
+  }
+}
+@media screen and (max-width: 480px) {
   .faq__box:nth-child(5) .faq-box__head {
-    padding-right: 41px;
+    padding-right: 39px;
   }
 }
 .faq__box:nth-child(6) {
@@ -2220,10 +2307,15 @@ a:hover {
     margin-bottom: 5px;
   }
 }
+@media screen and (max-width: 480px) {
+  .faq__box:nth-child(6) .faq-box__head {
+    padding-right: 39px;
+  }
+}
 .faq__box:nth-child(7) {
   position: relative;
   margin-top: -5px;
-  padding: 14px 14px 24px 14px;
+  padding: 14px 14px 20px 14px;
 }
 @media screen and (max-width: 1024px) {
   .faq__box:nth-child(7) {
@@ -2305,12 +2397,12 @@ a:hover {
 }
 @media screen and (max-width: 480px) {
   .faq__box:nth-child(7) .faq-box__head {
-    padding-right: 41px;
+    padding-right: 38px;
   }
 }
 @media screen and (max-width: 480px) {
   .faq__box:nth-child(7) .faq-box__head-text {
-    padding-top: 6px;
+    padding-top: 5px;
   }
 }
 .faq__box.is-open .faq-box__head {
@@ -2335,12 +2427,12 @@ a:hover {
   gap: 16.5px;
   width: 100%;
   border-bottom: 2px dotted #c2c2c2;
-  padding-bottom: 16px;
+  padding-bottom: 12px;
   position: relative;
 }
 @media screen and (max-width: 768px) {
   .faq-box__head {
-    gap: 9px;
+    gap: 11px;
     border-bottom: none;
     padding-bottom: 0;
   }
@@ -2366,6 +2458,12 @@ a:hover {
     background: url(../img/faq-arrow.png) no-repeat center center/contain;
     -webkit-transform: rotate(180deg);
             transform: rotate(180deg);
+  }
+}
+@media screen and (max-width: 768px) and (max-width: 768px) {
+  .faq-box__head::after {
+    top: 41%;
+    right: 3px;
   }
 }
 
@@ -2409,6 +2507,7 @@ a:hover {
 .faq-box__a {
   font-size: 16px;
   font-weight: 500;
+  line-height: 20px;
   letter-spacing: 0.8px;
 }
 @media screen and (max-width: 768px) {
@@ -2419,7 +2518,7 @@ a:hover {
 @media screen and (max-width: 480px) {
   .faq-box__a {
     letter-spacing: normal;
-    line-height: 22px;
+    line-height: normal;
   }
 }
 
@@ -2431,7 +2530,7 @@ a:hover {
 }
 @media screen and (max-width: 768px) {
   .ticket {
-    margin-block: 41px;
+    margin-block: 40px;
     padding-block: 14px;
   }
 }
@@ -2489,7 +2588,7 @@ a:hover {
 @media screen and (max-width: 768px) {
   .ticket__container {
     padding-block: 40px;
-    gap: 36px;
+    gap: 35px;
   }
 }
 
@@ -2608,7 +2707,7 @@ a:hover {
 @media screen and (max-width: 480px) {
   .ticket__card1-hukidashi {
     width: 90px;
-    margin-right: -5px;
+    margin-right: -7px;
     margin-top: 9px;
   }
 }
@@ -2753,11 +2852,12 @@ a:hover {
 @media screen and (max-width: 768px) {
   .ticket__button p {
     font-size: 12px;
+    margin-top: 17px;
   }
 }
 
 .map {
-  padding-block: 72px 88px;
+  padding-block: 72px 83px;
 }
 @media screen and (max-width: 1200px) {
   .map {
@@ -2766,7 +2866,7 @@ a:hover {
 }
 @media screen and (max-width: 768px) {
   .map {
-    padding-block: 48px 103px;
+    padding-block: 46px 97px;
   }
 }
 
@@ -2785,10 +2885,10 @@ a:hover {
 .map__head::before {
   content: "";
   position: absolute;
-  top: 25px;
-  left: -120px;
-  width: clamp(87px, 62px + 149 * (100vw - 480px) / 960, 236px);
-  height: clamp(61px, 61px + 106 * (100vw - 480px) / 960, 167px);
+  top: 56px;
+  left: -157px;
+  width: clamp(88px, 88px + 149 * (100vw - 480px) / 960, 237px);
+  height: clamp(62px, 62px + 105 * (100vw - 480px) / 960, 167px);
   z-index: -10;
   background: url("../img/map-footprints01.png") no-repeat center/contain;
   pointer-events: none;
@@ -2826,7 +2926,7 @@ a:hover {
 }
 @media screen and (max-width: 768px) {
   .map-container {
-    margin-top: 40px;
+    margin-top: 39px;
     background: rgba(255, 255, 255, 0.3);
     padding: 48px 17px 52px 18px;
   }
@@ -2834,10 +2934,10 @@ a:hover {
 .map-container::before {
   content: "";
   position: absolute;
-  right: -310px;
-  bottom: 0;
-  width: clamp(87px, 62px + 149 * (100vw - 480px) / 960, 236px);
-  height: clamp(61px, 61px + 106 * (100vw - 480px) / 960, 167px);
+  right: -317px;
+  bottom: 8px;
+  width: clamp(88px, 88px + 149 * (100vw - 480px) / 960, 237px);
+  height: clamp(62px, 62px + 105 * (100vw - 480px) / 960, 167px);
   z-index: -10;
   background: url("../img/map-footprints02.png") no-repeat center/contain;
   pointer-events: none;
@@ -2873,17 +2973,17 @@ a:hover {
 }
 @media screen and (max-width: 768px) {
   .map-container::before {
-    right: 0px;
-    bottom: -90px;
+    right: -13px;
+    bottom: -73px;
   }
 }
 .map-container::after {
   content: "";
   position: absolute;
-  right: -170px;
-  bottom: 165px;
-  width: clamp(62px, 62px + 158 * (100vw - 480px) / 960, 220px);
-  height: clamp(68px, 68px + 172 * (100vw - 480px) / 960, 240px);
+  right: -177px;
+  bottom: 169px;
+  width: clamp(64px, 64px + 166 * (100vw - 480px) / 960, 230px);
+  height: clamp(68px, 68px + 182 * (100vw - 480px) / 960, 250px);
   z-index: 30;
   background: url("../img/map-dog.png") no-repeat center/contain;
   pointer-events: none;
@@ -2914,8 +3014,8 @@ a:hover {
 }
 @media screen and (max-width: 480px) {
   .map-container::after {
-    right: 45px;
-    top: -85px;
+    right: -9px;
+    top: -87px;
   }
 }
 
@@ -2928,8 +3028,8 @@ a:hover {
     position: absolute;
     content: "";
     position: absolute;
-    right: -17px;
-    top: -16px;
+    right: -18px;
+    top: -20px;
     width: 36px;
     height: 36px;
     z-index: 20;
@@ -3032,7 +3132,7 @@ dialog::backdrop {
 }
 @media screen and (max-width: 768px) {
   .access {
-    padding-block: 30px 35px;
+    padding-block: 30px 33px;
     background: url(../img/access-bg_sp.png);
   }
 }
@@ -3056,6 +3156,11 @@ dialog::backdrop {
       -ms-flex-pack: center;
           justify-content: center;
   position: relative;
+}
+@media screen and (max-width: 768px) {
+  .access__container {
+    padding: 38px 18px 38px;
+  }
 }
 .access__container::before {
   content: "";
@@ -3101,12 +3206,7 @@ dialog::backdrop {
 }
 @media screen and (max-width: 480px) {
   .access__container::after {
-    bottom: 112px;
-  }
-}
-@media screen and (max-width: 768px) {
-  .access__container {
-    padding: 38px 18px 36px;
+    bottom: 114px;
   }
 }
 
@@ -3194,7 +3294,7 @@ dialog::backdrop {
 }
 @media screen and (max-width: 768px) {
   .access__bottom {
-    margin-top: 26px;
+    margin-top: 24px;
     gap: 23px;
   }
 }
@@ -3281,18 +3381,18 @@ dialog::backdrop {
 }
 @media screen and (max-width: 768px) {
   .access__parking-text {
-    margin-top: 2px;
+    margin-top: 3px;
     font-size: 14px;
     line-height: 22px;
   }
 }
 
 .sponsor {
-  padding-block: 82px 90px;
+  padding-block: 69px;
 }
 @media screen and (max-width: 768px) {
   .sponsor {
-    padding-block: 30px;
+    padding-block: 29px 31px;
   }
 }
 
@@ -3306,11 +3406,11 @@ dialog::backdrop {
   border-radius: 30px;
   border: 3px solid #6cb740;
   background: #fff;
-  padding: 42px 20px;
+  padding: 38px 20px;
 }
 @media screen and (max-width: 768px) {
   .sponsor__container {
-    padding: 32px 20px;
+    padding: 28px 20px;
   }
 }
 
@@ -3322,7 +3422,7 @@ dialog::backdrop {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
   place-items: center;
-  gap: 26px 48px;
+  gap: 14px 48px;
 }
 @media screen and (max-width: 768px) {
   .sponsor__items {
@@ -3347,16 +3447,11 @@ dialog::backdrop {
 }
 @media screen and (max-width: 480px) {
   .sponsor__item {
-    max-width: 135px;
+    max-width: 150px;
   }
 }
-@media screen and (max-width: 480px) {
-  .sponsor__item img {
-    width: 150px;
-    height: 36px;
-    -o-object-fit: contain;
-       object-fit: contain;
-  }
+.sponsor__item img {
+  width: 100%;
 }
 
 .footer {
@@ -3452,7 +3547,7 @@ dialog::backdrop {
           align-items: start;
   margin-top: -2px;
 }
-@media screen and (max-width: 1024px) {
+@media screen and (max-width: 768px) {
   .footer__contents {
     margin-top: 0;
     -webkit-box-orient: vertical;
@@ -3465,7 +3560,7 @@ dialog::backdrop {
     -webkit-box-pack: center;
         -ms-flex-pack: center;
             justify-content: center;
-    gap: 32px;
+    gap: 26px;
   }
 }
 
@@ -3492,7 +3587,7 @@ dialog::backdrop {
     margin-left: 7px;
     margin-top: 0;
     width: 244px;
-    height: 132px;
+    height: 139px;
     gap: 17px 44px;
   }
 }
@@ -3614,7 +3709,7 @@ dialog::backdrop {
 }
 @media screen and (max-width: 768px) {
   .footer__copyright {
-    margin-top: 40px;
+    margin-top: 38px;
     font-size: 12px;
     letter-spacing: 0.6px;
   }

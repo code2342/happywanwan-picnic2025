@@ -97,13 +97,16 @@
           <li>
             <a href="#contents" class="drawer-content__link">コンテンツ</a>
           </li>
-          <li><a href="#shop" class="drawer-content__link">ショップ</a></li>
+          <li>
+            <a href="#shop" class="drawer-content__link">出展者一覧</a>
+          </li>
           <li><a href="#with-dog" class="drawer-content__link">注意事項</a></li>
           <li><a href="#faq" class="drawer-content__link">よくある質問</a></li>
           <li><a href="#map" class="drawer-content__link">会場MAP</a></li>
+          <li><a href="#access" class="drawer-content__link">アクセス</a></li>
         </ul>
         <div class="drawer-content__button">
-          <a href="/" class="drawer__button button button3"
+          <a href="#top" class="drawer__button button button3"
             >チケットを購入する</a
           >
         </div>
@@ -117,15 +120,15 @@
       <div class="fv">
         <div class="fv__inner">
           <div class="fv__text">
-             <picture>
+            <picture>
               <source
                 srcset="./img/fv-text.webp"
-                media="(max-width: 767px)"
+                media="(max-width: 768px)"
                 type="image/webp"
               />
               <img
                 src="./img/fv-text-pc.webp"
-                 alt="愛犬といっしょに楽しむ特別な3日間"
+                alt="愛犬といっしょに楽しむ特別な3日間"
               />
             </picture>
           </div>
@@ -133,7 +136,7 @@
             <picture>
               <source
                 srcset="./img/fv-logo.webp"
-                media="(max-width: 767px)"
+                media="(max-width: 768px)"
                 type="image/webp"
               />
               <img
@@ -147,30 +150,52 @@
             <picture>
               <source
                 srcset="./img/fv-date.webp"
-                media="(max-width: 767px)"
+                media="(max-width: 768px)"
                 type="image/webp"
               />
               <img
                 src="./img/fv-date-pc.webp"
-                alt="5月3日〜5日　開場10:00~18:00　場所：なごみのもり公園" width="582" height="248"
+                alt="5月3日〜5日　開場10:00~18:00　場所：なごみのもり公園"
+                width="582"
+                height="248"
               />
             </picture>
           </div>
           <div class="fv__bg">
             <div class="fv__bg1">
               <div class="bg1-pc__img">
-                <img src="./img/bg-after.webp" alt="犬たちのイラスト" width="2681" height="622" />
+                <img
+                  src="./img/bg-after.webp"
+                  alt="犬たちのイラスト"
+                  width="2681"
+                  height="622"
+                />
               </div>
               <div class="bg1-sp__img">
-                <img src="./img/sp/bg-left-sp.webp" alt="犬たちのイラスト" width="420" height="622" />
+                <img
+                  src="./img/sp/bg-left-sp.webp"
+                  alt="犬たちのイラスト"
+                  width="420"
+                  height="622"
+                />
               </div>
             </div>
             <div class="fv__bg2">
               <div class="bg2-pc__img">
-                <img src="./img/bg-before.webp" alt="犬たちのイラスト" width="2564" height="544" />
+                <img
+                  src="./img/bg-before.webp"
+                  alt="犬たちのイラスト"
+                  width="2564"
+                  height="544"
+                />
               </div>
               <div class="bg2-sp__img">
-                <img src="./img/sp/bg-right-sp.webp" alt="犬たちのイラスト" width="400" height="622" />
+                <img
+                  src="./img/sp/bg-right-sp.webp"
+                  alt="犬たちのイラスト"
+                  width="400"
+                  height="622"
+                />
               </div>
             </div>
           </div>
@@ -261,6 +286,8 @@
                   src="./img/contents-card01.jpg"
                   alt="わんわん運動会の風景写真"
                   loading="lazy"
+                  width="1000"
+                  height="800"
                 />
               </div>
               <div class="contents__card-bottom">
@@ -284,6 +311,8 @@
                   src="./img/contents-card02.jpg"
                   alt="ワン！友オフ会の風景写真"
                   loading="lazy"
+                  width="1000"
+                  height="800"
                 />
               </div>
               <div class="contents__card-bottom yurayura__parent">
@@ -299,6 +328,8 @@
                   src="./img/contents-card03.jpg"
                   alt="ドッグラン教室の写真"
                   loading="lazy"
+                  width="1000"
+                  height="800"
                 />
               </div>
               <div class="contents__card-bottom">
@@ -320,6 +351,8 @@
                   src="./img/contents-card04.jpg"
                   alt="フォトスポットの写真"
                   loading="lazy"
+                  width="1000"
+                  height="798"
                 />
               </div>
               <div class="contents__card-bottom yurayura__parent">
@@ -335,6 +368,8 @@
                   src="./img/contents-card05.jpg"
                   alt="譲渡会の写真"
                   loading="lazy"
+                  width="1000"
+                  height="796"
                 />
               </div>
               <div class="contents__card-bottom">
@@ -350,6 +385,8 @@
                   src="./img/contents-card06.jpg"
                   alt="当たりくじ会の風景写真"
                   loading="lazy"
+                  width="1000"
+                  height="800"
                 />
               </div>
               <div class="contents__card-bottom">
@@ -381,6 +418,9 @@
                   <img
                     src="./img/shoplist-img01.png"
                     alt="米粉のおやつkomekko"
+                    width="600"
+                    height="550"
+                    loading="lazy"
                   />
                   <div class="shop-list__body">
                     <p class="shop-list-body__no">ブース番号 : A-01</p>
@@ -394,7 +434,13 @@
               <div class="shop__list shop-list">
                 <p class="shop-list__title">犬福堂</p>
                 <div class="shop-list__image">
-                  <img src="./img/shoplist-img02.png" alt="犬福堂" />
+                  <img
+                    src="./img/shoplist-img02.png"
+                    alt="犬福堂"
+                    width="600"
+                    height="550"
+                    loading="lazy"
+                  />
                   <div class="shop-list__body">
                     <p class="shop-list-body__no">ブース番号 : A-02</p>
                     <p class="shop-list-body__tag">おやつ</p>
@@ -407,7 +453,13 @@
               <div class="shop__list shop-list">
                 <p class="shop-list__title">Paw Couture</p>
                 <div class="shop-list__image">
-                  <img src="./img/shoplist-img03.png" alt="Paw Couture" />
+                  <img
+                    src="./img/shoplist-img03.png"
+                    alt="Paw Couture"
+                    width="600"
+                    height="550"
+                    loading="lazy"
+                  />
                   <div class="shop-list__body">
                     <p class="shop-list-body__no">ブース番号 : A-03</p>
                     <p class="shop-list-body__tag">ウェアー</p>
@@ -421,7 +473,13 @@
               <div class="shop__list shop-list">
                 <p class="shop-list__title">MONMON</p>
                 <div class="shop-list__image">
-                  <img src="./img/shoplist-img04.png" alt="MONMON" />
+                  <img
+                    src="./img/shoplist-img04.png"
+                    alt="MONMON"
+                    width="600"
+                    height="550"
+                    loading="lazy"
+                  />
                   <div class="shop-list__body">
                     <p class="shop-list-body__no">ブース番号 : A-04</p>
                     <p class="shop-list-body__tag">ウェアー</p>
@@ -434,7 +492,13 @@
               <div class="shop__list shop-list">
                 <p class="shop-list__title">Bijou</p>
                 <div class="shop-list__image">
-                  <img src="./img/shoplist-img05.png" alt="Bijou" />
+                  <img
+                    src="./img/shoplist-img05.png"
+                    alt="Bijou"
+                    width="600"
+                    height="550"
+                    loading="lazy"
+                  />
                   <div class="shop-list__body">
                     <p class="shop-list-body__no">ブース番号 : A-05</p>
                     <p class="shop-list-body__tag">首輪</p>
@@ -447,7 +511,13 @@
               <div class="shop__list shop-list">
                 <p class="shop-list__title">Cherish Plus</p>
                 <div class="shop-list__image">
-                  <img src="./img/shoplist-img06.png" alt="Cherish Plus" />
+                  <img
+                    src="./img/shoplist-img06.png"
+                    alt="Cherish Plus"
+                    width="600"
+                    height="550"
+                    loading="lazy"
+                  />
                   <div class="shop-list__body">
                     <p class="shop-list-body__no">ブース番号 : A-06</p>
                     <p class="shop-list-body__tag">アクセサリー</p>
@@ -460,7 +530,13 @@
               <div class="shop__list shop-list">
                 <p class="shop-list__title">肉球あーとhanaco</p>
                 <div class="shop-list__image">
-                  <img src="./img/shoplist-img07.png" alt="肉球あーとhanaco" />
+                  <img
+                    src="./img/shoplist-img07.png"
+                    alt="肉球あーとhanaco"
+                    width="600"
+                    height="550"
+                    loading="lazy"
+                  />
                   <div class="shop-list__body">
                     <p class="shop-list-body__no">ブース番号 : A-07</p>
                     <p class="shop-list-body__tag">キーホルダー</p>
@@ -473,7 +549,13 @@
               <div class="shop__list shop-list">
                 <p class="shop-list__title">Popo's food</p>
                 <div class="shop-list__image">
-                  <img src="./img/shoplist-img08.png" alt="Popo's food" />
+                  <img
+                    src="./img/shoplist-img08.png"
+                    alt="Popo's food"
+                    width="600"
+                    height="550"
+                    loading="lazy"
+                  />
                   <div class="shop-list__body">
                     <p class="shop-list-body__no">ブース番号 : A-08</p>
                     <p class="shop-list-body__tag">フード</p>
@@ -486,7 +568,13 @@
               <div class="shop__list shop-list">
                 <p class="shop-list__title">ぽち</p>
                 <div class="shop-list__image">
-                  <img src="./img/shoplist-img09.png" alt="ぽち" />
+                  <img
+                    src="./img/shoplist-img09.png"
+                    alt="ぽち"
+                    width="600"
+                    height="550"
+                    loading="lazy"
+                  />
                   <div class="shop-list__body">
                     <p class="shop-list-body__no">ブース番号 : A-09</p>
                     <p class="shop-list-body__tag">似顔絵</p>
@@ -500,8 +588,21 @@
           </div>
         </div>
         <div class="dog-wrapper">
-          <img src="../img/shoplist-rundog01.png" alt="走る犬" class="active" />
-          <img src="../img/shoplist-rundog02.png" alt="走る犬" />
+          <img
+            src="./img/shoplist-rundog01.png"
+            alt="走る犬"
+            class="active"
+            width="351"
+            height="198"
+            loading="lazy"
+          />
+          <img
+            src="./img/shoplist-rundog02.png"
+            alt="走る犬"
+            width="396"
+            height="171"
+            loading="lazy"
+          />
         </div>
       </section>
 
@@ -733,7 +834,7 @@
               </div>
             </div>
             <div class="ticket__button">
-              <a href="/" class="button button2">チケットを購入する</a>
+              <a href="#" class="button button2">チケットを購入する</a>
               <p>※中学生以下は、保護者同伴に限り無料です。</p>
             </div>
           </div>
@@ -828,22 +929,100 @@
               </div>
               <div class="sponsor__items">
                 <div class="sponsor__item">
-                  <img src="./img/sponsor-img01.png" alt="わんわん工房" />
+                  <picture>
+                    <source
+                      srcset="./img/sponsor-img01-sp.png"
+                      media="(max-width: 768px)"
+                      type="image/png"
+                    />
+                    <img
+                      src="./img/sponsor-img01.png"
+                      alt="わんわん工房"
+                      width="400"
+                      height="97"
+                      loading="lazy"
+                    />
+                  </picture>
                 </div>
                 <div class="sponsor__item">
-                  <img src="./img/sponsor-img02.png" alt="イツモイッショ" />
+                  <picture>
+                    <source
+                      srcset="./img/sponsor-img02-sp.png"
+                      media="(max-width: 768px)"
+                      type="image/png"
+                    />
+                    <img
+                      src="./img/sponsor-img02.png"
+                      alt="イツモイッショ"
+                      width="400"
+                      height="97"
+                      loading="lazy"
+                    />
+                  </picture>
                 </div>
                 <div class="sponsor__item">
-                  <img src="./img/sponsor-img03.png" alt="Fit Dog" />
+                  <picture>
+                    <source
+                      srcset="./img/sponsor-img03-sp.png"
+                      media="(max-width: 768px)"
+                      type="image/png"
+                    />
+                    <img
+                      src="./img/sponsor-img03.png"
+                      alt="Fit Dog"
+                      width="400"
+                      height="97"
+                      loading="lazy"
+                    />
+                  </picture>
                 </div>
                 <div class="sponsor__item">
-                  <img src="./img/sponsor-img04.png" alt="Smile Pet" />
+                  <picture>
+                    <source
+                      srcset="./img/sponsor-img04-sp.png"
+                      media="(max-width: 768px)"
+                      type="image/png"
+                    />
+                    <img
+                      src="./img/sponsor-img04.png"
+                      alt="Smile Pet"
+                      width="400"
+                      height="97"
+                      loading="lazy"
+                    />
+                  </picture>
                 </div>
                 <div class="sponsor__item">
-                  <img src="./img/sponsor-img05.png" alt="むぎごはんOne" />
+                  <picture>
+                    <source
+                      srcset="./img/sponsor-img05-sp.png"
+                      media="(max-width: 768px)"
+                      type="image/png"
+                    />
+                    <img
+                      src="./img/sponsor-img05.png"
+                      alt="むぎごはんOne"
+                      width="400"
+                      height="97"
+                      loading="lazy"
+                    />
+                  </picture>
                 </div>
                 <div class="sponsor__item">
-                  <img src="./img/sponsor-img06.png" alt="Pet Forest" />
+                  <picture>
+                    <source
+                      srcset="./img/sponsor-img06-sp.png"
+                      media="(max-width: 768px)"
+                      type="image/png"
+                    />
+                    <img
+                      src="./img/sponsor-img06.png"
+                      alt="Pet Forest"
+                      width="400"
+                      height="97"
+                      loading="lazy"
+                    />
+                  </picture>
                 </div>
               </div>
             </div>
