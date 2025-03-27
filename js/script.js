@@ -117,6 +117,8 @@ jQuery("#js-drawer-icon").on("click", function (e) {
     jQuery("body").css("overflow", "auto");
   }
 });
+
+// 既存のコード（メニュー項目のクリック処理）
 jQuery(".drawer-content__link").on("click", function () {
   // ドロワーを閉じる
   jQuery("#js-drawer-icon").removeClass("is-checked");
@@ -126,6 +128,24 @@ jQuery(".drawer-content__link").on("click", function () {
   jQuery("body").css("overflow", "auto");
 });
 
+// チケット購入ボタンのクリック処理
+jQuery(".drawer__button").on("click", function (e) {
+  // デフォルトの動作を一旦防止
+  e.preventDefault();
+
+  // ドロワーを閉じる
+  jQuery("#js-drawer-icon").removeClass("is-checked");
+  jQuery("#js-drawer-content").removeClass("is-checked");
+
+  // ボディのスクロールを戻す
+  jQuery("body").css("overflow", "auto");
+
+  // 明示的にページトップへスクロール
+  window.scrollTo({
+    top: 0,
+    behavior: "smooth", // スムーズスクロールを指定
+  });
+});
 // =======================================
 // アコーディオンパネル
 // =======================================
@@ -361,81 +381,100 @@ document.addEventListener("DOMContentLoaded", function () {
 // =======================================
 // jQuery(function ($) {
 //   const mochicoButton = $("#page-top");
-//   let buttonActivated = false;
 
-//   // 初期状態は非表示
-//   mochicoButton.hide();
+//   // すぐに実行されるCSS対策（CSSでデフォルト非表示にしていない場合の保険）
+//   mochicoButton.css({
+//     opacity: "0",
+//     visibility: "hidden",
+//     "pointer-events": "none",
+//   });
 
 //   // ブレイクポイントに応じたオフセット値を取得する関数
 //   function getOffsetAdjustment() {
 //     const windowWidth = $(window).width();
-
-//     // CSSのmqに合わせたブレイクポイント設定
-//     if (windowWidth >= 1200) {
-//       return 100;
-//     } else if (windowWidth >= 768) {
-//       return 160;
-//     } else {
-//       return 130;
-//     }
+//     if (windowWidth >= 1200) return 100;
+//     else if (windowWidth >= 768) return 160;
+//     else return 130;
 //   }
 
-//   // スクロール処理
-//   $(window).on("scroll", function () {
-//     // contents セクションの位置を取得
+//   // スクロール位置に基づいてボタンの表示/非表示を制御する関数
+//   function updateButtonVisibility() {
+//     // FVセクションの高さを取得
+//     const fvSection = $(".fv");
 //     const contentsSection = $(".contents");
-//     const contentsSectionTop = contentsSection.offset().top;
 
-//     // 画面の上端と下端の位置
+//     if (fvSection.length === 0 || contentsSection.length === 0) return;
+
+//     const fvHeight = fvSection.outerHeight();
 //     const scrollTop = $(window).scrollTop();
 //     const windowHeight = $(window).height();
 //     const scrollBottom = scrollTop + windowHeight;
 
-//     // contentsセクションが画面内に入ったかをチェック
-//     const sectionVisible =
-//       (contentsSectionTop >= scrollTop && contentsSectionTop <= scrollBottom) || // セクション上端が画面内
-//       scrollTop >= contentsSectionTop; // スクロールがセクション開始位置を超えた
+//     // 明確な条件: FVの高さを完全に超えた場合のみ表示
+//     const shouldShowButton = scrollTop > fvHeight;
 
-//     // セクションが画面内に見えたら表示
-//     if (sectionVisible) {
-//       if (!buttonActivated) {
-//         buttonActivated = true;
-//         mochicoButton.fadeIn();
+//     // 表示/非表示の切り替え
+//     if (shouldShowButton) {
+//       if (!mochicoButton.hasClass("is-visible")) {
+//         mochicoButton.addClass("is-visible").css({
+//           opacity: "1",
+//           visibility: "visible",
+//           "pointer-events": "auto",
+//         });
 //       }
-//     }
-//     // contentsセクションが画面内に入る前なら非表示
-//     else if (contentsSectionTop > scrollBottom) {
-//       buttonActivated = false;
-//       mochicoButton.fadeOut();
-//     }
 
-//     // フッター位置の調整（ボタンが表示されている場合のみ）
-//     if (buttonActivated) {
+//       // フッター調整の処理
 //       const footerOffset = $("footer").offset().top;
 //       const distanceToFooter = footerOffset - scrollBottom;
-//       const OFFSET_ADJUSTMENT = getOffsetAdjustment(); // 現在のビューポートに応じたオフセット
+//       const offsetAdjustment = getOffsetAdjustment();
 
 //       if (distanceToFooter < 0) {
-//         // フッターが見えている時：調整された位置に移動
-//         const moveAmount = Math.abs(distanceToFooter) - OFFSET_ADJUSTMENT;
+//         const moveAmount = Math.abs(distanceToFooter) - offsetAdjustment;
 //         const finalMove = Math.max(0, moveAmount);
-
-//         mochicoButton.css({
-//           transform: `translateY(-${finalMove}px)`,
-//         });
+//         mochicoButton.css("transform", `translateY(-${finalMove}px)`);
 //       } else {
-//         // フッターが見えていない時：元の位置
-//         mochicoButton.css({
-//           transform: "translateY(0)",
+//         mochicoButton.css("transform", "translateY(0)");
+//       }
+//     } else {
+//       if (mochicoButton.hasClass("is-visible")) {
+//         mochicoButton.removeClass("is-visible").css({
+//           opacity: "0",
+//           visibility: "hidden",
+//           "pointer-events": "none",
 //         });
 //       }
 //     }
+//   }
+
+//   // スクロールイベント
+//   $(window).on("scroll", updateButtonVisibility);
+
+//   // 安全のためにDOMContentLoadedでも強制的に非表示
+//   $(document).ready(function () {
+//     mochicoButton.css({
+//       opacity: "0",
+//       visibility: "hidden",
+//       "pointer-events": "none",
+//     });
 //   });
 
-//   // ページ読み込み時とリサイズ時にも状態を確認
-//   $(window).on("load resize", function () {
-//     $(window).trigger("scroll");
+//   // ページ読み込み完了後、ボタンの状態を初期化
+//   $(window).on("load", function () {
+//     // 最初は非表示を保証
+//     mochicoButton
+//       .css({
+//         opacity: "0",
+//         visibility: "hidden",
+//         "pointer-events": "none",
+//       })
+//       .removeClass("is-visible");
+
+//     // 少し遅延させてから現在のスクロール位置をチェック
+//     setTimeout(updateButtonVisibility, 300);
 //   });
+
+//   // リサイズ時
+//   $(window).on("resize", updateButtonVisibility);
 // });
 
 jQuery(function ($) {
@@ -448,12 +487,43 @@ jQuery(function ($) {
     "pointer-events": "none",
   });
 
+  // 通常時の位置を画面下部に設定する関数
+  function setButtonNormalPosition() {
+    // 画面下部からの距離をピクセルで指定（値を大きくするとより上に配置）
+    const bottomMargin = 10; // 例えば20px（小さくすると下に、大きくすると上に）
+
+    mochicoButton.css({
+      bottom: `${bottomMargin}px`,
+      position: "fixed",
+      transform: "translateY(0)",
+    });
+  }
+
   // ブレイクポイントに応じたオフセット値を取得する関数
   function getOffsetAdjustment() {
     const windowWidth = $(window).width();
     if (windowWidth >= 1200) return 100;
     else if (windowWidth >= 768) return 160;
     else return 130;
+  }
+
+  // フッター近くでの位置調整を行う関数
+  function updateButtonPosition() {
+    const scrollTop = $(window).scrollTop();
+    const windowHeight = $(window).height();
+    const scrollBottom = scrollTop + windowHeight;
+    const footerOffset = $("footer").offset().top;
+    const distanceToFooter = footerOffset - scrollBottom;
+    const offsetAdjustment = getOffsetAdjustment();
+
+    if (distanceToFooter < 0) {
+      const moveAmount = Math.abs(distanceToFooter) - offsetAdjustment;
+      const finalMove = Math.max(0, moveAmount);
+      mochicoButton.css("transform", `translateY(-${finalMove}px)`);
+    } else {
+      // 通常の位置に戻す
+      mochicoButton.css("transform", "translateY(0)");
+    }
   }
 
   // スクロール位置に基づいてボタンの表示/非表示を制御する関数
@@ -466,8 +536,6 @@ jQuery(function ($) {
 
     const fvHeight = fvSection.outerHeight();
     const scrollTop = $(window).scrollTop();
-    const windowHeight = $(window).height();
-    const scrollBottom = scrollTop + windowHeight;
 
     // 明確な条件: FVの高さを完全に超えた場合のみ表示
     const shouldShowButton = scrollTop > fvHeight;
@@ -475,6 +543,9 @@ jQuery(function ($) {
     // 表示/非表示の切り替え
     if (shouldShowButton) {
       if (!mochicoButton.hasClass("is-visible")) {
+        // ボタンを表示する際に通常位置も設定
+        setButtonNormalPosition();
+
         mochicoButton.addClass("is-visible").css({
           opacity: "1",
           visibility: "visible",
@@ -482,18 +553,8 @@ jQuery(function ($) {
         });
       }
 
-      // フッター調整の処理
-      const footerOffset = $("footer").offset().top;
-      const distanceToFooter = footerOffset - scrollBottom;
-      const offsetAdjustment = getOffsetAdjustment();
-
-      if (distanceToFooter < 0) {
-        const moveAmount = Math.abs(distanceToFooter) - offsetAdjustment;
-        const finalMove = Math.max(0, moveAmount);
-        mochicoButton.css("transform", `translateY(-${finalMove}px)`);
-      } else {
-        mochicoButton.css("transform", "translateY(0)");
-      }
+      // フッター近くでの位置調整を実行
+      updateButtonPosition();
     } else {
       if (mochicoButton.hasClass("is-visible")) {
         mochicoButton.removeClass("is-visible").css({
@@ -515,6 +576,9 @@ jQuery(function ($) {
       visibility: "hidden",
       "pointer-events": "none",
     });
+
+    // 通常位置を設定
+    setButtonNormalPosition();
   });
 
   // ページ読み込み完了後、ボタンの状態を初期化
@@ -528,12 +592,21 @@ jQuery(function ($) {
       })
       .removeClass("is-visible");
 
+    // 通常位置を設定
+    setButtonNormalPosition();
+
     // 少し遅延させてから現在のスクロール位置をチェック
     setTimeout(updateButtonVisibility, 300);
   });
 
   // リサイズ時
-  $(window).on("resize", updateButtonVisibility);
+  $(window).on("resize", function () {
+    // 通常位置を再設定
+    setButtonNormalPosition();
+
+    // ボタンの表示/非表示と位置を更新
+    updateButtonVisibility();
+  });
 });
 // =======================================
 // fv
