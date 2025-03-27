@@ -1675,7 +1675,7 @@ a:hover {
 }
 
 .shop {
-  padding-block: 72px 217px;
+  padding-block: 72px 211px;
   background: url(../img/shoplist-lawn.png) repeat-x center bottom/contain;
   position: relative;
   overflow: hidden;
@@ -1907,7 +1907,7 @@ a:hover {
 }
 .dog-wrapper img {
   position: absolute;
-  top: 0;
+  top: -15px;
   left: 0;
   opacity: 0;
 }
@@ -1920,18 +1920,18 @@ a:hover {
   opacity: 1;
 }
 .dog-wrapper img:nth-child(1) {
-  width: 117px;
-  height: 66px;
+  width: 128px;
+  height: 70px;
 }
 @media screen and (max-width: 768px) {
   .dog-wrapper img:nth-child(1) {
-    width: 92px;
-    height: 52px;
+    width: 88px;
+    height: 48px;
   }
 }
 .dog-wrapper img:nth-child(2) {
-  width: 132px;
-  height: 57px;
+  width: 155px;
+  height: 70px;
 }
 @media screen and (max-width: 768px) {
   .dog-wrapper img:nth-child(2) {
@@ -2165,6 +2165,9 @@ a:hover {
     border-radius: 30px;
     padding: 14px 14px 14px 14px;
   }
+}
+.faq__box:nth-child(1) {
+  padding: 14px 14px 11px 14px;
 }
 .faq__box:nth-child(1) .faq-box__head-text {
   padding-top: 4px;

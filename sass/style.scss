@@ -1577,7 +1577,7 @@ a {
 //shop
 //=====================================
 .shop {
-  padding-block: 72px 217px;
+  padding-block: 72px 211px;
   background: url(../img/shoplist-lawn.png) repeat-x center bottom / contain;
   position: relative;
   overflow: hidden;
@@ -1665,8 +1665,8 @@ a {
       }
     }
   }
-  &:nth-child(6){
-    .shop-list-body__text{
+  &:nth-child(6) {
+    .shop-list-body__text {
       max-width: 272px;
     }
   }
@@ -1761,7 +1761,7 @@ a {
   }
   img {
     position: absolute;
-    top: 0;
+    top: -15px;
     left: 0;
     opacity: 0;
     @include mq(md) {
@@ -1771,16 +1771,16 @@ a {
       opacity: 1;
     }
     &:nth-child(1) {
-      width: 117px;
-      height: 66px;
+      width: 128px;
+      height: 70px;
       @include mq(md) {
-        width: 92px;
-        height: 52px;
+        width: 88px;
+        height: 48px;
       }
     }
     &:nth-child(2) {
-      width: 132px;
-      height: 57px;
+      width: 155px;
+      height: 70px;
       @include mq(md) {
         width: 98px;
         height: 42px;
@@ -1990,6 +1990,7 @@ a {
     padding: 14px 14px 14px 14px;
   }
   &:nth-child(1) {
+    padding: 14px 14px 11px 14px;
     .faq-box__head-text {
       padding-top: 4px;
     }
