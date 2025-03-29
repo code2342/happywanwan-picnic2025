@@ -728,91 +728,90 @@ document.addEventListener("DOMContentLoaded", function () {
 //     });
 //   }
 // }
-
 // const init = () => {
 //   new TopAnimation1();
 // };
-
 // window.addEventListener("DOMContentLoaded", init);
-
 class TopAnimation1 {
   constructor() {
-    // インスタンス変数を初期化
-    this.timeline1 = null;
-    this.initialized = false;
-
     if (document.querySelector("main .fv")) {
       this.opening();
     }
   }
 
   opening() {
-    // 既存のタイムラインをクリア
-    if (this.timeline1) {
-      this.timeline1.kill();
-    }
-
-    // 新しいタイムラインを作成
-    this.timeline1 = gsap.timeline();
-
     const el_text = document.querySelector(".fv__text");
     const el_logo = document.querySelector(".fv__logo");
     const el_date = document.querySelector(".fv__date");
     const el_bg1 = document.querySelector(".fv__bg1");
     const el_bg2 = document.querySelector(".fv__bg2");
 
-    // 要素のリセット
-    gsap.set([el_text, el_logo, el_date], {
-      opacity: 0,
-      y: 24,
-    });
+    const isMobile = window.innerWidth <= 850;
 
-    gsap.set([el_bg1, el_bg2], {
-      opacity: 0,
-      scale: 0.5,
-    });
+    const runAnimation = () => {
+      const timeline1 = gsap.timeline();
 
-    // ロードイベントの処理を一度だけ設定
-    if (!this.initialized) {
-      this.initialized = true;
+      // 初期セット（見える前にやる）
+      gsap.set([el_text, el_logo, el_date], {
+        opacity: 0,
+        y: isMobile ? 40 : 24,
+      });
 
-      // イベントリスナーではなく、即時または遅延実行
-      const startAnimation = () => {
-        this.timeline1
+      gsap.set([el_bg1, el_bg2], {
+        opacity: 0,
+        scale: isMobile ? 0.3 : 0.5,
+      });
+
+      // 表示開始
+      document.body.classList.remove("is-loading");
+
+      timeline1
+        .to(
+          el_text,
+          {
+            duration: 1,
+            opacity: 1,
+            y: 0,
+            ease: "elastic.out(1,0.3)",
+          },
+          "-=0.9"
+        )
+        .to(
+          el_logo,
+          {
+            duration: 1,
+            opacity: 1,
+            y: 0,
+            ease: "elastic.out(1,0.3)",
+          },
+          "-=1"
+        )
+        .to(
+          el_date,
+          {
+            duration: 1,
+            opacity: 1,
+            y: 0,
+            ease: "elastic.out(1,0.3)",
+          },
+          "-=0.9"
+        );
+
+      if (isMobile) {
+        timeline1.to(
+          [el_bg1, el_bg2],
+          {
+            duration: 2,
+            opacity: 1,
+            scale: 1,
+            ease: "elastic.out(1,0.3)",
+          },
+          "-=1"
+        );
+      } else {
+        timeline1
           .to(
-            el_text,
-            {
-              duration: 1,
-              opacity: 1,
-              y: 0,
-              ease: "elastic.out(1,0.3)",
-            },
-            "-=0.9"
-          )
-          .to(
-            el_logo,
-            {
-              duration: 1,
-              opacity: 1,
-              y: 0,
-              ease: "elastic.out(1,0.3)",
-            },
-            "-=1"
-          )
-          .to(
-            el_date,
-            {
-              duration: 1,
-              opacity: 1,
-              y: 0,
-              ease: "elastic.out(1,0.3)",
-            },
-            "-=0.9"
-          );
-
-        if (window.innerWidth <= 850) {
-          this.timeline1.to(
-            [el_bg1, el_bg2],
+            el_bg1,
             {
               duration: 2,
               opacity: 1,
@@ -820,72 +819,41 @@ class TopAnimation1 {
               ease: "elastic.out(1,0.3)",
             },
             "-=1"
+          )
+          .to(
+            el_bg2,
+            {
+              duration: 2,
+              opacity: 1,
+              scale: 1,
+              ease: "elastic.out(1,0.3)",
+            },
+            "-=1.9"
           );
-        } else {
-          this.timeline1
-            .to(
-              el_bg1,
-              {
-                duration: 2,
-                opacity: 1,
-                scale: 1,
-                ease: "elastic.out(1,0.3)",
-              },
-              "-=1"
-            )
-            .to(
-              el_bg2,
-              {
-                duration: 2,
-                opacity: 1,
-                scale: 1,
-                ease: "elastic.out(1,0.3)",
-              },
-              "-=1.9"
-            );
-        }
-      };
-
-      // DOMContentLoadedですでに実行されているので、
-      // ページが読み込み済みかどうかを確認
-      if (document.readyState === "complete") {
-        startAnimation();
-      } else {
-        window.addEventListener("load", startAnimation, { once: true });
       }
-    }
-  }
+    };
 
-  // クリーンアップメソッドを追加
-  cleanup() {
-    if (this.timeline1) {
-      this.timeline1.kill();
-      this.timeline1 = null;
-    }
-    this.initialized = false;
+    // 全画像のロード完了を待ってから実行
+    const images = document.querySelectorAll(".fv img");
+    let loaded = 0;
+
+    images.forEach((img) => {
+      if (img.complete) {
+        loaded++;
+      } else {
+        img.addEventListener("load", () => {
+          loaded++;
+          if (loaded === images.length) runAnimation();
+        });
+      }
+    });
+
+    if (loaded === images.length) runAnimation();
   }
 }
 
-// シングルトンインスタンスを保持
-let animationInstance = null;
-
 const init = () => {
-  // 既存のインスタンスをクリーンアップ
-  if (animationInstance) {
-    animationInstance.cleanup();
-  }
-
-  // 新しいインスタンスを作成
-  animationInstance = new TopAnimation1();
+  new TopAnimation1();
 };
 
-// DOMContentLoadedイベントは一度だけ登録する
-window.addEventListener("DOMContentLoaded", init, { once: false });
-
-// ページナビゲーションや再読み込み時のクリーンアップ
-window.addEventListener("beforeunload", () => {
-  if (animationInstance) {
-    animationInstance.cleanup();
-    animationInstance = null;
-  }
-});
+window.addEventListener("DOMContentLoaded", init);
