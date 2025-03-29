@@ -731,7 +731,6 @@ document.addEventListener("DOMContentLoaded", function () {
 //   new TopAnimation1();
 // };
 // window.addEventListener("DOMContentLoaded", init);
-
 class TopAnimation1 {
   constructor() {
     if (document.querySelector("main .fv")) {
@@ -770,10 +769,23 @@ class TopAnimation1 {
     const el_bg1 = document.querySelector(".fv__bg1");
     const el_bg2 = document.querySelector(".fv__bg2");
 
-    // 初期状態
-    gsap.set([el_text, el_logo, el_date], {
+    // 💡 より大きく動かす（参考サイトに合わせた初期位置）
+    gsap.set(el_text, {
       opacity: 0,
-      y: 40, // ← 少し大きめに変えてもいい
+      scale: 0.5,
+      x: 200,
+    });
+
+    gsap.set(el_logo, {
+      opacity: 0,
+      scale: 0.5,
+      y: 200,
+    });
+
+    gsap.set(el_date, {
+      opacity: 0,
+      scale: 0.5,
+      x: -200,
     });
 
     gsap.set([el_bg1, el_bg2], {
@@ -781,14 +793,15 @@ class TopAnimation1 {
       scale: 0.5,
     });
 
-    // アニメーション
+    // アニメーション本体
     timeline1
       .to(
         el_text,
         {
           duration: 1,
           opacity: 1,
-          y: 0,
+          scale: 1,
+          x: 0,
           ease: "elastic.out(1,0.3)",
         },
         "+=0.2"
@@ -798,6 +811,7 @@ class TopAnimation1 {
         {
           duration: 1,
           opacity: 1,
+          scale: 1,
           y: 0,
           ease: "elastic.out(1,0.3)",
         },
@@ -808,10 +822,11 @@ class TopAnimation1 {
         {
           duration: 1,
           opacity: 1,
-          y: 0,
+          scale: 1,
+          x: 0,
           ease: "elastic.out(1,0.3)",
         },
-        "-=0.8"
+        "-=0.9"
       );
 
     if (window.innerWidth <= 850) {
@@ -851,7 +866,6 @@ class TopAnimation1 {
   }
 }
 
-// 初期化
 const init = () => {
   new TopAnimation1();
 };
