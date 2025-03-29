@@ -498,266 +498,140 @@ document.addEventListener("DOMContentLoaded", function () {
 //   $(window).on("resize", updateButtonVisibility);
 // });
 
-jQuery(function ($) {
-  const mochicoButton = $("#page-top");
+// jQuery(function ($) {
+//   const mochicoButton = $("#page-top");
 
-  // すぐに実行されるCSS対策（CSSでデフォルト非表示にしていない場合の保険）
-  mochicoButton.css({
-    opacity: "0",
-    visibility: "hidden",
-    "pointer-events": "none",
-  });
+//   // すぐに実行されるCSS対策（CSSでデフォルト非表示にしていない場合の保険）
+//   mochicoButton.css({
+//     opacity: "0",
+//     visibility: "hidden",
+//     "pointer-events": "none",
+//   });
 
-  // 通常時の位置を画面下部に設定する関数
-  function setButtonNormalPosition() {
-    // 画面下部からの距離をピクセルで指定（値を大きくするとより上に配置）
-    const bottomMargin = 10; // 例えば20px（小さくすると下に、大きくすると上に）
+//   // 通常時の位置を画面下部に設定する関数
+//   function setButtonNormalPosition() {
+//     // 画面下部からの距離をピクセルで指定（値を大きくするとより上に配置）
+//     const bottomMargin = 10; // 例えば20px（小さくすると下に、大きくすると上に）
 
-    mochicoButton.css({
-      bottom: `${bottomMargin}px`,
-      position: "fixed",
-      transform: "translateY(0)",
-    });
-  }
+//     mochicoButton.css({
+//       bottom: `${bottomMargin}px`,
+//       position: "fixed",
+//       transform: "translateY(0)",
+//     });
+//   }
 
-  // ブレイクポイントに応じたオフセット値を取得する関数
-  function getOffsetAdjustment() {
-    const windowWidth = $(window).width();
-    if (windowWidth >= 1200) return 100;
-    else if (windowWidth >= 768) return 160;
-    else return 130;
-  }
+//   // ブレイクポイントに応じたオフセット値を取得する関数
+//   function getOffsetAdjustment() {
+//     const windowWidth = $(window).width();
+//     if (windowWidth >= 1200) return 100;
+//     else if (windowWidth >= 768) return 160;
+//     else return 130;
+//   }
 
-  // フッター近くでの位置調整を行う関数
-  function updateButtonPosition() {
-    const scrollTop = $(window).scrollTop();
-    const windowHeight = $(window).height();
-    const scrollBottom = scrollTop + windowHeight;
-    const footerOffset = $("footer").offset().top;
-    const distanceToFooter = footerOffset - scrollBottom;
-    const offsetAdjustment = getOffsetAdjustment();
+//   // フッター近くでの位置調整を行う関数
+//   function updateButtonPosition() {
+//     const scrollTop = $(window).scrollTop();
+//     const windowHeight = $(window).height();
+//     const scrollBottom = scrollTop + windowHeight;
+//     const footerOffset = $("footer").offset().top;
+//     const distanceToFooter = footerOffset - scrollBottom;
+//     const offsetAdjustment = getOffsetAdjustment();
 
-    if (distanceToFooter < 0) {
-      const moveAmount = Math.abs(distanceToFooter) - offsetAdjustment;
-      const finalMove = Math.max(0, moveAmount);
-      mochicoButton.css("transform", `translateY(-${finalMove}px)`);
-    } else {
-      // 通常の位置に戻す
-      mochicoButton.css("transform", "translateY(0)");
-    }
-  }
+//     if (distanceToFooter < 0) {
+//       const moveAmount = Math.abs(distanceToFooter) - offsetAdjustment;
+//       const finalMove = Math.max(0, moveAmount);
+//       mochicoButton.css("transform", `translateY(-${finalMove}px)`);
+//     } else {
+//       // 通常の位置に戻す
+//       mochicoButton.css("transform", "translateY(0)");
+//     }
+//   }
 
-  // スクロール位置に基づいてボタンの表示/非表示を制御する関数
-  function updateButtonVisibility() {
-    // FVセクションの高さを取得
-    const fvSection = $(".fv");
-    const contentsSection = $(".contents");
+//   // スクロール位置に基づいてボタンの表示/非表示を制御する関数
+//   function updateButtonVisibility() {
+//     // FVセクションの高さを取得
+//     const fvSection = $(".fv");
+//     const contentsSection = $(".contents");
 
-    if (fvSection.length === 0 || contentsSection.length === 0) return;
+//     if (fvSection.length === 0 || contentsSection.length === 0) return;
 
-    const fvHeight = fvSection.outerHeight();
-    const scrollTop = $(window).scrollTop();
+//     const fvHeight = fvSection.outerHeight();
+//     const scrollTop = $(window).scrollTop();
 
-    // 明確な条件: FVの高さを完全に超えた場合のみ表示
-    const shouldShowButton = scrollTop > fvHeight;
+//     // 明確な条件: FVの高さを完全に超えた場合のみ表示
+//     const shouldShowButton = scrollTop > fvHeight;
 
-    // 表示/非表示の切り替え
-    if (shouldShowButton) {
-      if (!mochicoButton.hasClass("is-visible")) {
-        // ボタンを表示する際に通常位置も設定
-        setButtonNormalPosition();
+//     // 表示/非表示の切り替え
+//     if (shouldShowButton) {
+//       if (!mochicoButton.hasClass("is-visible")) {
+//         // ボタンを表示する際に通常位置も設定
+//         setButtonNormalPosition();
 
-        mochicoButton.addClass("is-visible").css({
-          opacity: "1",
-          visibility: "visible",
-          "pointer-events": "auto",
-        });
-      }
+//         mochicoButton.addClass("is-visible").css({
+//           opacity: "1",
+//           visibility: "visible",
+//           "pointer-events": "auto",
+//         });
+//       }
 
-      // フッター近くでの位置調整を実行
-      updateButtonPosition();
-    } else {
-      if (mochicoButton.hasClass("is-visible")) {
-        mochicoButton.removeClass("is-visible").css({
-          opacity: "0",
-          visibility: "hidden",
-          "pointer-events": "none",
-        });
-      }
-    }
-  }
+//       // フッター近くでの位置調整を実行
+//       updateButtonPosition();
+//     } else {
+//       if (mochicoButton.hasClass("is-visible")) {
+//         mochicoButton.removeClass("is-visible").css({
+//           opacity: "0",
+//           visibility: "hidden",
+//           "pointer-events": "none",
+//         });
+//       }
+//     }
+//   }
 
-  // スクロールイベント
-  $(window).on("scroll", updateButtonVisibility);
+//   // スクロールイベント
+//   $(window).on("scroll", updateButtonVisibility);
 
-  // 安全のためにDOMContentLoadedでも強制的に非表示
-  $(document).ready(function () {
-    mochicoButton.css({
-      opacity: "0",
-      visibility: "hidden",
-      "pointer-events": "none",
-    });
+//   // 安全のためにDOMContentLoadedでも強制的に非表示
+//   $(document).ready(function () {
+//     mochicoButton.css({
+//       opacity: "0",
+//       visibility: "hidden",
+//       "pointer-events": "none",
+//     });
 
-    // 通常位置を設定
-    setButtonNormalPosition();
-  });
+//     // 通常位置を設定
+//     setButtonNormalPosition();
+//   });
 
-  // ページ読み込み完了後、ボタンの状態を初期化
-  $(window).on("load", function () {
-    // 最初は非表示を保証
-    mochicoButton
-      .css({
-        opacity: "0",
-        visibility: "hidden",
-        "pointer-events": "none",
-      })
-      .removeClass("is-visible");
+//   // ページ読み込み完了後、ボタンの状態を初期化
+//   $(window).on("load", function () {
+//     // 最初は非表示を保証
+//     mochicoButton
+//       .css({
+//         opacity: "0",
+//         visibility: "hidden",
+//         "pointer-events": "none",
+//       })
+//       .removeClass("is-visible");
 
-    // 通常位置を設定
-    setButtonNormalPosition();
+//     // 通常位置を設定
+//     setButtonNormalPosition();
 
-    // 少し遅延させてから現在のスクロール位置をチェック
-    setTimeout(updateButtonVisibility, 300);
-  });
+//     // 少し遅延させてから現在のスクロール位置をチェック
+//     setTimeout(updateButtonVisibility, 300);
+//   });
 
-  // リサイズ時
-  $(window).on("resize", function () {
-    // 通常位置を再設定
-    setButtonNormalPosition();
+//   // リサイズ時
+//   $(window).on("resize", function () {
+//     // 通常位置を再設定
+//     setButtonNormalPosition();
 
-    // ボタンの表示/非表示と位置を更新
-    updateButtonVisibility();
-  });
-});
-// =======================================
-// fv
-// =======================================
-class TopAnimation1 {
-  constructor() {
-    if (document.querySelector("main .fv")) {
-      this.opening();
-    }
-  }
-
-  opening() {
-    const el_text = document.querySelector(".fv__text");
-    const el_logo = document.querySelector(".fv__logo");
-    const el_date = document.querySelector(".fv__date");
-    const el_bg1 = document.querySelector(".fv__bg1");
-    const el_bg2 = document.querySelector(".fv__bg2");
-    const isMobile = window.innerWidth <= 850;
-
-    const runAnimation = () => {
-      const timeline1 = gsap.timeline();
-
-      gsap.set([el_text, el_logo, el_date], {
-        opacity: 0,
-        y: isMobile ? 40 : 24,
-      });
-
-      gsap.set([el_bg1, el_bg2], {
-        opacity: 0,
-        scale: isMobile ? 0.3 : 0.5,
-      });
-
-      timeline1
-        .to(
-          el_text,
-          {
-            duration: 1,
-            opacity: 1,
-            y: 0,
-            ease: "elastic.out(1,0.3)",
-          },
-          "-=0.9"
-        )
-        .to(
-          el_logo,
-          {
-            duration: 1,
-            opacity: 1,
-            y: 0,
-            ease: "elastic.out(1,0.3)",
-          },
-          "-=1"
-        )
-        .to(
-          el_date,
-          {
-            duration: 1,
-            opacity: 1,
-            y: 0,
-            ease: "elastic.out(1,0.3)",
-          },
-          "-=0.9"
-        );
-
-      if (isMobile) {
-        timeline1.to(
-          [el_bg1, el_bg2],
-          {
-            duration: 2,
-            opacity: 1,
-            scale: 1,
-            ease: "elastic.out(1,0.3)",
-          },
-          "-=1"
-        );
-      } else {
-        timeline1
-          .to(
-            el_bg1,
-            {
-              duration: 2,
-              opacity: 1,
-              scale: 1,
-              ease: "elastic.out(1,0.3)",
-            },
-            "-=1"
-          )
-          .to(
-            el_bg2,
-            {
-              duration: 2,
-              opacity: 1,
-              scale: 1,
-              ease: "elastic.out(1,0.3)",
-            },
-            "-=1.9"
-          );
-      }
-    };
-
-    // 対象画像がすべて読み込まれたらアニメーションを走らせる
-    const images = document.querySelectorAll(".fv img");
-    let loadedCount = 0;
-    const totalImages = images.length;
-
-    images.forEach((img) => {
-      if (img.complete) {
-        loadedCount++;
-      } else {
-        img.addEventListener("load", () => {
-          loadedCount++;
-          if (loadedCount === totalImages) {
-            runAnimation();
-          }
-        });
-      }
-    });
-
-    // 全部completeだった場合
-    if (loadedCount === totalImages) {
-      runAnimation();
-    }
-  }
-}
-
-const init = () => {
-  new TopAnimation1();
-};
-
-window.addEventListener("DOMContentLoaded", init);
+//     // ボタンの表示/非表示と位置を更新
+//     updateButtonVisibility();
+//   });
+// });
+// // =======================================
+// // fv
+// // =======================================
 
 // class TopAnimation1 {
 //   constructor() {
@@ -860,3 +734,158 @@ window.addEventListener("DOMContentLoaded", init);
 // };
 
 // window.addEventListener("DOMContentLoaded", init);
+
+class TopAnimation1 {
+  constructor() {
+    // インスタンス変数を初期化
+    this.timeline1 = null;
+    this.initialized = false;
+
+    if (document.querySelector("main .fv")) {
+      this.opening();
+    }
+  }
+
+  opening() {
+    // 既存のタイムラインをクリア
+    if (this.timeline1) {
+      this.timeline1.kill();
+    }
+
+    // 新しいタイムラインを作成
+    this.timeline1 = gsap.timeline();
+
+    const el_text = document.querySelector(".fv__text");
+    const el_logo = document.querySelector(".fv__logo");
+    const el_date = document.querySelector(".fv__date");
+    const el_bg1 = document.querySelector(".fv__bg1");
+    const el_bg2 = document.querySelector(".fv__bg2");
+
+    // 要素のリセット
+    gsap.set([el_text, el_logo, el_date], {
+      opacity: 0,
+      y: 24,
+    });
+
+    gsap.set([el_bg1, el_bg2], {
+      opacity: 0,
+      scale: 0.5,
+    });
+
+    // ロードイベントの処理を一度だけ設定
+    if (!this.initialized) {
+      this.initialized = true;
+
+      // イベントリスナーではなく、即時または遅延実行
+      const startAnimation = () => {
+        this.timeline1
+          .to(
+            el_text,
+            {
+              duration: 1,
+              opacity: 1,
+              y: 0,
+              ease: "elastic.out(1,0.3)",
+            },
+            "-=0.9"
+          )
+          .to(
+            el_logo,
+            {
+              duration: 1,
+              opacity: 1,
+              y: 0,
+              ease: "elastic.out(1,0.3)",
+            },
+            "-=1"
+          )
+          .to(
+            el_date,
+            {
+              duration: 1,
+              opacity: 1,
+              y: 0,
+              ease: "elastic.out(1,0.3)",
+            },
+            "-=0.9"
+          );
+
+        if (window.innerWidth <= 850) {
+          this.timeline1.to(
+            [el_bg1, el_bg2],
+            {
+              duration: 2,
+              opacity: 1,
+              scale: 1,
+              ease: "elastic.out(1,0.3)",
+            },
+            "-=1"
+          );
+        } else {
+          this.timeline1
+            .to(
+              el_bg1,
+              {
+                duration: 2,
+                opacity: 1,
+                scale: 1,
+                ease: "elastic.out(1,0.3)",
+              },
+              "-=1"
+            )
+            .to(
+              el_bg2,
+              {
+                duration: 2,
+                opacity: 1,
+                scale: 1,
+                ease: "elastic.out(1,0.3)",
+              },
+              "-=1.9"
+            );
+        }
+      };
+
+      // DOMContentLoadedですでに実行されているので、
+      // ページが読み込み済みかどうかを確認
+      if (document.readyState === "complete") {
+        startAnimation();
+      } else {
+        window.addEventListener("load", startAnimation, { once: true });
+      }
+    }
+  }
+
+  // クリーンアップメソッドを追加
+  cleanup() {
+    if (this.timeline1) {
+      this.timeline1.kill();
+      this.timeline1 = null;
+    }
+    this.initialized = false;
+  }
+}
+
+// シングルトンインスタンスを保持
+let animationInstance = null;
+
+const init = () => {
+  // 既存のインスタンスをクリーンアップ
+  if (animationInstance) {
+    animationInstance.cleanup();
+  }
+
+  // 新しいインスタンスを作成
+  animationInstance = new TopAnimation1();
+};
+
+// DOMContentLoadedイベントは一度だけ登録する
+window.addEventListener("DOMContentLoaded", init, { once: false });
+
+// ページナビゲーションや再読み込み時のクリーンアップ
+window.addEventListener("beforeunload", () => {
+  if (animationInstance) {
+    animationInstance.cleanup();
+    animationInstance = null;
+  }
+});
