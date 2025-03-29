@@ -375,7 +375,6 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 });
 
-
 // =======================================
 // mochiko
 // =======================================
@@ -611,6 +610,108 @@ jQuery(function ($) {
 // =======================================
 // fv
 // =======================================
+// class TopAnimation1 {
+//   constructor() {
+//     if (document.querySelector("main .fv")) {
+//       this.opening();
+//     }
+//   }
+
+//   opening() {
+//     const timeline1 = gsap.timeline();
+//     const el_text = document.querySelector(".fv__text");
+//     const el_logo = document.querySelector(".fv__logo");
+//     const el_date = document.querySelector(".fv__date");
+//     const el_bg1 = document.querySelector(".fv__bg1");
+//     const el_bg2 = document.querySelector(".fv__bg2");
+
+//     gsap.set([el_text, el_logo, el_date], {
+//       opacity: 0,
+//       y: 24,
+//     });
+
+//     gsap.set([el_bg1, el_bg2], {
+//       opacity: 0,
+//       scale: 0.5,
+//     });
+
+//     window.addEventListener("load", () => {
+//       timeline1
+//         .to(
+//           el_text,
+//           {
+//             duration: 1,
+//             opacity: 1,
+//             y: 0,
+//             ease: "elastic.out(1,0.3)",
+//           },
+//           "-=0.9"
+//         )
+//         .to(
+//           el_logo,
+//           {
+//             duration: 1,
+//             opacity: 1,
+//             y: 0,
+//             ease: "elastic.out(1,0.3)",
+//           },
+//           "-=1"
+//         )
+//         .to(
+//           el_date,
+//           {
+//             duration: 1,
+//             opacity: 1,
+//             y: 0,
+//             ease: "elastic.out(1,0.3)",
+//           },
+//           "-=0.9"
+//         );
+
+//       if (window.innerWidth <= 850) {
+//         timeline1.to(
+//           [el_bg1, el_bg2],
+//           {
+//             duration: 2,
+//             opacity: 1,
+//             scale: 1,
+//             ease: "elastic.out(1,0.3)",
+//           },
+//           "-=1"
+//         );
+//       } else {
+//         timeline1
+//           .to(
+//             el_bg1,
+//             {
+//               duration: 2,
+//               opacity: 1,
+//               scale: 1,
+//               ease: "elastic.out(1,0.3)",
+//             },
+//             "-=1"
+//           )
+//           .to(
+//             el_bg2,
+//             {
+//               duration: 2,
+//               opacity: 1,
+//               scale: 1,
+//               ease: "elastic.out(1,0.3)",
+//             },
+//             "-=1.9"
+//           );
+//       }
+//     });
+//   }
+// }
+
+// const init = () => {
+//   new TopAnimation1();
+// };
+
+// window.addEventListener("DOMContentLoaded", init);
+
 class TopAnimation1 {
   constructor() {
     if (document.querySelector("main .fv")) {
@@ -626,14 +727,17 @@ class TopAnimation1 {
     const el_bg1 = document.querySelector(".fv__bg1");
     const el_bg2 = document.querySelector(".fv__bg2");
 
+    const isMobile = window.innerWidth <= 850;
+
+    // モバイルとPCで初期アニメーションの値を分ける
     gsap.set([el_text, el_logo, el_date], {
       opacity: 0,
-      y: 24,
+      y: isMobile ? 40 : 24, // スマホはy方向を大きめに動かす
     });
 
     gsap.set([el_bg1, el_bg2], {
       opacity: 0,
-      scale: 0.5,
+      scale: isMobile ? 0.3 : 0.5, // スマホはもっと小さくしてインパクトを出す
     });
 
     window.addEventListener("load", () => {
@@ -669,7 +773,7 @@ class TopAnimation1 {
           "-=0.9"
         );
 
-      if (window.innerWidth <= 850) {
+      if (isMobile) {
         timeline1.to(
           [el_bg1, el_bg2],
           {
@@ -712,35 +816,3 @@ const init = () => {
 };
 
 window.addEventListener("DOMContentLoaded", init);
-
-// document.addEventListener('DOMContentLoaded', function() {
-//   // すべてのメディア要素を検索
-//   const mediaElements = document.querySelectorAll('img, video, canvas, svg');
-
-//   // 各要素にスタイルを直接適用
-//   mediaElements.forEach(el => {
-//     el.style.setProperty('overflow', 'hidden', 'important');
-//     el.style.setProperty('contain', 'paint', 'important');
-
-//     // 親要素も修正
-//     if (el.parentElement) {
-//       el.parentElement.style.setProperty('overflow', 'hidden', 'important');
-//     }
-//   });
-
-//   // 動的に追加される要素のための監視
-//   const observer = new MutationObserver(mutations => {
-//     mutations.forEach(mutation => {
-//       if (mutation.addedNodes) {
-//         mutation.addedNodes.forEach(node => {
-//           if (node.tagName && ['IMG', 'VIDEO', 'CANVAS', 'SVG'].includes(node.tagName)) {
-//             node.style.setProperty('overflow', 'hidden', 'important');
-//             node.style.setProperty('contain', 'paint', 'important');
-//           }
-//         });
-//       }
-//     });
-//   });
-
-//   observer.observe(document.body, { childList: true, subtree: true });
-// });
