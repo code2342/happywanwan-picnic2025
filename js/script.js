@@ -632,7 +632,6 @@ document.addEventListener("DOMContentLoaded", function () {
 // // =======================================
 // // fv
 // // =======================================
-
 // class TopAnimation1 {
 //   constructor() {
 //     if (document.querySelector("main .fv")) {
@@ -732,74 +731,104 @@ document.addEventListener("DOMContentLoaded", function () {
 //   new TopAnimation1();
 // };
 // window.addEventListener("DOMContentLoaded", init);
+
 class TopAnimation1 {
   constructor() {
     if (document.querySelector("main .fv")) {
-      this.opening();
+      this.waitImagesLoaded();
     }
   }
 
+  waitImagesLoaded() {
+    const images = document.querySelectorAll(".fv img");
+    let loaded = 0;
+    const total = images.length;
+
+    if (total === 0) {
+      this.opening();
+      return;
+    }
+
+    images.forEach((img) => {
+      if (img.complete) {
+        loaded++;
+        if (loaded === total) this.opening();
+      } else {
+        img.addEventListener("load", () => {
+          loaded++;
+          if (loaded === total) this.opening();
+        });
+      }
+    });
+  }
+
   opening() {
+    const timeline1 = gsap.timeline();
     const el_text = document.querySelector(".fv__text");
     const el_logo = document.querySelector(".fv__logo");
     const el_date = document.querySelector(".fv__date");
     const el_bg1 = document.querySelector(".fv__bg1");
     const el_bg2 = document.querySelector(".fv__bg2");
 
-    const isMobile = window.innerWidth <= 850;
+    // 初期状態
+    gsap.set([el_text, el_logo, el_date], {
+      opacity: 0,
+      y: 40, // ← 少し大きめに変えてもいい
+    });
 
-    const runAnimation = () => {
-      const timeline1 = gsap.timeline();
+    gsap.set([el_bg1, el_bg2], {
+      opacity: 0,
+      scale: 0.5,
+    });
 
-      // 初期セット（見える前にやる）
-      gsap.set([el_text, el_logo, el_date], {
-        opacity: 0,
-        y: isMobile ? 40 : 24,
-      });
+    // アニメーション
+    timeline1
+      .to(
+        el_text,
+        {
+          duration: 1,
+          opacity: 1,
+          y: 0,
+          ease: "elastic.out(1,0.3)",
+        },
+        "+=0.2"
+      )
+      .to(
+        el_logo,
+        {
+          duration: 1,
+          opacity: 1,
+          y: 0,
+          ease: "elastic.out(1,0.3)",
+        },
+        "-=0.9"
+      )
+      .to(
+        el_date,
+        {
+          duration: 1,
+          opacity: 1,
+          y: 0,
+          ease: "elastic.out(1,0.3)",
+        },
+        "-=0.8"
+      );
 
-      gsap.set([el_bg1, el_bg2], {
-        opacity: 0,
-        scale: isMobile ? 0.3 : 0.5,
-      });
-
-      // 表示開始
-      document.body.classList.remove("is-loading");
-
+    if (window.innerWidth <= 850) {
+      timeline1.to(
+        [el_bg1, el_bg2],
+        {
+          duration: 2,
+          opacity: 1,
+          scale: 1,
+          ease: "elastic.out(1,0.3)",
+        },
+        "-=0.9"
+      );
+    } else {
       timeline1
         .to(
-          el_text,
-          {
-            duration: 1,
-            opacity: 1,
-            y: 0,
-            ease: "elastic.out(1,0.3)",
-          },
-          "-=0.9"
-        )
-        .to(
-          el_logo,
-          {
-            duration: 1,
-            opacity: 1,
-            y: 0,
-            ease: "elastic.out(1,0.3)",
-          },
-          "-=1"
-        )
-        .to(
-          el_date,
-          {
-            duration: 1,
-            opacity: 1,
-            y: 0,
-            ease: "elastic.out(1,0.3)",
-          },
-          "-=0.9"
-        );
-
-      if (isMobile) {
-        timeline1.to(
-          [el_bg1, el_bg2],
+          el_bg1,
           {
             duration: 2,
             opacity: 1,
@@ -807,51 +836,22 @@ class TopAnimation1 {
             ease: "elastic.out(1,0.3)",
           },
           "-=1"
+        )
+        .to(
+          el_bg2,
+          {
+            duration: 2,
+            opacity: 1,
+            scale: 1,
+            ease: "elastic.out(1,0.3)",
+          },
+          "-=1.8"
         );
-      } else {
-        timeline1
-          .to(
-            el_bg1,
-            {
-              duration: 2,
-              opacity: 1,
-              scale: 1,
-              ease: "elastic.out(1,0.3)",
-            },
-            "-=1"
-          )
-          .to(
-            el_bg2,
-            {
-              duration: 2,
-              opacity: 1,
-              scale: 1,
-              ease: "elastic.out(1,0.3)",
-            },
-            "-=1.9"
-          );
-      }
-    };
-
-    // 全画像のロード完了を待ってから実行
-    const images = document.querySelectorAll(".fv img");
-    let loaded = 0;
-
-    images.forEach((img) => {
-      if (img.complete) {
-        loaded++;
-      } else {
-        img.addEventListener("load", () => {
-          loaded++;
-          if (loaded === images.length) runAnimation();
-        });
-      }
-    });
-
-    if (loaded === images.length) runAnimation();
+    }
   }
 }
 
+// 初期化
 const init = () => {
   new TopAnimation1();
 };
