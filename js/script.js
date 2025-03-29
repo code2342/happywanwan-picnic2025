@@ -610,6 +610,119 @@ jQuery(function ($) {
 // =======================================
 // fv
 // =======================================
+class TopAnimation1 {
+  constructor() {
+    if (document.querySelector("main .fv")) {
+      this.opening();
+    }
+  }
+
+  opening() {
+    const el_text = document.querySelector(".fv__text");
+    const el_logo = document.querySelector(".fv__logo");
+    const el_date = document.querySelector(".fv__date");
+    const el_bg1 = document.querySelector(".fv__bg1");
+    const el_bg2 = document.querySelector(".fv__bg2");
+    const isMobile = window.innerWidth <= 850;
+
+    const runAnimation = () => {
+      const timeline1 = gsap.timeline();
+
+      // 初期セット
+      gsap.set([el_text, el_logo, el_date], {
+        opacity: 0,
+        y: isMobile ? 40 : 24,
+      });
+
+      gsap.set([el_bg1, el_bg2], {
+        opacity: 0,
+        scale: isMobile ? 0.3 : 0.5,
+      });
+
+      // アニメーション本体
+      timeline1
+        .to(
+          el_text,
+          {
+            duration: 1,
+            opacity: 1,
+            y: 0,
+            ease: "elastic.out(1,0.3)",
+          },
+          "-=0.9"
+        )
+        .to(
+          el_logo,
+          {
+            duration: 1,
+            opacity: 1,
+            y: 0,
+            ease: "elastic.out(1,0.3)",
+          },
+          "-=1"
+        )
+        .to(
+          el_date,
+          {
+            duration: 1,
+            opacity: 1,
+            y: 0,
+            ease: "elastic.out(1,0.3)",
+          },
+          "-=0.9"
+        );
+
+      if (isMobile) {
+        timeline1.to(
+          [el_bg1, el_bg2],
+          {
+            duration: 2,
+            opacity: 1,
+            scale: 1,
+            ease: "elastic.out(1,0.3)",
+          },
+          "-=1"
+        );
+      } else {
+        timeline1
+          .to(
+            el_bg1,
+            {
+              duration: 2,
+              opacity: 1,
+              scale: 1,
+              ease: "elastic.out(1,0.3)",
+            },
+            "-=1"
+          )
+          .to(
+            el_bg2,
+            {
+              duration: 2,
+              opacity: 1,
+              scale: 1,
+              ease: "elastic.out(1,0.3)",
+            },
+            "-=1.9"
+          );
+      }
+    };
+
+    // 読み込み済みでもアニメーションが動くように
+    if (document.readyState === "complete") {
+      runAnimation();
+    } else {
+      window.addEventListener("load", runAnimation);
+    }
+  }
+}
+
+const init = () => {
+  new TopAnimation1();
+};
+
+window.addEventListener("DOMContentLoaded", init);
+
 // class TopAnimation1 {
 //   constructor() {
 //     if (document.querySelector("main .fv")) {
@@ -711,108 +824,3 @@ jQuery(function ($) {
 // };
 
 // window.addEventListener("DOMContentLoaded", init);
-
-class TopAnimation1 {
-  constructor() {
-    if (document.querySelector("main .fv")) {
-      this.opening();
-    }
-  }
-
-  opening() {
-    const timeline1 = gsap.timeline();
-    const el_text = document.querySelector(".fv__text");
-    const el_logo = document.querySelector(".fv__logo");
-    const el_date = document.querySelector(".fv__date");
-    const el_bg1 = document.querySelector(".fv__bg1");
-    const el_bg2 = document.querySelector(".fv__bg2");
-
-    const isMobile = window.innerWidth <= 850;
-
-    // モバイルとPCで初期アニメーションの値を分ける
-    gsap.set([el_text, el_logo, el_date], {
-      opacity: 0,
-      y: isMobile ? 40 : 24, // スマホはy方向を大きめに動かす
-    });
-
-    gsap.set([el_bg1, el_bg2], {
-      opacity: 0,
-      scale: isMobile ? 0.3 : 0.5, // スマホはもっと小さくしてインパクトを出す
-    });
-
-    window.addEventListener("load", () => {
-      timeline1
-        .to(
-          el_text,
-          {
-            duration: 1,
-            opacity: 1,
-            y: 0,
-            ease: "elastic.out(1,0.3)",
-          },
-          "-=0.9"
-        )
-        .to(
-          el_logo,
-          {
-            duration: 1,
-            opacity: 1,
-            y: 0,
-            ease: "elastic.out(1,0.3)",
-          },
-          "-=1"
-        )
-        .to(
-          el_date,
-          {
-            duration: 1,
-            opacity: 1,
-            y: 0,
-            ease: "elastic.out(1,0.3)",
-          },
-          "-=0.9"
-        );
-
-      if (isMobile) {
-        timeline1.to(
-          [el_bg1, el_bg2],
-          {
-            duration: 2,
-            opacity: 1,
-            scale: 1,
-            ease: "elastic.out(1,0.3)",
-          },
-          "-=1"
-        );
-      } else {
-        timeline1
-          .to(
-            el_bg1,
-            {
-              duration: 2,
-              opacity: 1,
-              scale: 1,
-              ease: "elastic.out(1,0.3)",
-            },
-            "-=1"
-          )
-          .to(
-            el_bg2,
-            {
-              duration: 2,
-              opacity: 1,
-              scale: 1,
-              ease: "elastic.out(1,0.3)",
-            },
-            "-=1.9"
-          );
-      }
-    });
-  }
-}
-
-const init = () => {
-  new TopAnimation1();
-};
-
-window.addEventListener("DOMContentLoaded", init);
