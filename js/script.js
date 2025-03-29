@@ -279,11 +279,34 @@ document.addEventListener("DOMContentLoaded", function () {
 // スムーススクロール
 // =======================================
 
+// jQuery('a[href^="#"]').on("click", function (e) {
+//   const speed = 1000;
+//   const id = jQuery(this).attr("href");
+//   const target = jQuery("#" === id ? "html" : id);
+//   const position = jQuery(target).offset().top;
+
+//   jQuery("html,body").animate(
+//     {
+//       scrollTop: position,
+//     },
+//     speed,
+//     "swing" //swing or linear
+//   );
+// });
+
+// jQuery(window).on("scroll", function () {
+//   if (100 < jQuery(window).scrollTop()) {
+//     jQuery("#js-pagetop").addClass("is-show");
+//   } else {
+//     jQuery("#js-pagetop").removeClass("is-show");
+//   }
+// });
+
 jQuery('a[href^="#"]').on("click", function (e) {
   const speed = 1000;
   const id = jQuery(this).attr("href");
   const target = jQuery("#" === id ? "html" : id);
-  const position = jQuery(target).offset().top;
+  const position = jQuery(target).offset().top - 50; // Subtracted 50px from the position
 
   jQuery("html,body").animate(
     {
@@ -301,7 +324,6 @@ jQuery(window).on("scroll", function () {
     jQuery("#js-pagetop").removeClass("is-show");
   }
 });
-
 // =======================================
 // タイピングアニメーション
 // =======================================
