@@ -628,7 +628,6 @@ class TopAnimation1 {
     const runAnimation = () => {
       const timeline1 = gsap.timeline();
 
-      // 初期セット
       gsap.set([el_text, el_logo, el_date], {
         opacity: 0,
         y: isMobile ? 40 : 24,
@@ -639,7 +638,6 @@ class TopAnimation1 {
         scale: isMobile ? 0.3 : 0.5,
       });
 
-      // アニメーション本体
       timeline1
         .to(
           el_text,
@@ -708,11 +706,27 @@ class TopAnimation1 {
       }
     };
 
-    // 読み込み済みでもアニメーションが動くように
-    if (document.readyState === "complete") {
+    // 対象画像がすべて読み込まれたらアニメーションを走らせる
+    const images = document.querySelectorAll(".fv img");
+    let loadedCount = 0;
+    const totalImages = images.length;
+
+    images.forEach((img) => {
+      if (img.complete) {
+        loadedCount++;
+      } else {
+        img.addEventListener("load", () => {
+          loadedCount++;
+          if (loadedCount === totalImages) {
+            runAnimation();
+          }
+        });
+      }
+    });
+
+    // 全部completeだった場合
+    if (loadedCount === totalImages) {
       runAnimation();
-    } else {
-      window.addEventListener("load", runAnimation);
     }
   }
 }
