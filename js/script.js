@@ -397,7 +397,6 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 });
 
-
 // =======================================
 // mochiko
 // =======================================
@@ -499,145 +498,267 @@ document.addEventListener("DOMContentLoaded", function () {
 //   $(window).on("resize", updateButtonVisibility);
 // });
 
-jQuery(function ($) {
-  const mochicoButton = $("#page-top");
+// jQuery(function ($) {
+//   const mochicoButton = $("#page-top");
 
-  // すぐに実行されるCSS対策（CSSでデフォルト非表示にしていない場合の保険）
-  mochicoButton.css({
-    opacity: "0",
-    visibility: "hidden",
-    "pointer-events": "none",
-  });
+//   // すぐに実行されるCSS対策（CSSでデフォルト非表示にしていない場合の保険）
+//   mochicoButton.css({
+//     opacity: "0",
+//     visibility: "hidden",
+//     "pointer-events": "none",
+//   });
 
-  // 通常時の位置を画面下部に設定する関数
-  function setButtonNormalPosition() {
-    // 画面下部からの距離をピクセルで指定（値を大きくするとより上に配置）
-    const bottomMargin = 10; // 例えば20px（小さくすると下に、大きくすると上に）
+//   // 通常時の位置を画面下部に設定する関数
+//   function setButtonNormalPosition() {
+//     // 画面下部からの距離をピクセルで指定（値を大きくするとより上に配置）
+//     const bottomMargin = 10; // 例えば20px（小さくすると下に、大きくすると上に）
 
-    mochicoButton.css({
-      bottom: `${bottomMargin}px`,
-      position: "fixed",
-      transform: "translateY(0)",
-    });
-  }
+//     mochicoButton.css({
+//       bottom: `${bottomMargin}px`,
+//       position: "fixed",
+//       transform: "translateY(0)",
+//     });
+//   }
 
-  // ブレイクポイントに応じたオフセット値を取得する関数
-  function getOffsetAdjustment() {
-    const windowWidth = $(window).width();
-    if (windowWidth >= 1200) return 100;
-    else if (windowWidth >= 768) return 160;
-    else return 130;
-  }
+//   // ブレイクポイントに応じたオフセット値を取得する関数
+//   function getOffsetAdjustment() {
+//     const windowWidth = $(window).width();
+//     if (windowWidth >= 1200) return 100;
+//     else if (windowWidth >= 768) return 160;
+//     else return 130;
+//   }
 
-  // フッター近くでの位置調整を行う関数
-  function updateButtonPosition() {
-    const scrollTop = $(window).scrollTop();
-    const windowHeight = $(window).height();
-    const scrollBottom = scrollTop + windowHeight;
-    const footerOffset = $("footer").offset().top;
-    const distanceToFooter = footerOffset - scrollBottom;
-    const offsetAdjustment = getOffsetAdjustment();
+//   // フッター近くでの位置調整を行う関数
+//   function updateButtonPosition() {
+//     const scrollTop = $(window).scrollTop();
+//     const windowHeight = $(window).height();
+//     const scrollBottom = scrollTop + windowHeight;
+//     const footerOffset = $("footer").offset().top;
+//     const distanceToFooter = footerOffset - scrollBottom;
+//     const offsetAdjustment = getOffsetAdjustment();
 
-    if (distanceToFooter < 0) {
-      const moveAmount = Math.abs(distanceToFooter) - offsetAdjustment;
-      const finalMove = Math.max(0, moveAmount);
-      mochicoButton.css("transform", `translateY(-${finalMove}px)`);
-    } else {
-      // 通常の位置に戻す
-      mochicoButton.css("transform", "translateY(0)");
-    }
-  }
+//     if (distanceToFooter < 0) {
+//       const moveAmount = Math.abs(distanceToFooter) - offsetAdjustment;
+//       const finalMove = Math.max(0, moveAmount);
+//       mochicoButton.css("transform", `translateY(-${finalMove}px)`);
+//     } else {
+//       // 通常の位置に戻す
+//       mochicoButton.css("transform", "translateY(0)");
+//     }
+//   }
 
-  // スクロール位置に基づいてボタンの表示/非表示を制御する関数
-  function updateButtonVisibility() {
-    // FVセクションの高さを取得
-    const fvSection = $(".fv");
-    const contentsSection = $(".contents");
+//   // スクロール位置に基づいてボタンの表示/非表示を制御する関数
+//   function updateButtonVisibility() {
+//     // FVセクションの高さを取得
+//     const fvSection = $(".fv");
+//     const contentsSection = $(".contents");
 
-    if (fvSection.length === 0 || contentsSection.length === 0) return;
+//     if (fvSection.length === 0 || contentsSection.length === 0) return;
 
-    const fvHeight = fvSection.outerHeight();
-    const scrollTop = $(window).scrollTop();
+//     const fvHeight = fvSection.outerHeight();
+//     const scrollTop = $(window).scrollTop();
 
-    // 明確な条件: FVの高さを完全に超えた場合のみ表示
-    const shouldShowButton = scrollTop > fvHeight;
+//     // 明確な条件: FVの高さを完全に超えた場合のみ表示
+//     const shouldShowButton = scrollTop > fvHeight;
 
-    // 表示/非表示の切り替え
-    if (shouldShowButton) {
-      if (!mochicoButton.hasClass("is-visible")) {
-        // ボタンを表示する際に通常位置も設定
-        setButtonNormalPosition();
+//     // 表示/非表示の切り替え
+//     if (shouldShowButton) {
+//       if (!mochicoButton.hasClass("is-visible")) {
+//         // ボタンを表示する際に通常位置も設定
+//         setButtonNormalPosition();
 
-        mochicoButton.addClass("is-visible").css({
-          opacity: "1",
-          visibility: "visible",
-          "pointer-events": "auto",
-        });
-      }
+//         mochicoButton.addClass("is-visible").css({
+//           opacity: "1",
+//           visibility: "visible",
+//           "pointer-events": "auto",
+//         });
+//       }
 
-      // フッター近くでの位置調整を実行
-      updateButtonPosition();
-    } else {
-      if (mochicoButton.hasClass("is-visible")) {
-        mochicoButton.removeClass("is-visible").css({
-          opacity: "0",
-          visibility: "hidden",
-          "pointer-events": "none",
-        });
-      }
-    }
-  }
+//       // フッター近くでの位置調整を実行
+//       updateButtonPosition();
+//     } else {
+//       if (mochicoButton.hasClass("is-visible")) {
+//         mochicoButton.removeClass("is-visible").css({
+//           opacity: "0",
+//           visibility: "hidden",
+//           "pointer-events": "none",
+//         });
+//       }
+//     }
+//   }
 
-  // スクロールイベント
-  $(window).on("scroll", updateButtonVisibility);
+//   // スクロールイベント
+//   $(window).on("scroll", updateButtonVisibility);
 
-  // 安全のためにDOMContentLoadedでも強制的に非表示
-  $(document).ready(function () {
-    mochicoButton.css({
-      opacity: "0",
-      visibility: "hidden",
-      "pointer-events": "none",
-    });
+//   // 安全のためにDOMContentLoadedでも強制的に非表示
+//   $(document).ready(function () {
+//     mochicoButton.css({
+//       opacity: "0",
+//       visibility: "hidden",
+//       "pointer-events": "none",
+//     });
 
-    // 通常位置を設定
-    setButtonNormalPosition();
-  });
+//     // 通常位置を設定
+//     setButtonNormalPosition();
+//   });
 
-  // ページ読み込み完了後、ボタンの状態を初期化
-  $(window).on("load", function () {
-    // 最初は非表示を保証
-    mochicoButton
-      .css({
-        opacity: "0",
-        visibility: "hidden",
-        "pointer-events": "none",
-      })
-      .removeClass("is-visible");
+//   // ページ読み込み完了後、ボタンの状態を初期化
+//   $(window).on("load", function () {
+//     // 最初は非表示を保証
+//     mochicoButton
+//       .css({
+//         opacity: "0",
+//         visibility: "hidden",
+//         "pointer-events": "none",
+//       })
+//       .removeClass("is-visible");
 
-    // 通常位置を設定
-    setButtonNormalPosition();
+//     // 通常位置を設定
+//     setButtonNormalPosition();
 
-    // 少し遅延させてから現在のスクロール位置をチェック
-    setTimeout(updateButtonVisibility, 300);
-  });
+//     // 少し遅延させてから現在のスクロール位置をチェック
+//     setTimeout(updateButtonVisibility, 300);
+//   });
 
-  // リサイズ時
-  $(window).on("resize", function () {
-    // 通常位置を再設定
-    setButtonNormalPosition();
+//   // リサイズ時
+//   $(window).on("resize", function () {
+//     // 通常位置を再設定
+//     setButtonNormalPosition();
 
-    // ボタンの表示/非表示と位置を更新
-    updateButtonVisibility();
-  });
-});
-// =======================================
-// fv
-// =======================================
+//     // ボタンの表示/非表示と位置を更新
+//     updateButtonVisibility();
+//   });
+// });
+// // =======================================
+// // fv
+// // =======================================
+// class TopAnimation1 {
+//   constructor() {
+//     if (document.querySelector("main .fv")) {
+//       this.opening();
+//     }
+//   }
+
+//   opening() {
+//     const timeline1 = gsap.timeline();
+//     const el_text = document.querySelector(".fv__text");
+//     const el_logo = document.querySelector(".fv__logo");
+//     const el_date = document.querySelector(".fv__date");
+//     const el_bg1 = document.querySelector(".fv__bg1");
+//     const el_bg2 = document.querySelector(".fv__bg2");
+
+//     gsap.set([el_text, el_logo, el_date], {
+//       opacity: 0,
+//       y: 24,
+//     });
+
+//     gsap.set([el_bg1, el_bg2], {
+//       opacity: 0,
+//       scale: 0.5,
+//     });
+
+//     window.addEventListener("load", () => {
+//       timeline1
+//         .to(
+//           el_text,
+//           {
+//             duration: 1,
+//             opacity: 1,
+//             y: 0,
+//             ease: "elastic.out(1,0.3)",
+//           },
+//           "-=0.9"
+//         )
+//         .to(
+//           el_logo,
+//           {
+//             duration: 1,
+//             opacity: 1,
+//             y: 0,
+//             ease: "elastic.out(1,0.3)",
+//           },
+//           "-=1"
+//         )
+//         .to(
+//           el_date,
+//           {
+//             duration: 1,
+//             opacity: 1,
+//             y: 0,
+//             ease: "elastic.out(1,0.3)",
+//           },
+//           "-=0.9"
+//         );
+
+//       if (window.innerWidth <= 850) {
+//         timeline1.to(
+//           [el_bg1, el_bg2],
+//           {
+//             duration: 2,
+//             opacity: 1,
+//             scale: 1,
+//             ease: "elastic.out(1,0.3)",
+//           },
+//           "-=1"
+//         );
+//       } else {
+//         timeline1
+//           .to(
+//             el_bg1,
+//             {
+//               duration: 2,
+//               opacity: 1,
+//               scale: 1,
+//               ease: "elastic.out(1,0.3)",
+//             },
+//             "-=1"
+//           )
+//           .to(
+//             el_bg2,
+//             {
+//               duration: 2,
+//               opacity: 1,
+//               scale: 1,
+//               ease: "elastic.out(1,0.3)",
+//             },
+//             "-=1.9"
+//           );
+//       }
+//     });
+//   }
+// }
+// const init = () => {
+//   new TopAnimation1();
+// };
+// window.addEventListener("DOMContentLoaded", init);
 class TopAnimation1 {
   constructor() {
     if (document.querySelector("main .fv")) {
-      this.opening();
+      this.waitImagesLoaded();
     }
+  }
+
+  waitImagesLoaded() {
+    const images = document.querySelectorAll(".fv img");
+    let loaded = 0;
+    const total = images.length;
+
+    if (total === 0) {
+      this.opening();
+      return;
+    }
+
+    images.forEach((img) => {
+      if (img.complete) {
+        loaded++;
+        if (loaded === total) this.opening();
+      } else {
+        img.addEventListener("load", () => {
+          loaded++;
+          if (loaded === total) this.opening();
+        });
+      }
+    });
   }
 
   opening() {
@@ -648,9 +769,23 @@ class TopAnimation1 {
     const el_bg1 = document.querySelector(".fv__bg1");
     const el_bg2 = document.querySelector(".fv__bg2");
 
-    gsap.set([el_text, el_logo, el_date], {
+    // 💡 より大きく動かす（参考サイトに合わせた初期位置）
+    gsap.set(el_text, {
       opacity: 0,
-      y: 24,
+      scale: 0.5,
+      x: 200,
+    });
+
+    gsap.set(el_logo, {
+      opacity: 0,
+      scale: 0.5,
+      y: 200,
+    });
+
+    gsap.set(el_date, {
+      opacity: 0,
+      scale: 0.5,
+      x: -200,
     });
 
     gsap.set([el_bg1, el_bg2], {
@@ -658,42 +793,57 @@ class TopAnimation1 {
       scale: 0.5,
     });
 
-    window.addEventListener("load", () => {
+    // アニメーション本体
+    timeline1
+      .to(
+        el_text,
+        {
+          duration: 1,
+          opacity: 1,
+          scale: 1,
+          x: 0,
+          ease: "elastic.out(1,0.3)",
+        },
+        "+=0.2"
+      )
+      .to(
+        el_logo,
+        {
+          duration: 1,
+          opacity: 1,
+          scale: 1,
+          y: 0,
+          ease: "elastic.out(1,0.3)",
+        },
+        "-=0.9"
+      )
+      .to(
+        el_date,
+        {
+          duration: 1,
+          opacity: 1,
+          scale: 1,
+          x: 0,
+          ease: "elastic.out(1,0.3)",
+        },
+        "-=0.9"
+      );
+
+    if (window.innerWidth <= 850) {
+      timeline1.to(
+        [el_bg1, el_bg2],
+        {
+          duration: 2,
+          opacity: 1,
+          scale: 1,
+          ease: "elastic.out(1,0.3)",
+        },
+        "-=0.9"
+      );
+    } else {
       timeline1
         .to(
-          el_text,
-          {
-            duration: 1,
-            opacity: 1,
-            y: 0,
-            ease: "elastic.out(1,0.3)",
-          },
-          "-=0.9"
-        )
-        .to(
-          el_logo,
-          {
-            duration: 1,
-            opacity: 1,
-            y: 0,
-            ease: "elastic.out(1,0.3)",
-          },
-          "-=1"
-        )
-        .to(
-          el_date,
-          {
-            duration: 1,
-            opacity: 1,
-            y: 0,
-            ease: "elastic.out(1,0.3)",
-          },
-          "-=0.9"
-        );
-
-      if (window.innerWidth <= 850) {
-        timeline1.to(
-          [el_bg1, el_bg2],
+          el_bg1,
           {
             duration: 2,
             opacity: 1,
@@ -701,31 +851,18 @@ class TopAnimation1 {
             ease: "elastic.out(1,0.3)",
           },
           "-=1"
+        )
+        .to(
+          el_bg2,
+          {
+            duration: 2,
+            opacity: 1,
+            scale: 1,
+            ease: "elastic.out(1,0.3)",
+          },
+          "-=1.8"
         );
-      } else {
-        timeline1
-          .to(
-            el_bg1,
-            {
-              duration: 2,
-              opacity: 1,
-              scale: 1,
-              ease: "elastic.out(1,0.3)",
-            },
-            "-=1"
-          )
-          .to(
-            el_bg2,
-            {
-              duration: 2,
-              opacity: 1,
-              scale: 1,
-              ease: "elastic.out(1,0.3)",
-            },
-            "-=1.9"
-          );
-      }
-    });
+    }
   }
 }
 
@@ -734,35 +871,3 @@ const init = () => {
 };
 
 window.addEventListener("DOMContentLoaded", init);
-
-// document.addEventListener('DOMContentLoaded', function() {
-//   // すべてのメディア要素を検索
-//   const mediaElements = document.querySelectorAll('img, video, canvas, svg');
-
-//   // 各要素にスタイルを直接適用
-//   mediaElements.forEach(el => {
-//     el.style.setProperty('overflow', 'hidden', 'important');
-//     el.style.setProperty('contain', 'paint', 'important');
-
-//     // 親要素も修正
-//     if (el.parentElement) {
-//       el.parentElement.style.setProperty('overflow', 'hidden', 'important');
-//     }
-//   });
-
-//   // 動的に追加される要素のための監視
-//   const observer = new MutationObserver(mutations => {
-//     mutations.forEach(mutation => {
-//       if (mutation.addedNodes) {
-//         mutation.addedNodes.forEach(node => {
-//           if (node.tagName && ['IMG', 'VIDEO', 'CANVAS', 'SVG'].includes(node.tagName)) {
-//             node.style.setProperty('overflow', 'hidden', 'important');
-//             node.style.setProperty('contain', 'paint', 'important');
-//           }
-//         });
-//       }
-//     });
-//   });
-
-//   observer.observe(document.body, { childList: true, subtree: true });
-// });
