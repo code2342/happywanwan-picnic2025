@@ -2790,15 +2790,19 @@ dialog {
   }
 }
 .modal__inner {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  // display: flex;
+  // justify-content: center;
+  // align-items: center;
+  display: block;
+  width: fit-content;
   height: 100%;
   padding-inline: 10px;
   position: relative;
+  scroll-behavior: auto;
+  overscroll-behavior: contain;
   @include mq(md) {
     overflow-x: auto;
-    justify-content: flex-start;
+    // justify-content: flex-start;
     min-width: 800px;
   }
   @include mq(sm) {
