@@ -210,71 +210,93 @@ const swiper = new Swiper("#js-gallery-swiper", {
 // =======================================
 // モーダル
 // =======================================
-document.addEventListener("DOMContentLoaded", function () {
-  const isMobile = () => window.innerWidth <= 768;
-  let modalInitialized = false;
-
+document.addEventListener("DOMContentLoaded", () => {
   const openButtons = document.querySelectorAll(".modal__img");
   const closeButtons = document.querySelectorAll(".modal__close-btn");
   const dialogs = document.querySelectorAll("dialog");
 
-  const handleOpen = (event) => {
-    const dialogId = event.currentTarget.getAttribute("data-dialog");
-    const dialog = document.getElementById(dialogId);
-    if (dialog) {
-      dialog.showModal();
-      dialog.classList.add("js-show");
-    }
-  };
+  openButtons.forEach((btn) => {
+    btn.addEventListener("click", (e) => {
+      const dialogId = e.currentTarget.getAttribute("data-dialog");
+      const dialog = document.getElementById(dialogId);
+      if (dialog) {
+        dialog.showModal();
+        dialog.classList.add("js-show");
 
-  const handleClose = (event) => {
-    const dialog = event.currentTarget.closest("dialog");
-    if (dialog) {
-      dialog.classList.remove("js-show");
-      dialog.close();
-      document.activeElement.blur();
-    }
-  };
+        // ✅ 描画が完了するまで2回待ってから scrollLeft = 0 を実行
+        requestAnimationFrame(() => {
+          requestAnimationFrame(() => {
+            const modalInner = dialog.querySelector(".modal__inner");
+            if (modalInner) {
+              modalInner.scrollLeft = 0;
+            }
+          });
+        });
+      }
+    });
+  });
 
-  const handleBackdropClick = (event) => {
-    const dialog = event.currentTarget;
-    if (!event.target.closest(".modal__inner")) {
-      dialog.classList.remove("js-show");
-      dialog.close();
-    }
-  };
+  closeButtons.forEach((btn) => {
+    btn.addEventListener("click", (e) => {
+      const dialog = e.currentTarget.closest("dialog");
+      if (dialog) {
+        dialog.classList.remove("js-show");
+        dialog.close();
+      }
+    });
+  });
 
-  const setupModalEvents = () => {
-    openButtons.forEach((btn) => btn.addEventListener("click", handleOpen));
-    closeButtons.forEach((btn) => btn.addEventListener("click", handleClose));
-    dialogs.forEach((dialog) =>
-      dialog.addEventListener("click", handleBackdropClick)
-    );
-    modalInitialized = true;
-  };
+  dialogs.forEach((dialog) => {
+    dialog.addEventListener("click", (e) => {
+      if (!e.target.closest(".modal__inner")) {
+        dialog.classList.remove("js-show");
+        dialog.close();
+      }
+    });
+  });
 
-  const removeModalEvents = () => {
-    openButtons.forEach((btn) => btn.removeEventListener("click", handleOpen));
-    closeButtons.forEach((btn) =>
-      btn.removeEventListener("click", handleClose)
-    );
-    dialogs.forEach((dialog) =>
-      dialog.removeEventListener("click", handleBackdropClick)
-    );
-    modalInitialized = false;
-  };
+  // ドラッグスクロール
+  const modalInner = document.querySelector(".modal__inner");
+  if (!modalInner) return;
 
-  const checkAndUpdateModal = () => {
-    if (isMobile() && !modalInitialized) {
-      setupModalEvents();
-    } else if (!isMobile() && modalInitialized) {
-      removeModalEvents();
-    }
-  };
+  let isDown = false;
+  let startX, scrollLeft;
 
-  checkAndUpdateModal();
-  window.addEventListener("resize", checkAndUpdateModal);
+  modalInner.addEventListener("mousedown", (e) => {
+    isDown = true;
+    startX = e.pageX;
+    scrollLeft = modalInner.scrollLeft;
+    modalInner.classList.add("is-dragging");
+  });
+
+  modalInner.addEventListener("mouseup", () => {
+    isDown = false;
+    modalInner.classList.remove("is-dragging");
+  });
+
+  modalInner.addEventListener("mouseleave", () => {
+    isDown = false;
+    modalInner.classList.remove("is-dragging");
+  });
+
+  modalInner.addEventListener("mousemove", (e) => {
+    if (!isDown) return;
+    e.preventDefault();
+    const x = e.pageX;
+    const walk = (x - startX) * 1.5;
+    modalInner.scrollLeft = scrollLeft - walk;
+  });
 });
+
+// ハイライト防止（画像クリック時にフォーカス外す）
+document.querySelectorAll(".modal__img").forEach((btn) => {
+  btn.addEventListener("click", () => {
+    setTimeout(() => {
+      document.activeElement.blur();
+    }, 50);
+  });
+});
+
 // =======================================
 // スムーススクロール
 // =======================================
