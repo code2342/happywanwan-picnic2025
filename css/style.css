@@ -3118,6 +3118,10 @@ dialog.modal__content {
   scroll-behavior: smooth;
   -webkit-overflow-scrolling: touch;
   padding-block: 30px;
+  scrollbar-width: none;
+}
+.modal__inner::-webkit-scrollbar {
+  display: none;
 }
 @media screen and (max-width: 768px) {
   .modal__inner {
@@ -3152,6 +3156,9 @@ dialog.modal__content {
   height: auto;
   width: 800px;
   outline: none;
+  pointer-events: none;
+  -ms-touch-action: none;
+      touch-action: none;
 }
 @media screen and (max-width: 480px) {
   .modal__wrapper img {

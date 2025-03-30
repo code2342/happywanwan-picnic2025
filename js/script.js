@@ -211,89 +211,102 @@ const swiper = new Swiper("#js-gallery-swiper", {
 // モーダル
 // =======================================
 document.addEventListener("DOMContentLoaded", () => {
+  const isMobile = () => window.innerWidth <= 768;
+
   const openButtons = document.querySelectorAll(".modal__img");
   const closeButtons = document.querySelectorAll(".modal__close-btn");
   const dialogs = document.querySelectorAll("dialog");
 
-  openButtons.forEach((btn) => {
-    btn.addEventListener("click", (e) => {
-      const dialogId = e.currentTarget.getAttribute("data-dialog");
-      const dialog = document.getElementById(dialogId);
-      if (dialog) {
-        dialog.showModal();
-        dialog.classList.add("js-show");
-        // ✅ 描画が完了するまで2回待ってから scrollLeft = 0 を実行
-        requestAnimationFrame(() => {
-          requestAnimationFrame(() => {
-            const modalInner = dialog.querySelector(".modal__inner");
-            if (modalInner) {
-              modalInner.scrollLeft = 0;
+  if (isMobile()) {
+    openButtons.forEach((btn) => {
+      btn.addEventListener("click", (e) => {
+        const dialogId = e.currentTarget.getAttribute("data-dialog");
+        const dialog = document.getElementById(dialogId);
+        if (dialog) {
+          dialog.showModal();
+          dialog.classList.add("js-show");
+
+          const modalInner = dialog.querySelector(".modal__inner");
+          const modalImg = dialog.querySelector(".modal__wrapper img");
+
+          if (modalInner && modalImg) {
+            // 画像読み込み後に scrollLeft = 0
+            if (modalImg.complete) {
+              requestAnimationFrame(() => {
+                requestAnimationFrame(() => {
+                  modalInner.scrollLeft = 0;
+                });
+              });
+            } else {
+              modalImg.onload = () => {
+                modalInner.scrollLeft = 0;
+              };
             }
-          });
-        });
-      }
+          }
+        }
+      });
     });
-  });
 
-  closeButtons.forEach((btn) => {
-    btn.addEventListener("click", (e) => {
-      const dialog = e.currentTarget.closest("dialog");
-      if (dialog) {
-        dialog.classList.remove("js-show");
-        dialog.close();
-      }
+    closeButtons.forEach((btn) => {
+      btn.addEventListener("click", (e) => {
+        const dialog = e.currentTarget.closest("dialog");
+        if (dialog) {
+          dialog.classList.remove("js-show");
+          dialog.close();
+        }
+      });
     });
-  });
 
-  dialogs.forEach((dialog) => {
-    dialog.addEventListener("click", (e) => {
-      if (!e.target.closest(".modal__inner")) {
-        dialog.classList.remove("js-show");
-        dialog.close();
-      }
+    dialogs.forEach((dialog) => {
+      dialog.addEventListener("click", (e) => {
+        if (!e.target.closest(".modal__inner")) {
+          dialog.classList.remove("js-show");
+          dialog.close();
+        }
+      });
     });
-  });
 
-  // ドラッグスクロール
-  const modalInner = document.querySelector(".modal__inner");
-  if (!modalInner) return;
+    // ドラッグスクロール（モバイルのみ）
+    const modalInner = document.querySelector(".modal__inner");
+    if (modalInner) {
+      let isDown = false;
+      let startX, scrollLeft;
 
-  let isDown = false;
-  let startX, scrollLeft;
+      modalInner.addEventListener("mousedown", (e) => {
+        isDown = true;
+        startX = e.pageX;
+        scrollLeft = modalInner.scrollLeft;
+        modalInner.classList.add("is-dragging");
+      });
 
-  modalInner.addEventListener("mousedown", (e) => {
-    isDown = true;
-    startX = e.pageX;
-    scrollLeft = modalInner.scrollLeft;
-    modalInner.classList.add("is-dragging");
-  });
+      modalInner.addEventListener("mouseup", () => {
+        isDown = false;
+        modalInner.classList.remove("is-dragging");
+      });
 
-  modalInner.addEventListener("mouseup", () => {
-    isDown = false;
-    modalInner.classList.remove("is-dragging");
-  });
+      modalInner.addEventListener("mouseleave", () => {
+        isDown = false;
+        modalInner.classList.remove("is-dragging");
+      });
 
-  modalInner.addEventListener("mouseleave", () => {
-    isDown = false;
-    modalInner.classList.remove("is-dragging");
-  });
+      modalInner.addEventListener("mousemove", (e) => {
+        if (!isDown) return;
+        e.preventDefault();
+        const x = e.pageX;
+        const walk = (x - startX) * 1.5;
+        modalInner.scrollLeft = scrollLeft - walk;
+      });
+    }
+  }
 
-  modalInner.addEventListener("mousemove", (e) => {
-    if (!isDown) return;
-    e.preventDefault();
-    const x = e.pageX;
-    const walk = (x - startX) * 1.5;
-    modalInner.scrollLeft = scrollLeft - walk;
-  });
-});
-
-// ハイライト防止（画像クリック時にフォーカス外す）
-document.querySelectorAll(".modal__img").forEach((btn) => {
-  btn.addEventListener("click", () => {
-    setTimeout(() => {
-      document.activeElement.blur();
-      window.getSelection()?.removeAllRanges(); // ← 選択も解除！
-    }, 50);
+  // ハイライト防止（画像クリック時にフォーカス外す）
+  document.querySelectorAll(".modal__img").forEach((btn) => {
+    btn.addEventListener("click", () => {
+      setTimeout(() => {
+        document.activeElement.blur();
+        window.getSelection()?.removeAllRanges();
+      }, 50);
+    });
   });
 });
 
