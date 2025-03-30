@@ -210,6 +210,71 @@ const swiper = new Swiper("#js-gallery-swiper", {
 // =======================================
 // モーダル
 // =======================================
+// document.addEventListener("DOMContentLoaded", function () {
+//   const isMobile = () => window.innerWidth <= 768;
+//   let modalInitialized = false;
+
+//   const openButtons = document.querySelectorAll(".modal__img");
+//   const closeButtons = document.querySelectorAll(".modal__close-btn");
+//   const dialogs = document.querySelectorAll("dialog");
+
+//   const handleOpen = (event) => {
+//     const dialogId = event.currentTarget.getAttribute("data-dialog");
+//     const dialog = document.getElementById(dialogId);
+//     if (dialog) {
+//       dialog.showModal();
+//       dialog.classList.add("js-show");
+//     }
+//   };
+
+//   const handleClose = (event) => {
+//     const dialog = event.currentTarget.closest("dialog");
+//     if (dialog) {
+//       dialog.classList.remove("js-show");
+//       dialog.close();
+//       document.activeElement.blur();
+//     }
+//   };
+
+//   const handleBackdropClick = (event) => {
+//     const dialog = event.currentTarget;
+//     if (!event.target.closest(".modal__inner")) {
+//       dialog.classList.remove("js-show");
+//       dialog.close();
+//     }
+//   };
+
+//   const setupModalEvents = () => {
+//     openButtons.forEach((btn) => btn.addEventListener("click", handleOpen));
+//     closeButtons.forEach((btn) => btn.addEventListener("click", handleClose));
+//     dialogs.forEach((dialog) =>
+//       dialog.addEventListener("click", handleBackdropClick)
+//     );
+//     modalInitialized = true;
+//   };
+
+//   const removeModalEvents = () => {
+//     openButtons.forEach((btn) => btn.removeEventListener("click", handleOpen));
+//     closeButtons.forEach((btn) =>
+//       btn.removeEventListener("click", handleClose)
+//     );
+//     dialogs.forEach((dialog) =>
+//       dialog.removeEventListener("click", handleBackdropClick)
+//     );
+//     modalInitialized = false;
+//   };
+
+//   const checkAndUpdateModal = () => {
+//     if (isMobile() && !modalInitialized) {
+//       setupModalEvents();
+//     } else if (!isMobile() && modalInitialized) {
+//       removeModalEvents();
+//     }
+//   };
+
+//   checkAndUpdateModal();
+//   window.addEventListener("resize", checkAndUpdateModal);
+// });
 document.addEventListener("DOMContentLoaded", function () {
   const isMobile = () => window.innerWidth <= 768;
   let modalInitialized = false;
@@ -224,6 +289,17 @@ document.addEventListener("DOMContentLoaded", function () {
     if (dialog) {
       dialog.showModal();
       dialog.classList.add("js-show");
+
+      // scrollLeft の初期値確認用ログ
+      const modalContent = dialog.querySelector(".modal__content");
+      if (modalContent) {
+        console.log("[OPEN] scrollLeft:", modalContent.scrollLeft);
+
+        // スクロール中の状態を監視（デバッグ用）
+        modalContent.addEventListener("scroll", () => {
+          console.log("[SCROLL] scrollLeft:", modalContent.scrollLeft);
+        });
+      }
     }
   };
 
@@ -236,20 +312,21 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   };
 
-  const handleBackdropClick = (event) => {
-    const dialog = event.currentTarget;
-    if (!event.target.closest(".modal__inner")) {
-      dialog.classList.remove("js-show");
-      dialog.close();
-    }
-  };
+  // backdrop クリック時に閉じるのを無効化（一時対応）
+  // const handleBackdropClick = (event) => {
+  //   const dialog = event.currentTarget;
+  //   if (!event.target.closest(".modal__inner")) {
+  //     dialog.classList.remove("js-show");
+  //     dialog.close();
+  //   }
+  // };
 
   const setupModalEvents = () => {
     openButtons.forEach((btn) => btn.addEventListener("click", handleOpen));
     closeButtons.forEach((btn) => btn.addEventListener("click", handleClose));
-    dialogs.forEach((dialog) =>
-      dialog.addEventListener("click", handleBackdropClick)
-    );
+    // dialogs.forEach((dialog) =>
+    //   dialog.addEventListener("click", handleBackdropClick)
+    // );
     modalInitialized = true;
   };
 
@@ -258,9 +335,9 @@ document.addEventListener("DOMContentLoaded", function () {
     closeButtons.forEach((btn) =>
       btn.removeEventListener("click", handleClose)
     );
-    dialogs.forEach((dialog) =>
-      dialog.removeEventListener("click", handleBackdropClick)
-    );
+    // dialogs.forEach((dialog) =>
+    //   dialog.removeEventListener("click", handleBackdropClick)
+    // );
     modalInitialized = false;
   };
 
@@ -275,6 +352,7 @@ document.addEventListener("DOMContentLoaded", function () {
   checkAndUpdateModal();
   window.addEventListener("resize", checkAndUpdateModal);
 });
+
 // =======================================
 // スムーススクロール
 // =======================================
