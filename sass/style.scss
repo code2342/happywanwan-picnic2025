@@ -2800,7 +2800,7 @@ dialog {
   height: 100%;
   position: relative;
   width: fit-content;
-  overflow-x: auto;
+  overflow: scroll;
   scroll-behavior: smooth;
   -webkit-overflow-scrolling: touch;
   padding-block: 30px;
@@ -2809,13 +2809,9 @@ dialog {
     display: none;
   }
   @include mq(md) {
-    // overflow-x: auto;
-    // justify-content: flex-start;
-    // min-width: 800px;
     cursor: grab;
   }
   @include mq(sm) {
-    // min-width: 600px;
     touch-action: pan-x;
   }
   &.is-dragging {
@@ -2825,24 +2821,20 @@ dialog {
 }
 .modal__wrapper {
   position: relative;
-  // display: inline-block;
   width: max-content;
   height: auto;
   img {
     display: block;
     height: auto;
-    width: 800px;
+    width: 100%;
     outline: none;
     pointer-events: none;
     touch-action: none;
-    @include mq(sm) {
-      width: 600px;
-    }
     @include mq(md) {
       width: 800px;
     }
-    @media screen and (min-width: 769px) {
-      width: 100%;
+    @include mq(sm) {
+      width: 600px;
     }
     &:focus,
     &:focus-visible {
