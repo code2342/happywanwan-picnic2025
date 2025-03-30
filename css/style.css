@@ -3077,12 +3077,15 @@ dialog::backdrop {
   -webkit-backdrop-filter: blur(6px);
           backdrop-filter: blur(6px);
 }
+dialog.modal__content {
+  overflow-x: auto;
+  overflow-y: auto;
+}
 
 .modal__content {
   opacity: 0;
   -webkit-transition: opacity 0.3s ease-in-out;
   transition: opacity 0.3s ease-in-out;
-  width: min(600px, 95%);
   max-height: 80vh;
   aspect-ratio: auto;
   background: transparent;
@@ -3105,27 +3108,44 @@ dialog::backdrop {
 }
 
 .modal__inner {
-  display: block;
-  width: -webkit-fit-content;
-  width: -moz-fit-content;
-  width: fit-content;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
   height: 100%;
   padding-inline: 10px;
   position: relative;
-  scroll-behavior: auto;
-  -ms-scroll-chaining: none;
-      overscroll-behavior: contain;
+  width: -webkit-max-content;
+  width: -moz-max-content;
+  width: max-content;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
 }
 @media screen and (max-width: 768px) {
   .modal__inner {
-    overflow-x: auto;
-    min-width: 800px;
+    cursor: -webkit-grab;
+    cursor: grab;
   }
 }
 @media screen and (max-width: 480px) {
   .modal__inner {
-    min-width: 600px;
+    -ms-touch-action: pan-x;
+        touch-action: pan-x;
   }
+}
+.modal__inner.is-dragging {
+  cursor: -webkit-grabbing;
+  cursor: grabbing;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
 }
 
 .modal__wrapper {
@@ -3136,9 +3156,9 @@ dialog::backdrop {
   display: block;
   height: auto;
 }
-@media screen and (min-width: 769px) {
+@media screen and (max-width: 480px) {
   .modal__wrapper img {
-    width: 100%;
+    width: 600px;
   }
 }
 @media screen and (max-width: 768px) {
@@ -3146,9 +3166,9 @@ dialog::backdrop {
     width: 800px;
   }
 }
-@media screen and (max-width: 480px) {
+@media screen and (min-width: 769px) {
   .modal__wrapper img {
-    width: 600px;
+    width: 100%;
   }
 }
 

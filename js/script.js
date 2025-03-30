@@ -289,17 +289,6 @@ document.addEventListener("DOMContentLoaded", function () {
     if (dialog) {
       dialog.showModal();
       dialog.classList.add("js-show");
-
-      // scrollLeft の初期値確認用ログ
-      const modalContent = dialog.querySelector(".modal__content");
-      if (modalContent) {
-        console.log("[OPEN] scrollLeft:", modalContent.scrollLeft);
-
-        // スクロール中の状態を監視（デバッグ用）
-        modalContent.addEventListener("scroll", () => {
-          console.log("[SCROLL] scrollLeft:", modalContent.scrollLeft);
-        });
-      }
     }
   };
 
@@ -312,21 +301,20 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   };
 
-  // backdrop クリック時に閉じるのを無効化（一時対応）
-  // const handleBackdropClick = (event) => {
-  //   const dialog = event.currentTarget;
-  //   if (!event.target.closest(".modal__inner")) {
-  //     dialog.classList.remove("js-show");
-  //     dialog.close();
-  //   }
-  // };
+  const handleBackdropClick = (event) => {
+    const dialog = event.currentTarget;
+    if (!event.target.closest(".modal__inner")) {
+      dialog.classList.remove("js-show");
+      dialog.close();
+    }
+  };
 
   const setupModalEvents = () => {
     openButtons.forEach((btn) => btn.addEventListener("click", handleOpen));
     closeButtons.forEach((btn) => btn.addEventListener("click", handleClose));
-    // dialogs.forEach((dialog) =>
-    //   dialog.addEventListener("click", handleBackdropClick)
-    // );
+    dialogs.forEach((dialog) =>
+      dialog.addEventListener("click", handleBackdropClick)
+    );
     modalInitialized = true;
   };
 
@@ -335,9 +323,9 @@ document.addEventListener("DOMContentLoaded", function () {
     closeButtons.forEach((btn) =>
       btn.removeEventListener("click", handleClose)
     );
-    // dialogs.forEach((dialog) =>
-    //   dialog.removeEventListener("click", handleBackdropClick)
-    // );
+    dialogs.forEach((dialog) =>
+      dialog.removeEventListener("click", handleBackdropClick)
+    );
     modalInitialized = false;
   };
 
@@ -351,6 +339,40 @@ document.addEventListener("DOMContentLoaded", function () {
 
   checkAndUpdateModal();
   window.addEventListener("resize", checkAndUpdateModal);
+
+  // ====== ここからドラッグスクロール処理 ======
+  const modalInner = document.querySelector(".modal__inner");
+
+  if (!modalInner) return;
+
+  let isDown = false;
+  let startX;
+  let scrollLeft;
+
+  modalInner.addEventListener("mousedown", (e) => {
+    isDown = true;
+    modalInner.classList.add("is-dragging");
+    startX = e.pageX - modalInner.offsetLeft;
+    scrollLeft = modalInner.scrollLeft;
+  });
+
+  modalInner.addEventListener("mouseleave", () => {
+    isDown = false;
+    modalInner.classList.remove("is-dragging");
+  });
+
+  modalInner.addEventListener("mouseup", () => {
+    isDown = false;
+    modalInner.classList.remove("is-dragging");
+  });
+
+  modalInner.addEventListener("mousemove", (e) => {
+    if (!isDown) return;
+    e.preventDefault();
+    const x = e.pageX - modalInner.offsetLeft;
+    const walk = (x - startX) * 1.5;
+    modalInner.scrollLeft = scrollLeft - walk;
+  });
 });
 
 // =======================================

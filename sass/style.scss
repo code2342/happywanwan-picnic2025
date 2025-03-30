@@ -2767,11 +2767,15 @@ dialog {
     background: rgba(48, 48, 48, 0.4);
     backdrop-filter: blur(6px);
   }
+  &.modal__content {
+    overflow-x: auto; // ← 横スクロール有効化
+    overflow-y: auto;
+  }
 }
 .modal__content {
   opacity: 0;
   transition: opacity 0.3s ease-in-out;
-  width: min(600px, 95%);
+  // width: min(600px, 95%);
   max-height: 80vh;
   aspect-ratio: auto;
   background: transparent;
@@ -2790,40 +2794,48 @@ dialog {
   }
 }
 .modal__inner {
-  // display: flex;
-  // justify-content: center;
-  // align-items: center;
-  display: block;
-  width: fit-content;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   height: 100%;
   padding-inline: 10px;
   position: relative;
-  scroll-behavior: auto;
-  overscroll-behavior: contain;
+  width: max-content;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch; // iOSスムーズスクロール
   @include mq(md) {
-    overflow-x: auto;
+    // overflow-x: auto;
     // justify-content: flex-start;
-    min-width: 800px;
+    // min-width: 800px;
+    cursor: grab;
   }
   @include mq(sm) {
-    min-width: 600px;
+    // min-width: 600px;
+    touch-action: pan-x;
+  }
+  &.is-dragging {
+    cursor: grabbing;
+    user-select: none;
   }
 }
 .modal__wrapper {
   position: relative;
   display: inline-block;
-
   img {
     display: block;
     height: auto;
-    @media screen and (min-width: 769px) {
-      width: 100%;
+
+    @include mq(sm) {
+      width: 600px;
     }
+
     @include mq(md) {
       width: 800px;
     }
-    @include mq(sm) {
-      width: 600px;
+
+    @media screen and (min-width: 769px) {
+      width: 100%;
     }
   }
 }

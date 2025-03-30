@@ -90,7 +90,6 @@ textarea {
   color: unset;
   background-color: unset;
   border: unset;
-  overflow: unset;
 }
 body:has(dialog[open]) {
   overflow: hidden;
