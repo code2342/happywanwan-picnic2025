@@ -2817,9 +2817,9 @@ dialog {
   @include mq(md) {
     cursor: grab;
   }
-  @include mq(sm) {
-    touch-action: pan-x;
-  }
+  // @include mq(sm) {
+  //   touch-action: pan-x;
+  // }
   &.is-dragging {
     cursor: grabbing;
     user-select: none;

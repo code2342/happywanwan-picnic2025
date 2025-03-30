@@ -3113,12 +3113,6 @@ dialog::backdrop {
     cursor: grab;
   }
 }
-@media screen and (max-width: 480px) {
-  .modal__inner {
-    -ms-touch-action: pan-x;
-        touch-action: pan-x;
-  }
-}
 .modal__inner.is-dragging {
   cursor: -webkit-grabbing;
   cursor: grabbing;
