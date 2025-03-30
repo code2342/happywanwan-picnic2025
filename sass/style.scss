@@ -2775,6 +2775,16 @@ dialog {
   max-height: 80vh;
   aspect-ratio: auto;
   background: transparent;
+  overflow-x: auto;
+  @include mq(md) {
+    width: 100vw;
+    max-height: 90vh;
+    padding: 10px;
+  }
+
+  @include mq(sm) {
+    max-height: 95vh;
+  }
   &.js-show {
     opacity: 1;
   }
@@ -2786,6 +2796,14 @@ dialog {
   height: 100%;
   padding-inline: 10px;
   position: relative;
+  @include mq(md) {
+    overflow-x: auto;
+    justify-content: flex-start;
+    min-width: 800px;
+  }
+  @include mq(sm) {
+    min-width: 600px;
+  }
 }
 .modal__wrapper {
   position: relative;
@@ -2793,8 +2811,16 @@ dialog {
 
   img {
     display: block;
-    max-width: 100%;
     height: auto;
+    @media screen and (min-width: 769px) {
+      width: 100%;
+    }
+    @include mq(md) {
+      width: 800px;
+    }
+    @include mq(sm) {
+      width: 600px;
+    }
   }
 }
 .modal__close-btn {
