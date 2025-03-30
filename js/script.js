@@ -275,90 +275,53 @@ const swiper = new Swiper("#js-gallery-swiper", {
 //   checkAndUpdateModal();
 //   window.addEventListener("resize", checkAndUpdateModal);
 // });
-document.addEventListener("DOMContentLoaded", function () {
-  const isMobile = () => window.innerWidth <= 768;
-  let modalInitialized = false;
-
+document.addEventListener("DOMContentLoaded", () => {
   const openButtons = document.querySelectorAll(".modal__img");
   const closeButtons = document.querySelectorAll(".modal__close-btn");
   const dialogs = document.querySelectorAll("dialog");
 
-  const handleOpen = (event) => {
-    const dialogId = event.currentTarget.getAttribute("data-dialog");
-    const dialog = document.getElementById(dialogId);
-    if (dialog) {
-      dialog.showModal();
-      dialog.classList.add("js-show");
-    }
-  };
+  openButtons.forEach((btn) => {
+    btn.addEventListener("click", (e) => {
+      const dialogId = e.currentTarget.getAttribute("data-dialog");
+      const dialog = document.getElementById(dialogId);
+      if (dialog) {
+        dialog.showModal();
+        dialog.classList.add("js-show");
+      }
+    });
+  });
 
-  const handleClose = (event) => {
-    const dialog = event.currentTarget.closest("dialog");
-    if (dialog) {
-      dialog.classList.remove("js-show");
-      dialog.close();
-      document.activeElement.blur();
-    }
-  };
+  closeButtons.forEach((btn) => {
+    btn.addEventListener("click", (e) => {
+      const dialog = e.currentTarget.closest("dialog");
+      if (dialog) {
+        dialog.classList.remove("js-show");
+        dialog.close();
+      }
+    });
+  });
 
-  const handleBackdropClick = (event) => {
-    const dialog = event.currentTarget;
-    if (!event.target.closest(".modal__inner")) {
-      dialog.classList.remove("js-show");
-      dialog.close();
-    }
-  };
+  dialogs.forEach((dialog) => {
+    dialog.addEventListener("click", (e) => {
+      if (!e.target.closest(".modal__inner")) {
+        dialog.classList.remove("js-show");
+        dialog.close();
+      }
+    });
+  });
 
-  const setupModalEvents = () => {
-    openButtons.forEach((btn) => btn.addEventListener("click", handleOpen));
-    closeButtons.forEach((btn) => btn.addEventListener("click", handleClose));
-    dialogs.forEach((dialog) =>
-      dialog.addEventListener("click", handleBackdropClick)
-    );
-    modalInitialized = true;
-  };
-
-  const removeModalEvents = () => {
-    openButtons.forEach((btn) => btn.removeEventListener("click", handleOpen));
-    closeButtons.forEach((btn) =>
-      btn.removeEventListener("click", handleClose)
-    );
-    dialogs.forEach((dialog) =>
-      dialog.removeEventListener("click", handleBackdropClick)
-    );
-    modalInitialized = false;
-  };
-
-  const checkAndUpdateModal = () => {
-    if (isMobile() && !modalInitialized) {
-      setupModalEvents();
-    } else if (!isMobile() && modalInitialized) {
-      removeModalEvents();
-    }
-  };
-
-  checkAndUpdateModal();
-  window.addEventListener("resize", checkAndUpdateModal);
-
-  // ====== ここからドラッグスクロール処理 ======
+  // ドラッグスクロール
   const modalInner = document.querySelector(".modal__inner");
-
   if (!modalInner) return;
 
   let isDown = false;
-  let startX;
-  let scrollLeft;
+  let startX, scrollLeft;
 
   modalInner.addEventListener("mousedown", (e) => {
     isDown = true;
-    modalInner.classList.add("is-dragging");
-    startX = e.pageX - modalInner.offsetLeft;
+    startX = e.pageX;
     scrollLeft = modalInner.scrollLeft;
-  });
-
-  modalInner.addEventListener("mouseleave", () => {
-    isDown = false;
-    modalInner.classList.remove("is-dragging");
+    modalInner.classList.add("is-dragging");
   });
 
   modalInner.addEventListener("mouseup", () => {
@@ -366,12 +329,26 @@ document.addEventListener("DOMContentLoaded", function () {
     modalInner.classList.remove("is-dragging");
   });
 
+  modalInner.addEventListener("mouseleave", () => {
+    isDown = false;
+    modalInner.classList.remove("is-dragging");
+  });
+
   modalInner.addEventListener("mousemove", (e) => {
     if (!isDown) return;
     e.preventDefault();
-    const x = e.pageX - modalInner.offsetLeft;
+    const x = e.pageX;
     const walk = (x - startX) * 1.5;
     modalInner.scrollLeft = scrollLeft - walk;
+  });
+});
+
+document.querySelectorAll(".modal__img").forEach((btn) => {
+  btn.addEventListener("click", () => {
+    // 画像クリック直後にフォーカスを外すことでハイライト抑制
+    setTimeout(() => {
+      document.activeElement.blur();
+    }, 50); // Safariでも安定する微妙なタイミング
   });
 });
 

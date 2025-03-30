@@ -3029,8 +3029,14 @@ a:hover {
 }
 
 .modal__img {
-  outline: none;
   position: relative;
+  -webkit-tap-highlight-color: transparent;
+  -moz-outline-style: none;
+  outline: none;
+  -moz-user-select: none;
+       user-select: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
 }
 @media screen and (max-width: 768px) {
   .modal__img::after {
@@ -3056,26 +3062,20 @@ a:hover {
 }
 
 dialog::-ms-backdrop {
-  opacity: 0;
+  opacity: 1;
+  background: rgba(48, 48, 48, 0.4);
+  backdrop-filter: blur(6px);
   -ms-transition: background 0.3s ease-in-out;
   transition: background 0.3s ease-in-out;
 }
 
 dialog::backdrop {
-  opacity: 0;
-  -webkit-transition: background 0.3s ease-in-out;
-  transition: background 0.3s ease-in-out;
-}
-dialog::-ms-backdrop {
-  opacity: 1;
-  background: rgba(48, 48, 48, 0.4);
-  backdrop-filter: blur(6px);
-}
-dialog::backdrop {
   opacity: 1;
   background: rgba(48, 48, 48, 0.4);
   -webkit-backdrop-filter: blur(6px);
           backdrop-filter: blur(6px);
+  -webkit-transition: background 0.3s ease-in-out;
+  transition: background 0.3s ease-in-out;
 }
 dialog.modal__content {
   overflow-x: auto;
@@ -3089,7 +3089,6 @@ dialog.modal__content {
   max-height: 80vh;
   aspect-ratio: auto;
   background: transparent;
-  overflow-x: auto;
 }
 @media screen and (max-width: 768px) {
   .modal__content {
@@ -3108,17 +3107,10 @@ dialog.modal__content {
 }
 
 .modal__inner {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
+  display: block;
   height: 100%;
-  padding-inline: 10px;
+  padding-block: 30px;
+  padding-inline: 20px;
   position: relative;
   width: -webkit-max-content;
   width: -moz-max-content;
@@ -3150,26 +3142,24 @@ dialog.modal__content {
 
 .modal__wrapper {
   position: relative;
-  display: inline-block;
+  width: -webkit-max-content;
+  width: -moz-max-content;
+  width: max-content;
+  height: auto;
 }
 .modal__wrapper img {
   display: block;
   height: auto;
+  width: 800px;
+  outline: none;
 }
 @media screen and (max-width: 480px) {
   .modal__wrapper img {
     width: 600px;
   }
 }
-@media screen and (max-width: 768px) {
-  .modal__wrapper img {
-    width: 800px;
-  }
-}
-@media screen and (min-width: 769px) {
-  .modal__wrapper img {
-    width: 100%;
-  }
+.modal__wrapper img:focus, .modal__wrapper img:focus-visible {
+  outline: none;
 }
 
 .modal__close-btn {

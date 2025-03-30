@@ -2730,8 +2730,13 @@ a {
   }
 }
 .modal__img {
-  outline: none;
   position: relative;
+  -webkit-tap-highlight-color: transparent; // iOS Safari用
+  -moz-outline-style: none; // Firefox用
+  outline: none;
+  user-select: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
   &::after {
     @include mq(md) {
       position: absolute;
@@ -2759,13 +2764,10 @@ a {
 }
 dialog {
   &::backdrop {
-    opacity: 0;
-    transition: background 0.3s ease-in-out;
-  }
-  &::backdrop {
     opacity: 1;
     background: rgba(48, 48, 48, 0.4);
     backdrop-filter: blur(6px);
+    transition: background 0.3s ease-in-out;
   }
   &.modal__content {
     overflow-x: auto; // ← 横スクロール有効化
@@ -2779,7 +2781,6 @@ dialog {
   max-height: 80vh;
   aspect-ratio: auto;
   background: transparent;
-  overflow-x: auto;
   @include mq(md) {
     width: 100vw;
     max-height: 90vh;
@@ -2794,11 +2795,13 @@ dialog {
   }
 }
 .modal__inner {
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  // display: flex;
+  // align-items: center;
+  // justify-content: center;
+  display: block;
   height: 100%;
-  padding-inline: 10px;
+  padding-block: 30px;
+  padding-inline: 20px;
   position: relative;
   width: max-content;
   overflow-x: auto;
@@ -2821,22 +2824,30 @@ dialog {
 }
 .modal__wrapper {
   position: relative;
-  display: inline-block;
+  // display: inline-block;
+  width: max-content;
+  height: auto;
   img {
     display: block;
     height: auto;
+    width: 800px;
+    outline: none;
 
     @include mq(sm) {
       width: 600px;
     }
-
-    @include mq(md) {
-      width: 800px;
+    &:focus,
+    &:focus-visible {
+      outline: none;
     }
 
-    @media screen and (min-width: 769px) {
-      width: 100%;
-    }
+    // @include mq(md) {
+    //   width: 800px;
+    // }
+
+    // @media screen and (min-width: 769px) {
+    //   width: 100%;
+    // }
   }
 }
 .modal__close-btn {
