@@ -3114,7 +3114,7 @@ dialog.modal__content {
   width: -webkit-fit-content;
   width: -moz-fit-content;
   width: fit-content;
-  overflow-x: auto;
+  overflow: scroll;
   scroll-behavior: smooth;
   -webkit-overflow-scrolling: touch;
   padding-block: 30px;
@@ -3154,25 +3154,20 @@ dialog.modal__content {
 .modal__wrapper img {
   display: block;
   height: auto;
-  width: 800px;
+  width: 100%;
   outline: none;
   pointer-events: none;
   -ms-touch-action: none;
       touch-action: none;
-}
-@media screen and (max-width: 480px) {
-  .modal__wrapper img {
-    width: 600px;
-  }
 }
 @media screen and (max-width: 768px) {
   .modal__wrapper img {
     width: 800px;
   }
 }
-@media screen and (min-width: 769px) {
+@media screen and (max-width: 480px) {
   .modal__wrapper img {
-    width: 100%;
+    width: 600px;
   }
 }
 .modal__wrapper img:focus, .modal__wrapper img:focus-visible {
