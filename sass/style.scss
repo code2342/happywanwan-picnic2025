@@ -2731,12 +2731,13 @@ a {
 }
 .modal__img {
   position: relative;
-  -webkit-tap-highlight-color: transparent; // iOS Safari用
-  -moz-outline-style: none; // Firefox用
+  -webkit-tap-highlight-color: transparent; // iOS対策
   outline: none;
+  -moz-outline-style: none;
   user-select: none;
   -webkit-user-select: none;
   -ms-user-select: none;
+  touch-action: manipulation;
   &::after {
     @include mq(md) {
       position: absolute;
@@ -2803,6 +2804,10 @@ dialog {
   scroll-behavior: smooth;
   -webkit-overflow-scrolling: touch;
   padding-block: 30px;
+  scrollbar-width: none;
+  &::-webkit-scrollbar {
+    display: none;
+  }
   @include mq(md) {
     // overflow-x: auto;
     // justify-content: flex-start;
@@ -2828,22 +2833,21 @@ dialog {
     height: auto;
     width: 800px;
     outline: none;
-
+    pointer-events: none;
+    touch-action: none;
     @include mq(sm) {
       width: 600px;
+    }
+    @include mq(md) {
+      width: 800px;
+    }
+    @media screen and (min-width: 769px) {
+      width: 100%;
     }
     &:focus,
     &:focus-visible {
       outline: none;
     }
-
-    // @include mq(md) {
-    //   width: 800px;
-    // }
-
-    // @media screen and (min-width: 769px) {
-    //   width: 100%;
-    // }
   }
 }
 .modal__close-btn {
