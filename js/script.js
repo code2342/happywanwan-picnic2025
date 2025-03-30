@@ -292,6 +292,7 @@ document.querySelectorAll(".modal__img").forEach((btn) => {
   btn.addEventListener("click", () => {
     setTimeout(() => {
       document.activeElement.blur();
+      window.getSelection()?.removeAllRanges(); // ← 選択も解除！
     }, 50);
   });
 });

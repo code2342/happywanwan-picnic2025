@@ -2731,12 +2731,13 @@ a {
 }
 .modal__img {
   position: relative;
-  -webkit-tap-highlight-color: transparent; // iOS Safari用
-  -moz-outline-style: none; // Firefox用
+  -webkit-tap-highlight-color: transparent; // iOS対策
   outline: none;
+  -moz-outline-style: none;
   user-select: none;
   -webkit-user-select: none;
   -ms-user-select: none;
+  touch-action: manipulation;
   &::after {
     @include mq(md) {
       position: absolute;
@@ -2828,21 +2829,18 @@ dialog {
     height: auto;
     width: 800px;
     outline: none;
-
     @include mq(sm) {
       width: 600px;
+    }
+    @include mq(md) {
+      width: 800px;
+    }
+    @media screen and (min-width: 769px) {
+      width: 100%;
     }
     &:focus,
     &:focus-visible {
       outline: none;
-    }
-
-    @include mq(md) {
-      width: 800px;
-    }
-
-    @media screen and (min-width: 769px) {
-      width: 100%;
     }
   }
 }
