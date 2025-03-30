@@ -3079,29 +3079,24 @@ dialog::backdrop {
   -webkit-transition: background 0.3s ease-in-out;
   transition: background 0.3s ease-in-out;
 }
-dialog.modal__content {
-  overflow-x: auto;
-  overflow-y: auto;
-}
 
 .modal__content {
   opacity: 1;
   -webkit-transition: opacity 0.3s ease-in-out;
   transition: opacity 0.3s ease-in-out;
-  aspect-ratio: auto;
+  width: 100%;
+  height: 100%;
+  padding: 60px 58px 68px 24px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
   background: transparent;
-}
-@media screen and (max-width: 768px) {
-  .modal__content {
-    width: 100vw;
-    max-height: 90vh;
-    padding: 20px;
-  }
-}
-@media screen and (max-width: 480px) {
-  .modal__content {
-    max-height: 95vh;
-  }
 }
 .modal__content.js-show {
   opacity: 1;
@@ -3109,16 +3104,16 @@ dialog.modal__content {
 
 .modal__inner {
   display: block;
-  height: 100%;
-  position: relative;
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
   width: -webkit-fit-content;
   width: -moz-fit-content;
   width: fit-content;
-  overflow: scroll;
+  position: relative;
   scroll-behavior: smooth;
-  -webkit-overflow-scrolling: touch;
-  padding-block: 30px;
-  scrollbar-width: none;
+  margin-left: 0;
+  margin-right: auto;
 }
 .modal__inner::-webkit-scrollbar {
   display: none;
@@ -3127,12 +3122,6 @@ dialog.modal__content {
   .modal__inner {
     cursor: -webkit-grab;
     cursor: grab;
-  }
-}
-@media screen and (max-width: 480px) {
-  .modal__inner {
-    -ms-touch-action: pan-x;
-        touch-action: pan-x;
   }
 }
 .modal__inner.is-dragging {
@@ -3146,10 +3135,9 @@ dialog.modal__content {
 
 .modal__wrapper {
   position: relative;
-  width: -webkit-max-content;
-  width: -moz-max-content;
-  width: max-content;
+  width: 100%;
   height: auto;
+  width: 600px;
 }
 .modal__wrapper img {
   display: block;
@@ -3163,11 +3151,6 @@ dialog.modal__content {
 @media screen and (max-width: 768px) {
   .modal__wrapper img {
     width: 800px;
-  }
-}
-@media screen and (max-width: 480px) {
-  .modal__wrapper img {
-    width: 600px;
   }
 }
 .modal__wrapper img:focus, .modal__wrapper img:focus-visible {

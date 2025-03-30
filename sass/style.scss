@@ -2770,50 +2770,60 @@ dialog {
     backdrop-filter: blur(6px);
     transition: background 0.3s ease-in-out;
   }
-  &.modal__content {
-    overflow-x: auto; // ← 横スクロール有効化
-    overflow-y: auto;
-  }
+  // &.modal__content {
+  //   overflow-x: auto; // ← 横スクロール有効化
+  //   overflow-y: auto;
+  // }
 }
 .modal__content {
   opacity: 1;
   transition: opacity 0.3s ease-in-out;
+  width: 100%;
+  height: 100%;
+  padding: 60px 58px 68px 24px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
   // width: min(800px, 95%);
   // max-height: 80vh;
-  aspect-ratio: auto;
+  // aspect-ratio: auto;
   background: transparent;
-  @include mq(md) {
-    width: 100vw;
-    max-height: 90vh;
-    padding: 20px;
-  }
+  // @include mq(md) {
+  //   width: 100vw;
+  //   max-height: 90vh;
+  //   padding: 20px;
+  // }
 
-  @include mq(sm) {
-    max-height: 95vh;
-  }
+  // @include mq(sm) {
+  //   max-height: 95vh;
+  // }
   &.js-show {
     opacity: 1;
   }
 }
 .modal__inner {
   display: block;
-  height: 100%;
-  position: relative;
+  height: fit-content;
   width: fit-content;
-  overflow: scroll;
+  position: relative;
   scroll-behavior: smooth;
-  -webkit-overflow-scrolling: touch;
-  padding-block: 30px;
-  scrollbar-width: none;
+  margin-left: 0;
+  margin-right: auto;
+  // width: fit-content;
+  // overflow: scroll;
+  // scroll-behavior: smooth;
+  // -webkit-overflow-scrolling: touch;
+  // padding-block: 30px;
+  // scrollbar-width: none;
   &::-webkit-scrollbar {
     display: none;
   }
   @include mq(md) {
     cursor: grab;
   }
-  @include mq(sm) {
-    touch-action: pan-x;
-  }
+  // @include mq(sm) {
+  //   touch-action: pan-x;
+  // }
   &.is-dragging {
     cursor: grabbing;
     user-select: none;
@@ -2821,8 +2831,10 @@ dialog {
 }
 .modal__wrapper {
   position: relative;
-  width: max-content;
+  // width: max-content;
+  width: 100%;
   height: auto;
+  width: 600px;
   img {
     display: block;
     height: auto;
@@ -2833,9 +2845,9 @@ dialog {
     @include mq(md) {
       width: 800px;
     }
-    @include mq(sm) {
-      width: 600px;
-    }
+    // @include mq(sm) {
+    //   width: 600px;
+    // }
     &:focus,
     &:focus-visible {
       outline: none;
