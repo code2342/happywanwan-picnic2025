@@ -3159,6 +3159,16 @@ dialog.modal__content {
 .modal__wrapper img:focus, .modal__wrapper img:focus-visible {
   outline: none;
 }
+@media screen and (max-width: 768px) {
+  .modal__wrapper img {
+    width: 800px;
+  }
+}
+@media screen and (min-width: 769px) {
+  .modal__wrapper img {
+    width: 100%;
+  }
+}
 
 .modal__close-btn {
   position: absolute;

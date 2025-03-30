@@ -222,7 +222,6 @@ document.addEventListener("DOMContentLoaded", () => {
       if (dialog) {
         dialog.showModal();
         dialog.classList.add("js-show");
-
         // ✅ 描画が完了するまで2回待ってから scrollLeft = 0 を実行
         requestAnimationFrame(() => {
           requestAnimationFrame(() => {

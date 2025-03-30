@@ -2837,13 +2837,13 @@ dialog {
       outline: none;
     }
 
-    // @include mq(md) {
-    //   width: 800px;
-    // }
+    @include mq(md) {
+      width: 800px;
+    }
 
-    // @media screen and (min-width: 769px) {
-    //   width: 100%;
-    // }
+    @media screen and (min-width: 769px) {
+      width: 100%;
+    }
   }
 }
 .modal__close-btn {
