@@ -223,11 +223,15 @@ document.addEventListener("DOMContentLoaded", () => {
         dialog.showModal();
         dialog.classList.add("js-show");
 
-        // モーダル内のスクロール位置を左端にリセット
-        const modalInner = dialog.querySelector(".modal__inner");
-        if (modalInner) {
-          modalInner.scrollLeft = 0;
-        }
+        // ✅ 描画が完了するまで2回待ってから scrollLeft = 0 を実行
+        requestAnimationFrame(() => {
+          requestAnimationFrame(() => {
+            const modalInner = dialog.querySelector(".modal__inner");
+            if (modalInner) {
+              modalInner.scrollLeft = 0;
+            }
+          });
+        });
       }
     });
   });

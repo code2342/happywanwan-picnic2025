@@ -3083,10 +3083,9 @@ dialog.modal__content {
 }
 
 .modal__content {
-  opacity: 0;
+  opacity: 1;
   -webkit-transition: opacity 0.3s ease-in-out;
   transition: opacity 0.3s ease-in-out;
-  max-height: 80vh;
   aspect-ratio: auto;
   background: transparent;
 }
@@ -3094,7 +3093,7 @@ dialog.modal__content {
   .modal__content {
     width: 100vw;
     max-height: 90vh;
-    padding: 10px;
+    padding: 20px;
   }
 }
 @media screen and (max-width: 480px) {
@@ -3109,15 +3108,14 @@ dialog.modal__content {
 .modal__inner {
   display: block;
   height: 100%;
-  padding-block: 30px;
-  padding-inline: 20px;
   position: relative;
-  width: -webkit-max-content;
-  width: -moz-max-content;
-  width: max-content;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
   overflow-x: auto;
   scroll-behavior: smooth;
   -webkit-overflow-scrolling: touch;
+  padding-block: 30px;
 }
 @media screen and (max-width: 768px) {
   .modal__inner {

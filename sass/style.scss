@@ -2775,16 +2775,16 @@ dialog {
   }
 }
 .modal__content {
-  opacity: 0;
+  opacity: 1;
   transition: opacity 0.3s ease-in-out;
-  // width: min(600px, 95%);
-  max-height: 80vh;
+  // width: min(800px, 95%);
+  // max-height: 80vh;
   aspect-ratio: auto;
   background: transparent;
   @include mq(md) {
     width: 100vw;
     max-height: 90vh;
-    padding: 10px;
+    padding: 20px;
   }
 
   @include mq(sm) {
@@ -2795,18 +2795,14 @@ dialog {
   }
 }
 .modal__inner {
-  // display: flex;
-  // align-items: center;
-  // justify-content: center;
   display: block;
   height: 100%;
-  padding-block: 30px;
-  padding-inline: 20px;
   position: relative;
-  width: max-content;
+  width: fit-content;
   overflow-x: auto;
   scroll-behavior: smooth;
-  -webkit-overflow-scrolling: touch; // iOSスムーズスクロール
+  -webkit-overflow-scrolling: touch;
+  padding-block: 30px;
   @include mq(md) {
     // overflow-x: auto;
     // justify-content: flex-start;
