@@ -850,7 +850,7 @@ a:hover {
 
 .news__link {
   width: 100%;
-  padding-block: 19px 15px;
+  padding-block: 18px 15px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -978,7 +978,7 @@ a:hover {
   display: block;
   padding-inline: 2px;
   border-bottom: 1px solid #000;
-  margin-top: 8px;
+  margin-top: 3px;
   display: inline-block;
 }
 @media screen and (max-width: 768px) {
@@ -3081,6 +3081,11 @@ a:hover {
 .modal__wrapper {
   height: auto;
   width: 800px;
+}
+@media screen and (max-width: 480px) {
+  .modal__wrapper {
+    width: 600px;
+  }
 }
 .modal__wrapper img {
   aspect-ratio: 800/800;

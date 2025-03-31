@@ -210,131 +210,6 @@ const swiper = new Swiper("#js-gallery-swiper", {
 // =======================================
 // モーダル
 // =======================================
-// document.addEventListener("DOMContentLoaded", () => {
-//   const isMobile = () => window.innerWidth <= 768;
-
-//   const openButtons = document.querySelectorAll(".modal__img");
-//   const closeButtons = document.querySelectorAll(".modal__close-btn");
-//   const dialogs = document.querySelectorAll("dialog");
-
-//   if (isMobile()) {
-//     openButtons.forEach((btn) => {
-//       btn.addEventListener("click", (e) => {
-//         const dialogId = e.currentTarget.getAttribute("data-dialog");
-//         const dialog = document.getElementById(dialogId);
-//         if (dialog) {
-//           dialog.showModal();
-//           dialog.classList.add("js-show");
-
-//           const modalInner = dialog.querySelector(".modal__inner");
-//           const modalImg = dialog.querySelector(".modal__wrapper img");
-
-//           if (modalInner && modalImg) {
-//             // 画像読み込み後に scrollLeft = 0
-//             if (modalImg.complete) {
-//               requestAnimationFrame(() => {
-//                 requestAnimationFrame(() => {
-//                   modalInner.scrollLeft = 0;
-//                 });
-//               });
-//             } else {
-//               modalImg.onload = () => {
-//                 modalInner.scrollLeft = 0;
-//               };
-//             }
-//           }
-//         }
-//       });
-//     });
-
-//     closeButtons.forEach((btn) => {
-//       btn.addEventListener("click", (e) => {
-//         const dialog = e.currentTarget.closest("dialog");
-//         if (dialog) {
-//           dialog.classList.remove("js-show");
-//           dialog.close();
-//         }
-//       });
-//     });
-
-//     dialogs.forEach((dialog) => {
-//       dialog.addEventListener("click", (e) => {
-//         if (!e.target.closest(".modal__inner")) {
-//           dialog.classList.remove("js-show");
-//           dialog.close();
-//         }
-//       });
-//     });
-
-//     // ドラッグスクロール（モバイルのみ）
-//     const modalInner = document.querySelector(".modal__inner");
-//     if (modalInner) {
-//       let isDown = false;
-//       let startX, scrollLeft;
-
-//       modalInner.addEventListener("mousedown", (e) => {
-//         isDown = true;
-//         startX = e.pageX;
-//         scrollLeft = modalInner.scrollLeft;
-//         modalInner.classList.add("is-dragging");
-//       });
-
-//       modalInner.addEventListener("mouseup", () => {
-//         isDown = false;
-//         modalInner.classList.remove("is-dragging");
-//       });
-
-//       modalInner.addEventListener("mouseleave", () => {
-//         isDown = false;
-//         modalInner.classList.remove("is-dragging");
-//       });
-
-//       modalInner.addEventListener("mousemove", (e) => {
-//         if (!isDown) return;
-//         e.preventDefault();
-//         const x = e.pageX;
-//         const walk = (x - startX) * 1.5;
-//         modalInner.scrollLeft = scrollLeft - walk;
-//       });
-//     }
-//   }
-
-//   // ハイライト防止（画像クリック時にフォーカス外す）
-//   document.querySelectorAll(".modal__img").forEach((btn) => {
-//     btn.addEventListener("click", () => {
-//       setTimeout(() => {
-//         document.activeElement.blur();
-//         window.getSelection()?.removeAllRanges();
-//       }, 50);
-//     });
-//   });
-// });
-
-// // =======================================
-// // スムーススクロール
-// // =======================================
-// jQuery('a[href^="#"]').on("click", function (e) {
-//   const speed = 1000;
-//   const id = jQuery(this).attr("href");
-//   const target = jQuery("#" === id ? "html" : id);
-//   const position = jQuery(target).offset().top - 50; // Subtracted 50px from the position
-
-//   jQuery("html,body").animate(
-//     {
-//       scrollTop: position,
-//     },
-//     speed,
-//     "swing" //swing or linear
-//   );
-// });
-
-// jQuery(window).on("scroll", function () {
-//   if (100 < jQuery(window).scrollTop()) {
-//     jQuery("#js-pagetop").addClass("is-show");
-//   } else {
-//     jQuery("#js-pagetop").removeClass("is-show");
-//   }
-// });
 document.addEventListener("DOMContentLoaded", function () {
   // 必要な要素を取得
   const modalTrigger = document.querySelector(".modal__trigger");
@@ -345,14 +220,18 @@ document.addEventListener("DOMContentLoaded", function () {
   // モーダルを開く関数
   function openModal() {
     modalContent.style.display = "flex";
-    modalContent.style.justifyContent = "center";
-    modalContent.style.alignItems = "center";
+    modalContent.style.justifyContent = "flex-start";
+    modalContent.style.alignItems = "flex-start";
+    modalContent.style.paddingLeft = "20px"; // 左側に余白を作って左寄せに
+    modalContent.style.paddingTop = "60px"; // 上部に60pxの余白を追加
     document.body.style.overflow = "hidden"; // 背景のスクロールを無効化
   }
 
   // モーダルを閉じる関数
   function closeModal() {
     modalContent.style.display = "none";
+    modalContent.style.paddingLeft = ""; // 左余白をリセット
+    modalContent.style.paddingTop = ""; // 上部余白をリセット
     document.body.style.overflow = ""; // 背景のスクロールを再度有効化
 
     // ドラッグ状態をリセット
@@ -471,6 +350,33 @@ document.addEventListener("DOMContentLoaded", function () {
 
   observer.observe(modalContent, { attributes: true });
 });
+
+// =======================================
+// スムーススクロール
+// =======================================
+jQuery('a[href^="#"]').on("click", function (e) {
+  const speed = 1000;
+  const id = jQuery(this).attr("href");
+  const target = jQuery("#" === id ? "html" : id);
+  const position = jQuery(target).offset().top - 50; // Subtracted 50px from the position
+
+  jQuery("html,body").animate(
+    {
+      scrollTop: position,
+    },
+    speed,
+    "swing" //swing or linear
+  );
+});
+
+jQuery(window).on("scroll", function () {
+  if (100 < jQuery(window).scrollTop()) {
+    jQuery("#js-pagetop").addClass("is-show");
+  } else {
+    jQuery("#js-pagetop").removeClass("is-show");
+  }
+});
+
 // =======================================
 // タイピングアニメーション
 // =======================================

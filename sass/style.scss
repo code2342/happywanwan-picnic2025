@@ -809,7 +809,7 @@ a {
 
 .news__link {
   width: 100%;
-  padding-block: 19px 15px;
+  padding-block: 18px 15px;
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -911,7 +911,7 @@ a {
   display: block;
   padding-inline: 2px;
   border-bottom: 1px solid #000;
-  margin-top: 8px;
+  margin-top: 3px;
   display: inline-block;
 
   @include mq(md) {
@@ -2773,6 +2773,9 @@ a {
 .modal__wrapper {
   height: auto;
   width: 800px;
+  @include mq(sm) {
+    width: 600px;
+  }
   img {
     aspect-ratio: 800/800;
     object-fit: contain;
