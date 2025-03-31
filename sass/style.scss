@@ -2704,7 +2704,6 @@ a {
       calc(68px + (250 - 68) * ((100vw - 480px) / (1440 - 480))),
       250px
     );
-    z-index: 30;
     background: url("../img/map-dog.png") no-repeat center / contain;
     pointer-events: none;
     @include mq(xl) {
@@ -2729,32 +2728,18 @@ a {
     }
   }
 }
-.modal__img {
+.map__img {
   position: relative;
-  -webkit-tap-highlight-color: transparent; // iOS対策
-  outline: none;
-  -moz-outline-style: none;
-  user-select: none;
-  -webkit-user-select: none;
-  -ms-user-select: none;
-  touch-action: manipulation;
   &::after {
     @include mq(md) {
       position: absolute;
       content: "";
-      position: absolute;
       right: -18px;
       top: -20px;
-
       width: 36px;
       height: 36px;
-      z-index: 20;
       background: url("../img/map-lupe.png") no-repeat center / contain;
     }
-  }
-  &:focus,
-  &:focus-visible {
-    outline: none;
   }
   img {
     display: block;
@@ -2763,95 +2748,34 @@ a {
     height: auto;
   }
 }
-dialog {
-  &::backdrop {
-    opacity: 1;
-    background: rgba(48, 48, 48, 0.4);
-    backdrop-filter: blur(6px);
-    transition: background 0.3s ease-in-out;
-  }
-  // &.modal__content {
-  //   overflow-x: auto; // ← 横スクロール有効化
-  //   overflow-y: auto;
-  // }
-}
+
 .modal__content {
-  opacity: 1;
-  transition: opacity 0.3s ease-in-out;
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 10;
   width: 100%;
   height: 100%;
-  padding: 60px 58px 68px 24px;
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
-  // width: min(800px, 95%);
-  // max-height: 80vh;
-  // aspect-ratio: auto;
-  background: transparent;
-  // @include mq(md) {
-  //   width: 100vw;
-  //   max-height: 90vh;
-  //   padding: 20px;
-  // }
-
-  // @include mq(sm) {
-  //   max-height: 95vh;
-  // }
-  &.js-show {
-    opacity: 1;
-  }
+  background: rgba(48, 48, 48, 0.4);
+  overflow: auto;
 }
 .modal__inner {
-  display: block;
-  height: fit-content;
   width: fit-content;
+  height: auto;
   position: relative;
-  scroll-behavior: smooth;
-  margin-left: 0;
-  margin-right: auto;
-  // width: fit-content;
-  // overflow: scroll;
-  // scroll-behavior: smooth;
-  // -webkit-overflow-scrolling: touch;
-  // padding-block: 30px;
-  // scrollbar-width: none;
-  &::-webkit-scrollbar {
-    display: none;
-  }
-  @include mq(md) {
-    cursor: grab;
-  }
-  // @include mq(sm) {
-  //   touch-action: pan-x;
-  // }
+  cursor: grab;
   &.is-dragging {
     cursor: grabbing;
     user-select: none;
   }
 }
 .modal__wrapper {
-  position: relative;
-  // width: max-content;
-  width: 100%;
   height: auto;
-  width: 600px;
+  width: 800px;
   img {
-    display: block;
-    height: auto;
-    width: 100%;
-    outline: none;
-    pointer-events: none;
-    touch-action: none;
-    @include mq(md) {
-      width: 800px;
-    }
-    // @include mq(sm) {
-    //   width: 600px;
-    // }
-    &:focus,
-    &:focus-visible {
-      outline: none;
-    }
+    aspect-ratio: 800/800;
+    object-fit: contain;
   }
 }
 .modal__close-btn {
