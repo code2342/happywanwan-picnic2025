@@ -850,7 +850,7 @@ a:hover {
 
 .news__link {
   width: 100%;
-  padding-block: 19px 15px;
+  padding-block: 18px 15px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -978,7 +978,7 @@ a:hover {
   display: block;
   padding-inline: 2px;
   border-bottom: 1px solid #000;
-  margin-top: 8px;
+  margin-top: 3px;
   display: inline-block;
 }
 @media screen and (max-width: 768px) {
@@ -2993,7 +2993,6 @@ a:hover {
   bottom: 169px;
   width: clamp(64px, 64px + 166 * (100vw - 480px) / 960, 230px);
   height: clamp(68px, 68px + 182 * (100vw - 480px) / 960, 250px);
-  z-index: 30;
   background: url("../img/map-dog.png") no-repeat center/contain;
   pointer-events: none;
 }
@@ -3028,101 +3027,47 @@ a:hover {
   }
 }
 
-.modal__img {
+.map__img {
   position: relative;
-  -webkit-tap-highlight-color: transparent;
-  outline: none;
-  -moz-outline-style: none;
-  -moz-user-select: none;
-       user-select: none;
-  -webkit-user-select: none;
-  -ms-user-select: none;
-  -ms-touch-action: manipulation;
-      touch-action: manipulation;
 }
 @media screen and (max-width: 768px) {
-  .modal__img::after {
+  .map__img::after {
     position: absolute;
     content: "";
-    position: absolute;
     right: -18px;
     top: -20px;
     width: 36px;
     height: 36px;
-    z-index: 20;
     background: url("../img/map-lupe.png") no-repeat center/contain;
   }
 }
-.modal__img:focus, .modal__img:focus-visible {
-  outline: none;
-}
-.modal__img img {
+.map__img img {
   display: block;
   max-width: 800px;
   width: 100%;
   height: auto;
 }
 
-dialog::-ms-backdrop {
-  opacity: 1;
-  background: rgba(48, 48, 48, 0.4);
-  backdrop-filter: blur(6px);
-  -ms-transition: background 0.3s ease-in-out;
-  transition: background 0.3s ease-in-out;
-}
-
-dialog::backdrop {
-  opacity: 1;
-  background: rgba(48, 48, 48, 0.4);
-  -webkit-backdrop-filter: blur(6px);
-          backdrop-filter: blur(6px);
-  -webkit-transition: background 0.3s ease-in-out;
-  transition: background 0.3s ease-in-out;
-}
-
 .modal__content {
-  opacity: 1;
-  -webkit-transition: opacity 0.3s ease-in-out;
-  transition: opacity 0.3s ease-in-out;
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 10;
   width: 100%;
   height: 100%;
-  padding: 60px 58px 68px 24px;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: start;
-      -ms-flex-pack: start;
-          justify-content: flex-start;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  background: transparent;
-}
-.modal__content.js-show {
-  opacity: 1;
+  background: rgba(48, 48, 48, 0.4);
+  overflow: auto;
 }
 
 .modal__inner {
-  display: block;
-  height: -webkit-fit-content;
-  height: -moz-fit-content;
-  height: fit-content;
   width: -webkit-fit-content;
   width: -moz-fit-content;
   width: fit-content;
+  height: auto;
   position: relative;
-  scroll-behavior: smooth;
-  margin-left: 0;
-  margin-right: auto;
-}
-.modal__inner::-webkit-scrollbar {
-  display: none;
-}
-@media screen and (max-width: 768px) {
-  .modal__inner {
-    cursor: -webkit-grab;
-    cursor: grab;
-  }
+  cursor: -webkit-grab;
+  cursor: grab;
 }
 .modal__inner.is-dragging {
   cursor: -webkit-grabbing;
@@ -3134,27 +3079,18 @@ dialog::backdrop {
 }
 
 .modal__wrapper {
-  position: relative;
-  width: 100%;
   height: auto;
-  width: 600px;
+  width: 800px;
 }
-.modal__wrapper img {
-  display: block;
-  height: auto;
-  width: 100%;
-  outline: none;
-  pointer-events: none;
-  -ms-touch-action: none;
-      touch-action: none;
-}
-@media screen and (max-width: 768px) {
-  .modal__wrapper img {
-    width: 800px;
+@media screen and (max-width: 480px) {
+  .modal__wrapper {
+    width: 600px;
   }
 }
-.modal__wrapper img:focus, .modal__wrapper img:focus-visible {
-  outline: none;
+.modal__wrapper img {
+  aspect-ratio: 800/800;
+  -o-object-fit: contain;
+     object-fit: contain;
 }
 
 .modal__close-btn {

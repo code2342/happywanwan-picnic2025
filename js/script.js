@@ -210,104 +210,145 @@ const swiper = new Swiper("#js-gallery-swiper", {
 // =======================================
 // モーダル
 // =======================================
-document.addEventListener("DOMContentLoaded", () => {
-  const isMobile = () => window.innerWidth <= 768;
+document.addEventListener("DOMContentLoaded", function () {
+  // 必要な要素を取得
+  const modalTrigger = document.querySelector(".modal__trigger");
+  const modalContent = document.querySelector(".modal__content");
+  const modalCloseBtn = document.querySelector(".modal__close-btn");
+  const modalInner = document.querySelector(".modal__inner");
 
-  const openButtons = document.querySelectorAll(".modal__img");
-  const closeButtons = document.querySelectorAll(".modal__close-btn");
-  const dialogs = document.querySelectorAll("dialog");
-
-  if (isMobile()) {
-    openButtons.forEach((btn) => {
-      btn.addEventListener("click", (e) => {
-        const dialogId = e.currentTarget.getAttribute("data-dialog");
-        const dialog = document.getElementById(dialogId);
-        if (dialog) {
-          dialog.showModal();
-          dialog.classList.add("js-show");
-
-          const modalInner = dialog.querySelector(".modal__inner");
-          const modalImg = dialog.querySelector(".modal__wrapper img");
-
-          if (modalInner && modalImg) {
-            // 画像読み込み後に scrollLeft = 0
-            if (modalImg.complete) {
-              requestAnimationFrame(() => {
-                requestAnimationFrame(() => {
-                  modalInner.scrollLeft = 0;
-                });
-              });
-            } else {
-              modalImg.onload = () => {
-                modalInner.scrollLeft = 0;
-              };
-            }
-          }
-        }
-      });
-    });
-
-    closeButtons.forEach((btn) => {
-      btn.addEventListener("click", (e) => {
-        const dialog = e.currentTarget.closest("dialog");
-        if (dialog) {
-          dialog.classList.remove("js-show");
-          dialog.close();
-        }
-      });
-    });
-
-    dialogs.forEach((dialog) => {
-      dialog.addEventListener("click", (e) => {
-        if (!e.target.closest(".modal__inner")) {
-          dialog.classList.remove("js-show");
-          dialog.close();
-        }
-      });
-    });
-
-    // ドラッグスクロール（モバイルのみ）
-    const modalInner = document.querySelector(".modal__inner");
-    if (modalInner) {
-      let isDown = false;
-      let startX, scrollLeft;
-
-      modalInner.addEventListener("mousedown", (e) => {
-        isDown = true;
-        startX = e.pageX;
-        scrollLeft = modalInner.scrollLeft;
-        modalInner.classList.add("is-dragging");
-      });
-
-      modalInner.addEventListener("mouseup", () => {
-        isDown = false;
-        modalInner.classList.remove("is-dragging");
-      });
-
-      modalInner.addEventListener("mouseleave", () => {
-        isDown = false;
-        modalInner.classList.remove("is-dragging");
-      });
-
-      modalInner.addEventListener("mousemove", (e) => {
-        if (!isDown) return;
-        e.preventDefault();
-        const x = e.pageX;
-        const walk = (x - startX) * 1.5;
-        modalInner.scrollLeft = scrollLeft - walk;
-      });
-    }
+  // モーダルを開く関数
+  function openModal() {
+    modalContent.style.display = "flex";
+    modalContent.style.justifyContent = "flex-start";
+    modalContent.style.alignItems = "flex-start";
+    modalContent.style.paddingLeft = "20px"; // 左側に余白を作って左寄せに
+    modalContent.style.paddingTop = "60px"; // 上部に60pxの余白を追加
+    document.body.style.overflow = "hidden"; // 背景のスクロールを無効化
   }
 
-  // ハイライト防止（画像クリック時にフォーカス外す）
-  document.querySelectorAll(".modal__img").forEach((btn) => {
-    btn.addEventListener("click", () => {
-      setTimeout(() => {
-        document.activeElement.blur();
-        window.getSelection()?.removeAllRanges();
-      }, 50);
+  // モーダルを閉じる関数
+  function closeModal() {
+    modalContent.style.display = "none";
+    modalContent.style.paddingLeft = ""; // 左余白をリセット
+    modalContent.style.paddingTop = ""; // 上部余白をリセット
+    document.body.style.overflow = ""; // 背景のスクロールを再度有効化
+
+    // ドラッグ状態をリセット
+    isDragging = false;
+    modalInner.classList.remove("is-dragging");
+  }
+
+  // トリガーをクリックしたらモーダルを開く
+  modalTrigger.addEventListener("click", openModal);
+
+  // 閉じるボタンをクリックしたらモーダルを閉じる
+  modalCloseBtn.addEventListener("click", function (e) {
+    e.stopPropagation(); // イベントの伝播を停止
+    closeModal();
+  });
+
+  // モーダルの背景をクリックしたらモーダルを閉じる
+  modalContent.addEventListener("click", function (e) {
+    // モーダル内部のクリックでは閉じない (inner要素へのクリックイベントが伝播してきた場合は無視)
+    if (e.target === modalContent) {
+      closeModal();
+    }
+  });
+
+  // ドラッグ機能の実装
+  let isDragging = false;
+  let startX, startY, initialX, initialY;
+
+  // タッチイベントか通常のマウスイベントかを判断
+  const isTouchEvent = (e) => e.type.includes("touch");
+
+  // 座標を取得する関数
+  const getCoordinates = (e) => {
+    if (isTouchEvent(e)) {
+      return {
+        x: e.touches[0].clientX,
+        y: e.touches[0].clientY,
+      };
+    } else {
+      return {
+        x: e.clientX,
+        y: e.clientY,
+      };
+    }
+  };
+
+  // ドラッグ開始
+  const dragStart = (e) => {
+    const coords = getCoordinates(e);
+
+    startX = coords.x;
+    startY = coords.y;
+
+    // 現在の変形を取得
+    const transform = window
+      .getComputedStyle(modalInner)
+      .getPropertyValue("transform");
+
+    // 変形が 'none' でない場合、現在の座標を取得
+    if (transform !== "none") {
+      const matrix = new DOMMatrix(transform);
+      initialX = matrix.e;
+      initialY = matrix.f;
+    } else {
+      initialX = 0;
+      initialY = 0;
+    }
+
+    isDragging = true;
+    modalInner.classList.add("is-dragging");
+  };
+
+  // ドラッグ中
+  const drag = (e) => {
+    if (!isDragging) return;
+
+    e.preventDefault();
+    const coords = getCoordinates(e);
+
+    // 移動量を計算
+    const dx = coords.x - startX;
+    const dy = coords.y - startY;
+
+    // 新しい位置を設定
+    modalInner.style.transform = `translate(${initialX + dx}px, ${
+      initialY + dy
+    }px)`;
+  };
+
+  // ドラッグ終了
+  const dragEnd = () => {
+    isDragging = false;
+    modalInner.classList.remove("is-dragging");
+  };
+
+  // イベントリスナーを設定
+  modalInner.addEventListener("mousedown", dragStart);
+  modalInner.addEventListener("touchstart", dragStart);
+
+  document.addEventListener("mousemove", drag);
+  document.addEventListener("touchmove", drag, { passive: false });
+
+  document.addEventListener("mouseup", dragEnd);
+  document.addEventListener("touchend", dragEnd);
+
+  // モーダルが非表示の時はドラッグイベントを無効にする
+  const observer = new MutationObserver(function (mutations) {
+    mutations.forEach(function (mutation) {
+      if (mutation.attributeName === "style") {
+        if (modalContent.style.display === "none") {
+          modalInner.style.transform = "translate(0, 0)"; // 位置をリセット
+        }
+      }
     });
   });
+
+  observer.observe(modalContent, { attributes: true });
 });
 
 // =======================================
@@ -335,6 +376,7 @@ jQuery(window).on("scroll", function () {
     jQuery("#js-pagetop").removeClass("is-show");
   }
 });
+
 // =======================================
 // タイピングアニメーション
 // =======================================
