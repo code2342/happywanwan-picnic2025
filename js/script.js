@@ -217,8 +217,19 @@ document.addEventListener("DOMContentLoaded", function () {
   const modalCloseBtn = document.querySelector(".modal__close-btn");
   const modalInner = document.querySelector(".modal__inner");
 
+  // メディアクエリに基づいてモバイルかどうかを判定する関数
+  function isMobile() {
+    return window.matchMedia("(max-width: 768px)").matches;
+  }
+
   // モーダルを開く関数
   function openModal() {
+    // モバイルでない場合は何もしない
+    if (!isMobile()) {
+      console.log("モバイル環境以外ではモーダルを開きません");
+      return;
+    }
+
     modalContent.style.display = "flex";
     modalContent.style.justifyContent = "flex-start";
     modalContent.style.alignItems = "flex-start";
@@ -256,7 +267,15 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   });
 
-  // ドラッグ機能の実装
+  // ウィンドウのリサイズ時にモーダルの表示状態を更新
+  window.addEventListener("resize", function () {
+    if (!isMobile() && modalContent.style.display === "flex") {
+      // PCビューに切り替わった場合、モーダルを閉じる
+      closeModal();
+    }
+  });
+
+  // ドラッグ機能の実装（以下は元のコードと同じ）
   let isDragging = false;
   let startX, startY, initialX, initialY;
 
@@ -350,7 +369,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
   observer.observe(modalContent, { attributes: true });
 });
-
 // =======================================
 // スムーススクロール
 // =======================================
@@ -685,11 +703,214 @@ jQuery(function ($) {
 // =======================================
 // fv
 // =======================================
+// class TopAnimation1 {
+//   constructor() {
+//     if (document.querySelector("main .fv")) {
+//       this.waitImagesLoaded();
+//     }
+//   }
+
+//   waitImagesLoaded() {
+//     const images = document.querySelectorAll(".fv img");
+//     let loaded = 0;
+//     const total = images.length;
+
+//     if (total === 0) {
+//       this.opening();
+//       return;
+//     }
+
+//     images.forEach((img) => {
+//       if (img.complete) {
+//         loaded++;
+//         if (loaded === total) this.opening();
+//       } else {
+//         img.addEventListener("load", () => {
+//           loaded++;
+//           if (loaded === total) this.opening();
+//         });
+//       }
+//     });
+//   }
+
+//   opening() {
+//     const timeline1 = gsap.timeline();
+//     const el_text = document.querySelector(".fv__text");
+//     const el_logo = document.querySelector(".fv__logo");
+//     const el_date = document.querySelector(".fv__date");
+//     const el_bg1 = document.querySelector(".fv__bg1");
+//     const el_bg2 = document.querySelector(".fv__bg2");
+
+//     // 💡 より大きく動かす（参考サイトに合わせた初期位置）
+//     gsap.set(el_text, {
+//       opacity: 0,
+//       scale: 0.5,
+//       x: 200,
+//     });
+
+//     gsap.set(el_logo, {
+//       opacity: 0,
+//       scale: 0.5,
+//       y: 200,
+//     });
+
+//     gsap.set(el_date, {
+//       opacity: 0,
+//       scale: 0.5,
+//       x: -200,
+//     });
+
+//     gsap.set([el_bg1, el_bg2], {
+//       opacity: 0,
+//       scale: 0.5,
+//     });
+
+//     // アニメーション本体
+//     timeline1
+//       .to(
+//         el_text,
+//         {
+//           duration: 1,
+//           opacity: 1,
+//           scale: 1,
+//           x: 0,
+//           ease: "elastic.out(1,0.3)",
+//         },
+//         "+=0.2"
+//       )
+//       .to(
+//         el_logo,
+//         {
+//           duration: 1,
+//           opacity: 1,
+//           scale: 1,
+//           y: 0,
+//           ease: "elastic.out(1,0.3)",
+//         },
+//         "-=0.9"
+//       )
+//       .to(
+//         el_date,
+//         {
+//           duration: 1,
+//           opacity: 1,
+//           scale: 1,
+//           x: 0,
+//           ease: "elastic.out(1,0.3)",
+//         },
+//         "-=0.9"
+//       );
+
+//     if (window.innerWidth <= 850) {
+//       timeline1.to(
+//         [el_bg1, el_bg2],
+//         {
+//           duration: 2,
+//           opacity: 1,
+//           scale: 1,
+//           ease: "elastic.out(1,0.3)",
+//         },
+//         "-=0.9"
+//       );
+//     } else {
+//       timeline1
+//         .to(
+//           el_bg1,
+//           {
+//             duration: 2,
+//             opacity: 1,
+//             scale: 1,
+//             ease: "elastic.out(1,0.3)",
+//           },
+//           "-=1"
+//         )
+//         .to(
+//           el_bg2,
+//           {
+//             duration: 2,
+//             opacity: 1,
+//             scale: 1,
+//             ease: "elastic.out(1,0.3)",
+//           },
+//           "-=1.8"
+//         );
+//     }
+//   }
+// }
+
+// const init = () => {
+//   new TopAnimation1();
+// };
+
+// window.addEventListener("DOMContentLoaded", init);
+// =======================================
+// リサイズイベントでレイアウトを再計算
+// =======================================
+
+// window.addEventListener('resize', function() {
+//   // 強制的にレイアウトを再計算
+//   document.body.style.display = 'none';
+//   document.body.offsetHeight; // トリガー
+//   document.body.style.display = '';
+// });
+
+// let currentAnimation = null;
+
+// =======================================
+// fv - レスポンシブ対応改良版
+// =======================================
 class TopAnimation1 {
   constructor() {
+    this.cleanup();
     if (document.querySelector("main .fv")) {
-      this.waitImagesLoaded();
+      // FVにready状態を設定
+      document.querySelector(".fv").classList.add("animation-ready");
+      
+      if (isFirstAnimation) {
+        // 初回のみアニメーション実行
+        this.waitImagesLoaded();
+      } else {
+        // 2回目以降は直接表示
+        this.showElementsDirectly();
+      }
     }
+  }
+
+  showElementsDirectly() {
+    // アニメーションなしで直接表示
+    const elements = [".fv__text", ".fv__logo", ".fv__date", ".fv__bg1", ".fv__bg2"];
+    elements.forEach(selector => {
+      const el = document.querySelector(selector);
+      if (el) {
+        gsap.set(el, {
+          opacity: 1,
+          scale: 1,
+          x: 0,
+          y: 0,
+          clearProps: "transform"
+        });
+      }
+    });
+  }
+
+  cleanup() {
+    // 既存のGSAPアニメーションを完全にクリア
+    gsap.killTweensOf(".fv__text, .fv__logo, .fv__date, .fv__bg1, .fv__bg2");
+    
+    // 要素を軽くリセット（CSSと競合しないように）
+    const elements = [".fv__text", ".fv__logo", ".fv__date", ".fv__bg1", ".fv__bg2"];
+    elements.forEach(selector => {
+      const el = document.querySelector(selector);
+      if (el) {
+        // transform関連のみクリア
+        gsap.set(el, { 
+          clearProps: "transform,x,y,scale",
+          opacity: 0,
+          scale: 0.5,
+          force3D: true
+        });
+      }
+    });
   }
 
   waitImagesLoaded() {
@@ -716,112 +937,151 @@ class TopAnimation1 {
   }
 
   opening() {
-    const timeline1 = gsap.timeline();
-    const el_text = document.querySelector(".fv__text");
-    const el_logo = document.querySelector(".fv__logo");
-    const el_date = document.querySelector(".fv__date");
-    const el_bg1 = document.querySelector(".fv__bg1");
-    const el_bg2 = document.querySelector(".fv__bg2");
+    // 少し遅延を入れて確実に実行
+    setTimeout(() => {
+      const currentWidth = window.innerWidth;
+      const timeline1 = gsap.timeline();
+      const el_text = document.querySelector(".fv__text");
+      const el_logo = document.querySelector(".fv__logo");
+      const el_date = document.querySelector(".fv__date");
+      const el_bg1 = document.querySelector(".fv__bg1");
+      const el_bg2 = document.querySelector(".fv__bg2");
 
-    // 💡 より大きく動かす（参考サイトに合わせた初期位置）
-    gsap.set(el_text, {
-      opacity: 0,
-      scale: 0.5,
-      x: 200,
-    });
+      // 初期位置を確実に設定（既存CSSを尊重）
+      gsap.set(el_text, { 
+        opacity: 0, 
+        scale: 0.5, 
+        x: 200, 
+        force3D: true
+      });
+      gsap.set(el_logo, { 
+        opacity: 0, 
+        scale: 0.5, 
+        y: 200, 
+        force3D: true
+      });
+      gsap.set(el_date, { 
+        opacity: 0, 
+        scale: 0.5, 
+        x: -200, 
+        force3D: true
+      });
+      gsap.set([el_bg1, el_bg2], { 
+        opacity: 0, 
+        scale: 0.5, 
+        force3D: true
+      });
 
-    gsap.set(el_logo, {
-      opacity: 0,
-      scale: 0.5,
-      y: 200,
-    });
-
-    gsap.set(el_date, {
-      opacity: 0,
-      scale: 0.5,
-      x: -200,
-    });
-
-    gsap.set([el_bg1, el_bg2], {
-      opacity: 0,
-      scale: 0.5,
-    });
-
-    // アニメーション本体
-    timeline1
-      .to(
-        el_text,
-        {
+      // アニメーション実行
+      timeline1
+        .to(el_text, {
           duration: 1,
           opacity: 1,
           scale: 1,
           x: 0,
           ease: "elastic.out(1,0.3)",
-        },
-        "+=0.2"
-      )
-      .to(
-        el_logo,
-        {
+        }, "+=0.2")
+        .to(el_logo, {
           duration: 1,
           opacity: 1,
           scale: 1,
           y: 0,
           ease: "elastic.out(1,0.3)",
-        },
-        "-=0.9"
-      )
-      .to(
-        el_date,
-        {
+        }, "-=0.9")
+        .to(el_date, {
           duration: 1,
           opacity: 1,
           scale: 1,
           x: 0,
           ease: "elastic.out(1,0.3)",
-        },
-        "-=0.9"
-      );
+        }, "-=0.9");
 
-    if (window.innerWidth <= 850) {
-      timeline1.to(
-        [el_bg1, el_bg2],
-        {
+      // 現在の画面幅で条件分岐
+      if (currentWidth <= 850) {
+        timeline1.to([el_bg1, el_bg2], {
           duration: 2,
           opacity: 1,
           scale: 1,
           ease: "elastic.out(1,0.3)",
-        },
-        "-=0.9"
-      );
-    } else {
-      timeline1
-        .to(
-          el_bg1,
-          {
+        }, "-=0.9");
+      } else {
+        timeline1
+          .to(el_bg1, {
             duration: 2,
             opacity: 1,
             scale: 1,
             ease: "elastic.out(1,0.3)",
-          },
-          "-=1"
-        )
-        .to(
-          el_bg2,
-          {
+          }, "-=1")
+          .to(el_bg2, {
             duration: 2,
             opacity: 1,
             scale: 1,
             ease: "elastic.out(1,0.3)",
-          },
-          "-=1.8"
-        );
+          }, "-=1.8");
+      }
+
+      this.currentTimeline = timeline1;
+      
+      // 初回アニメーション完了をマーク
+      timeline1.eventCallback("onComplete", () => {
+        isFirstAnimation = false;
+        console.log("初回アニメーション完了");
+      });
+    }, 50);
+  }
+
+  destroy() {
+    if (this.currentTimeline) {
+      this.currentTimeline.kill();
     }
+    this.cleanup();
   }
 }
 
+// アニメーション管理
+let currentAnimation = null;
+let resizeTimer = null;
+let isFirstAnimation = true; // 初回アニメーションフラグ
+
+// 位置のみ調整する関数
+function adjustElementPositions() {
+  const elements = [".fv__text", ".fv__logo", ".fv__date", ".fv__bg1", ".fv__bg2"];
+  elements.forEach(selector => {
+    const el = document.querySelector(selector);
+    if (el) {
+      // 表示状態を保持しつつ、位置と変形をリセット
+      gsap.set(el, {
+        x: 0,
+        y: 0,
+        scale: 1,
+        opacity: 1,
+        clearProps: "transform"
+      });
+    }
+  });
+}
+
+// デバウンス機能付きリサイズハンドラ
+window.addEventListener("resize", function() {
+  if (resizeTimer) {
+    clearTimeout(resizeTimer);
+  }
+
+  resizeTimer = setTimeout(() => {
+    if (isFirstAnimation) {
+      // 初回アニメーション中または未実行の場合は何もしない
+      return;
+    }
+    
+    // アニメーション完了後は位置調整のみ実行
+    adjustElementPositions();
+    console.log("位置調整実行");
+  }, 200);
+});
+
+// 初期化
 const init = () => {
-  new TopAnimation1();
+  currentAnimation = new TopAnimation1();
 };
 
 window.addEventListener("DOMContentLoaded", init);

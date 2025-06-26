@@ -35,13 +35,6 @@ a:hover {
   opacity: 0.8;
 }
 
-@media screen and (min-width: 769px) {
-  a[href*="tel:"] {
-    pointer-events: none;
-    cursor: default;
-    text-decoration: none;
-  }
-}
 .sp-hidden {
   display: block;
 }
@@ -105,14 +98,14 @@ a:hover {
   content: "";
   width: 20px;
   height: 20px;
-  background: url(../img/fluent_animal-paw-print-16-filled.png) no-repeat center center/contain;
+  background: url(../img/button-nikukyu.svg) no-repeat center center/contain;
   padding-right: 20px;
 }
 .button::after {
   content: "";
   width: 24px;
   height: 24px;
-  background: url(../img/uil_arrow-up.png) no-repeat center center/contain;
+  background: url(../img/button-arrow.svg) no-repeat center center/contain;
   padding-left: 24px;
 }
 .button:hover {
@@ -224,7 +217,7 @@ a:hover {
   content: "";
   width: 48px;
   height: 48px;
-  background: url(../img/heading-paw-l.png) no-repeat center center/contain;
+  background: url(../img/heading-paw-l.svg) no-repeat center center/contain;
   padding-right: 48px;
 }
 @media screen and (max-width: 768px) {
@@ -238,7 +231,7 @@ a:hover {
   content: "";
   width: 48px;
   height: 48px;
-  background: url(../img/heading-paw-r.png) no-repeat center center/contain;
+  background: url(../img/heading-paw-r.svg) no-repeat center center/contain;
   padding-left: 48px;
 }
 @media screen and (max-width: 768px) {
@@ -266,7 +259,7 @@ a:hover {
   position: absolute;
   width: 80px;
   height: 8px;
-  background: url(../img/heading-dot.png) no-repeat center center/contain;
+  background: url(../img/heading-dot.svg) no-repeat center center/contain;
   top: -10px;
   left: 50%;
   -webkit-transform: translateX(-50%);
@@ -324,10 +317,35 @@ a:hover {
   opacity: 1;
 }
 
+.kakuusaito-banner {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background: linear-gradient(135deg, #ff6b35 0%, #ff8c42 100%);
+  color: white;
+  text-align: center;
+  padding: 8px 0;
+  font-size: 14px;
+  font-weight: 700;
+  z-index: 10001; /* ヘッダーより上に */
+  -webkit-box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+          box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  letter-spacing: 0.5px;
+  font-family: "M PLUS Rounded 1c", sans-serif;
+  border-bottom: 2px solid rgba(255, 255, 255, 0.3);
+}
+
+@media screen and (max-width: 768px) {
+  .kakuusaito-banner {
+    font-size: 12px;
+    padding: 6px 0;
+  }
+}
 .header {
   background: rgba(255, 255, 255, 0.4);
   position: fixed;
-  top: 0;
+  top: 36px; /* 帯の高さ分下げる */
   left: 0;
   width: 100%;
   height: auto;
@@ -348,6 +366,7 @@ a:hover {
         -ms-flex-pack: end;
             justify-content: end;
     background: none;
+    top: 30px; /* モバイルでの調整 */
   }
 }
 
@@ -465,7 +484,7 @@ a:hover {
   margin-right: 21px;
   display: none;
   z-index: 300;
-  background: url(../img/sp/menu-icon.png) no-repeat center center/contain;
+  background: url(../img/menu-icon.svg) no-repeat center center/contain;
 }
 @media screen and (max-width: 850px) {
   .drawer-icon {
@@ -473,31 +492,38 @@ a:hover {
   }
 }
 .drawer-icon.is-checked {
-  background: url(../img/drawer-close.png) no-repeat center center/contain;
+  background: url(../img/drawer-close.svg) no-repeat center center/contain;
 }
 
 .drawer {
+  overflow-x: hidden;
   position: fixed;
-  top: 0;
+  top: 36px;
+  height: calc(100vh - 36px);
   left: 0;
   z-index: 260;
   width: 100%;
-  height: 100vh;
   background: #fffae7;
   -webkit-transform: translateX(100%);
           transform: translateX(100%);
   -webkit-transition: all 0.3s ease;
   transition: all 0.3s ease;
   display: none;
+  overflow-x: hidden;
 }
 @media screen and (max-width: 850px) {
   .drawer {
     display: block;
+    top: 30px;
+    height: calc(100vh - 30px);
   }
 }
 .drawer.is-checked {
   -webkit-transform: translateX(0);
           transform: translateX(0);
+}
+.drawer.is-checked body {
+  overflow-x: hidden;
 }
 
 .header__logo-sp {
@@ -555,17 +581,27 @@ a:hover {
   min-height: 100vh;
 }
 
+.fv:not(.animation-ready) .fv__text,
+.fv:not(.animation-ready) .fv__logo,
+.fv:not(.animation-ready) .fv__date,
+.fv:not(.animation-ready) .fv__bg1,
+.fv:not(.animation-ready) .fv__bg2 {
+  visibility: hidden;
+}
+
 .fv {
-  background: url(../img/fv.jpg) repeat center center/cover;
+  background: url(../img/fv.webp) repeat center center/cover;
   width: 100%;
   height: 766px;
   overflow: hidden;
   z-index: 1;
   position: relative;
+  margin-top: 36px; /* 帯の高さ分追加 */
 }
 @media screen and (max-width: 768px) {
   .fv {
     height: 600px;
+    margin-top: 30px; /* モバイルでの調整 */
   }
 }
 .fv::after {
@@ -797,6 +833,36 @@ a:hover {
   }
 }
 
+.fv {
+  contain: layout;
+}
+
+/* 画像要素の最小限の安定化 */
+.fv__text img,
+.fv__logo img,
+.fv__date img {
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+
+/* 背景画像要素の最小限の安定化 */
+.fv__bg1,
+.fv__bg2 {
+  /* 既存のスタイルに以下を追加 */
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+
+/* リサイズ中の一時的なスタイル */
+.fv--resizing {
+  pointer-events: none;
+}
+
+.fv--resizing * {
+  -webkit-transition: none !important;
+  transition: none !important;
+}
+
 .news {
   padding-block: 72px;
 }
@@ -830,7 +896,7 @@ a:hover {
   position: absolute;
   width: 98px;
   height: 135px;
-  background: url(../img/news-image.png) no-repeat center center/contain;
+  background: url(../img/news-image.webp) no-repeat center center/contain;
   top: -84px;
   right: 13px;
   z-index: 1;
@@ -848,7 +914,18 @@ a:hover {
   width: 100%;
 }
 
+.news__item:not(:last-of-type) {
+  border-bottom: 1px solid #ebe6e6;
+}
+.news__item:nth-of-type(2) .news__link {
+  padding-block: 17px 13px;
+}
+.news__item:nth-of-type(2) .news__category, .news__item:nth-of-type(3) .news__category, .news__item:nth-of-type(4) .news__category {
+  background: #ff6347;
+}
+
 .news__link {
+  pointer-events: auto;
   width: 100%;
   padding-block: 18px 15px;
   display: -webkit-box;
@@ -864,6 +941,28 @@ a:hover {
   -webkit-box-pack: start;
       -ms-flex-pack: start;
           justify-content: start;
+  position: relative;
+  z-index: 2;
+}
+.news__link::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  right: 10px;
+  -webkit-transform: translateY(-50%);
+          transform: translateY(-50%);
+  -webkit-transition: right 0.3s ease;
+  transition: right 0.3s ease;
+  background: url(../img/news-arrow.svg) no-repeat center center/contain;
+  width: 5px;
+  height: 10px;
+}
+.news__link:hover, .news__link:focus {
+  pointer-events: auto !important;
+  cursor: pointer !important;
+}
+.news__link:hover::after, .news__link:focus::after {
+  right: 2px;
 }
 @media screen and (max-width: 768px) {
   .news__link {
@@ -876,15 +975,6 @@ a:hover {
             align-items: flex-start;
     gap: 8px;
   }
-}
-.news__link:not(:last-of-type) {
-  border-bottom: 1px solid #ebe6e6;
-}
-.news__link:nth-of-type(2) {
-  padding-block: 17px 13px;
-}
-.news__link:nth-of-type(2) .news__category, .news__link:nth-of-type(3) .news__category, .news__link:nth-of-type(4) .news__category {
-  background: #ff6347;
 }
 
 .news__info {
@@ -996,7 +1086,7 @@ a:hover {
   padding-block: 100px 118px;
   width: 100%;
   position: relative;
-  background: url(../img/contents-bg.png) repeat;
+  background: url(../img/contents-bg.webp) repeat;
   -webkit-clip-path: ellipse(115% 50% at center);
           clip-path: ellipse(115% 50% at center);
 }
@@ -1183,7 +1273,7 @@ a:hover {
 .contents__card:nth-child(1) .contents__card-bottom::before {
   width: clamp(93px, 93px + 124 * (100vw - 480px) / 960, 217px);
   height: clamp(89px, 89px + 110 * (100vw - 480px) / 960, 199px);
-  background: url(../img/contents-img01.png) no-repeat center center/contain;
+  background: url(../img/contents-img01.webp) no-repeat center center/contain;
   top: 81px;
   right: -91px;
   z-index: 1;
@@ -1204,7 +1294,7 @@ a:hover {
 .contents__card:nth-child(2) .contents__card-bottom::before {
   width: clamp(93px, 93px + 90 * (100vw - 480px) / 960, 183px);
   height: clamp(86px, 86px + 82 * (100vw - 480px) / 960, 168px);
-  background: url(../img/contents-img02.png) no-repeat center center/contain;
+  background: url(../img/contents-img02.webp) no-repeat center center/contain;
   top: -171px;
   left: -113px;
   z-index: 1;
@@ -1236,7 +1326,7 @@ a:hover {
   position: absolute;
   width: clamp(93px, 93px + 90 * (100vw - 480px) / 960, 183px);
   height: clamp(86px, 86px + 82 * (100vw - 480px) / 960, 168px);
-  background: url(../img/contents-img02.png) no-repeat center center/contain;
+  background: url(../img/contents-img02.webp) no-repeat center center/contain;
   top: -167px;
   left: -8px;
   z-index: 1;
@@ -1255,7 +1345,7 @@ a:hover {
   position: absolute;
   width: clamp(135px, 135px + 165 * (100vw - 480px) / 960, 300px);
   height: clamp(103px, 103px + 128 * (100vw - 480px) / 960, 231px);
-  background: url(../img/contents-img03.png) no-repeat center center/contain;
+  background: url(../img/contents-img03.webp) no-repeat center center/contain;
   bottom: -74px;
   right: -149px;
   z-index: 1;
@@ -1301,7 +1391,7 @@ a:hover {
 .contents__card:nth-child(3) .contents__card-bottom::before {
   width: clamp(83px, 83px + 67 * (100vw - 480px) / 960, 150px);
   height: clamp(99px, 99px + 82 * (100vw - 480px) / 960, 181px);
-  background: url(../img/contents-img04.png) no-repeat center center/contain;
+  background: url(../img/contents-img04.webp) no-repeat center center/contain;
   top: 29px;
   right: -31px;
   z-index: 1;
@@ -1340,7 +1430,7 @@ a:hover {
 .contents__card:nth-child(4) .contents__card-bottom::after {
   width: clamp(138px, 138px + 139 * (100vw - 480px) / 960, 277px);
   height: clamp(104px, 104px + 104 * (100vw - 480px) / 960, 208px);
-  background: url(../img/contents-img05.png) no-repeat center center/contain;
+  background: url(../img/contents-img05.webp) no-repeat center center/contain;
   top: -193px;
   left: -206px;
   z-index: 1;
@@ -1366,7 +1456,7 @@ a:hover {
   position: absolute;
   width: clamp(138px, 138px + 139 * (100vw - 480px) / 960, 277px);
   height: clamp(104px, 104px + 104 * (100vw - 480px) / 960, 208px);
-  background: url(../img/contents-img05.png) no-repeat center center/contain;
+  background: url(../img/contents-img05.webp) no-repeat center center/contain;
   top: -42px;
   left: -38px;
   z-index: 1;
@@ -1392,7 +1482,7 @@ a:hover {
 .contents__card:nth-child(5) .contents__card-bottom::before {
   width: clamp(122px, 122px + 148 * (100vw - 480px) / 960, 270px);
   height: clamp(122px, 122px + 148 * (100vw - 480px) / 960, 270px);
-  background: url(../img/contents-img08.png) no-repeat center center/contain;
+  background: url(../img/contents-img08.webp) no-repeat center center/contain;
   top: -168px;
   right: -110px;
   z-index: 1;
@@ -1414,7 +1504,7 @@ a:hover {
   position: absolute;
   width: clamp(122px, 122px + 148 * (100vw - 480px) / 960, 270px);
   height: clamp(122px, 122px + 148 * (100vw - 480px) / 960, 270px);
-  background: url(../img/contents-img08.png) no-repeat center center/contain;
+  background: url(../img/contents-img08.webp) no-repeat center center/contain;
   top: -59px;
   right: -18px;
   z-index: 1;
@@ -1441,7 +1531,7 @@ a:hover {
 .contents__card:nth-child(6) .contents__card-bottom::before {
   width: clamp(105px, 105px + 112 * (100vw - 480px) / 960, 217px);
   height: clamp(105px, 105px + 112 * (100vw - 480px) / 960, 217px);
-  background: url(../img/contents-img09.png) no-repeat center center/contain;
+  background: url(../img/contents-img09.webp) no-repeat center center/contain;
   top: -211px;
   left: -138px;
   z-index: 1;
@@ -1473,7 +1563,7 @@ a:hover {
   position: absolute;
   width: clamp(105px, 105px + 112 * (100vw - 480px) / 960, 217px);
   height: clamp(105px, 105px + 112 * (100vw - 480px) / 960, 217px);
-  background: url(../img/contents-img09.png) no-repeat center center/contain;
+  background: url(../img/contents-img09.webp) no-repeat center center/contain;
   top: -44px;
   left: -16px;
   z-index: 1;
@@ -1491,7 +1581,7 @@ a:hover {
   position: absolute;
   width: clamp(141px, 141px + 135 * (100vw - 480px) / 960, 276px);
   height: clamp(106px, 106px + 101 * (100vw - 480px) / 960, 207px);
-  background: url(../img/contents-img10.png) no-repeat center center/contain;
+  background: url(../img/contents-img10.webp) no-repeat center center/contain;
   bottom: 6px;
   right: -138px;
   right: -138px;
@@ -1675,7 +1765,7 @@ a:hover {
   content: "";
   width: 18px;
   height: 18px;
-  background: url(../img/list-icon-paw.png) no-repeat center center/contain;
+  background: url(../img/list-icon-paw.svg) no-repeat center center/contain;
   padding-right: 18px;
 }
 @media screen and (max-width: 480px) {
@@ -1698,7 +1788,7 @@ a:hover {
 
 .shop {
   padding-block: 72px 211px;
-  background: url(../img/shoplist-lawn.png) repeat-x center bottom/contain;
+  background: url(../img/shoplist-lawn.webp) repeat-x center bottom/contain;
   position: relative;
   overflow: hidden;
 }
@@ -1719,7 +1809,7 @@ a:hover {
   top: -55px;
   width: clamp(95px, 95px + 99 * (100vw - 480px) / 960, 194px);
   height: clamp(91px, 91px + 95 * (100vw - 480px) / 960, 186px);
-  background: url("../img/shoplist-dog01.png") no-repeat center/contain;
+  background: url("../img/shoplist-dog01.webp") no-repeat center/contain;
 }
 @media screen and (max-width: 1360px) {
   .shop__inner::after {
@@ -2003,12 +2093,12 @@ a:hover {
 
 .withdog {
   padding-block: 77px;
-  background: url(../img/withdog-bg.png) repeat center center/cover;
+  background: url(../img/withdog-bg.webp) repeat center center/cover;
 }
 @media screen and (max-width: 768px) {
   .withdog {
     padding-block: 48px;
-    background: url(../img/withdog-bg_sp.png) repeat center center/cover;
+    background: url(../img/sp/withdog-bg_sp.webp) repeat center center/cover;
   }
 }
 
@@ -2034,6 +2124,8 @@ a:hover {
 }
 
 .withdog__container {
+  max-width: 800px;
+  margin-inline: auto;
   margin-top: 51px;
   border-radius: 30px;
   padding: 28px 36px;
@@ -2344,7 +2436,7 @@ a:hover {
   width: clamp(85px, 85px + 55 * (100vw - 480px) / 960, 140px);
   height: clamp(94px, 94px + 61 * (100vw - 480px) / 960, 155px);
   z-index: 10;
-  background: url("../img/faq-dog.png") no-repeat center/contain;
+  background: url("../img/faq-dog.webp") no-repeat center/contain;
   pointer-events: none;
 }
 @media screen and (max-width: 1024px) {
@@ -2372,7 +2464,7 @@ a:hover {
   width: clamp(85px, 93px + -1 * (100vw - 480px) / 960, 84px);
   height: clamp(46px, 89px + 25 * (100vw - 480px) / 960, 71px);
   aspect-ratio: 1/1;
-  background: url("../img/faq-lawn.png") no-repeat center/contain;
+  background: url("../img/faq-lawn.svg") no-repeat center/contain;
   z-index: 0;
   pointer-events: none;
 }
@@ -2391,7 +2483,7 @@ a:hover {
 @media screen and (max-width: 480px) {
   .faq__box:nth-child(7)::before {
     width: 71px;
-    background: url("../img/sp/faq-lawn.png") no-repeat center/contain;
+    background: url("../img/sp/faq-lawn-sp.svg") no-repeat center/contain;
     right: -1px;
     bottom: -113px;
   }
@@ -2462,11 +2554,9 @@ a:hover {
     right: 5px;
     -webkit-transform: translateY(-50%) rotate(180deg);
             transform: translateY(-50%) rotate(180deg);
-    width: 14.62px;
-    height: 8.56px;
-    background: url(../img/faq-arrow.png) no-repeat center center/contain;
-    -webkit-transform: rotate(180deg);
-            transform: rotate(180deg);
+    width: 20px;
+    height: 20px;
+    background: url(../img/faq-arrow.svg) no-repeat center center/contain;
   }
 }
 @media screen and (max-width: 768px) and (max-width: 768px) {
@@ -2555,23 +2645,23 @@ a:hover {
   }
 }
 .ticket::before {
-  background: url(../img/ticket-bg-top-pc.png) repeat-x;
+  background: url(../img/ticket-bg-top-pc.webp) repeat-x;
   top: -59px;
 }
 @media screen and (max-width: 768px) {
   .ticket::before {
-    background: url(../img/ticket-bg-top.png) repeat-x;
+    background: url(../img/ticket-bg-top.webp) repeat-x;
     top: -41px;
   }
 }
 .ticket::after {
-  background: url(../img/ticket-bg-bottom-pc.png) repeat-x;
+  background: url(../img/ticket-bg-bottom-pc.webp) repeat-x;
   bottom: -53px;
 }
 @media screen and (max-width: 768px) {
   .ticket::after {
     bottom: -41px;
-    background: url(../img/ticket-bg-bottom.png) repeat-x;
+    background: url(../img/ticket-bg-bottom.webp) repeat-x;
   }
 }
 
@@ -2716,7 +2806,7 @@ a:hover {
 @media screen and (max-width: 480px) {
   .ticket__card1-hukidashi {
     width: 90px;
-    margin-right: -7px;
+    margin-right: -11px;
     margin-top: 9px;
   }
 }
@@ -2728,7 +2818,7 @@ a:hover {
   position: absolute;
   width: 112px;
   text-align: center;
-  top: 43%;
+  top: 52%;
   left: 51%;
   -webkit-transform: translate(-50%, -50%);
           transform: translate(-50%, -50%);
@@ -2744,7 +2834,7 @@ a:hover {
 }
 @media screen and (max-width: 480px) {
   .ticket__card1-text {
-    top: 40%;
+    top: 51%;
     font-size: 9px;
     line-height: 17px;
     width: 64px;
@@ -2785,11 +2875,11 @@ a:hover {
 .ticket__card1-dog {
   width: clamp(89px, 89px + 132 * (100vw - 480px) / 960, 221px);
   height: clamp(89px, 89px + 132 * (100vw - 480px) / 960, 221px);
-  margin-top: -37px;
+  margin-top: -19px;
 }
 @media screen and (max-width: 768px) {
   .ticket__card1-dog {
-    margin-top: -29px;
+    margin-top: -7px;
   }
 }
 .ticket__card1-dog img {
@@ -2899,7 +2989,7 @@ a:hover {
   width: clamp(88px, 88px + 149 * (100vw - 480px) / 960, 237px);
   height: clamp(62px, 62px + 105 * (100vw - 480px) / 960, 167px);
   z-index: -10;
-  background: url("../img/map-footprints01.png") no-repeat center/contain;
+  background: url("../img/map-footprints01.svg") no-repeat center/contain;
   pointer-events: none;
 }
 @media screen and (max-width: 1360px) {
@@ -2948,7 +3038,7 @@ a:hover {
   width: clamp(88px, 88px + 149 * (100vw - 480px) / 960, 237px);
   height: clamp(62px, 62px + 105 * (100vw - 480px) / 960, 167px);
   z-index: -10;
-  background: url("../img/map-footprints02.png") no-repeat center/contain;
+  background: url("../img/map-footprints02.svg") no-repeat center/contain;
   pointer-events: none;
 }
 @media screen and (max-width: 1430px) {
@@ -2993,7 +3083,7 @@ a:hover {
   bottom: 169px;
   width: clamp(64px, 64px + 166 * (100vw - 480px) / 960, 230px);
   height: clamp(68px, 68px + 182 * (100vw - 480px) / 960, 250px);
-  background: url("../img/map-dog.png") no-repeat center/contain;
+  background: url("../img/map-dog.webp") no-repeat center/contain;
   pointer-events: none;
 }
 @media screen and (max-width: 1200px) {
@@ -3038,7 +3128,7 @@ a:hover {
     top: -20px;
     width: 36px;
     height: 36px;
-    background: url("../img/map-lupe.png") no-repeat center/contain;
+    background: url("../img/map-lupe.svg") no-repeat center/contain;
   }
 }
 .map__img img {
@@ -3108,18 +3198,18 @@ a:hover {
   content: "";
   position: absolute;
   inset: 0;
-  background: url("../img/map-cross.png") no-repeat center/contain;
+  background: url("../img/map-cross.svg") no-repeat center/contain;
   pointer-events: none;
 }
 
 .access {
   padding-block: 68px;
-  background: url(../img/access-bg__pc.png) repeat;
+  background: url(../img/access-bg__pc.webp) repeat;
 }
 @media screen and (max-width: 768px) {
   .access {
     padding-block: 30px 33px;
-    background: url(../img/access-bg_sp.png);
+    background: url(../img/sp/access-bg_sp.webp);
   }
 }
 
@@ -3153,7 +3243,7 @@ a:hover {
   position: absolute;
   width: clamp(100px, 100px + 223 * (100vw - 480px) / 960, 323px);
   height: clamp(75px, 75px + 167 * (100vw - 480px) / 960, 242px);
-  background: url(../img/access-image.png) no-repeat center center/contain;
+  background: url(../img/access-image.webp) no-repeat center center/contain;
   bottom: 0;
   right: calc(100% - 163px);
   opacity: 0;
@@ -3174,7 +3264,7 @@ a:hover {
   position: absolute;
   width: clamp(100px, 100px + 223 * (100vw - 480px) / 960, 323px);
   height: clamp(75px, 75px + 167 * (100vw - 480px) / 960, 242px);
-  background: url(../img/access-image_sp.png) no-repeat center center/contain;
+  background: url(../img/access-image_sp.webp) no-repeat center center/contain;
   bottom: 80px;
   right: 0;
   display: none;
@@ -3320,7 +3410,7 @@ a:hover {
   content: "";
   width: 22px;
   height: 22px;
-  background: url(../img/access-map.png) no-repeat center center/contain;
+  background: url(../img/access-map.svg) no-repeat center center/contain;
   padding-right: 22px;
 }
 @media screen and (max-width: 768px) {
@@ -3334,7 +3424,7 @@ a:hover {
   content: "";
   width: 24px;
   height: 24px;
-  background: url(../img/access-car.png) no-repeat center center/contain;
+  background: url(../img/access-car.svg) no-repeat center center/contain;
   padding-right: 24px;
 }
 
@@ -3489,7 +3579,7 @@ a:hover {
     margin-left: 0;
   }
 }
-.footer__logo svg {
+.footer__logo img {
   aspect-ratio: 241/175;
   -o-object-fit: contain;
      object-fit: contain;
@@ -3497,7 +3587,7 @@ a:hover {
   height: 100%;
 }
 @media screen and (max-width: 1024px) {
-  .footer__logo svg {
+  .footer__logo img {
     aspect-ratio: 155/112;
   }
 }
@@ -3705,7 +3795,7 @@ a:hover {
   position: fixed;
   z-index: 250;
   right: 5px;
-  bottom: 100px;
+  bottom: 136px; /* 元の位置 + 帯の高さ */
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -3722,12 +3812,12 @@ a:hover {
 }
 @media screen and (max-width: 1200px) {
   .mochico {
-    bottom: 70px;
+    bottom: 106px;
   }
 }
 @media screen and (max-width: 768px) {
   .mochico {
-    bottom: 60px;
+    bottom: 90px;
   }
 }
 
@@ -3847,7 +3937,7 @@ a:hover {
   content: "";
   width: 30px;
   height: 30px;
-  background: url(../img/uil_arrow-up.png) no-repeat center center/contain;
+  background: url(../img/uil_arrow-up.svg) no-repeat center center/contain;
 }
 @media screen and (max-width: 1024px) {
   .mochiko__text::after {
